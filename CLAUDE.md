@@ -84,7 +84,25 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   brand and tagline beside two link columns, then the copyright and "A
   project by techgeek.dev". It reads only color tokens, so a place's own
   page can restyle it.
-- **Breakpoints**: 440, 480, 640, and 960px. The bar's links fold into the
+- **Flourishes** (decided by the user 2026-11-25, each motif kept to one
+  place so none turns into wallpaper): the hero's pins drop in once on load;
+  a dotted coral trail links the How it works pins; the footer rises in a
+  layered wave, with a small trail map beside its link columns (above
+  960px) ending at a pin topped by an apple, a row of town links, and a
+  sign-off on the name; faint contour fragments sit in the page's side
+  margins at 1,440px and up. The How it works band keeps straight rules.
+- **"Apple of the earth"** (decided by the user 2026-11-25): the site leans
+  on the literal meaning of pomme de terre rather than "potato", but only in
+  the footer, the phone menu's closing line, the 404 page ("This apple
+  rolled off the map", an apple tipping off a pin), and About's note on the
+  name. The wave mark and the hero stay apple-free. Its leaf reads
+  `--acc-lea-col`.
+- **Phone menu** (decided by the user 2026-11-25, following the sibling
+  sites' fix for a bare drawer): the links become roomy rows with arrows,
+  then the "Add your place" button, then a pale panel with a chip per town,
+  the guide's email, and the name's note.
+- **Breakpoints**: 440, 480, 640, and 960px, plus a 1,440px minimum for the
+  page background's contour lines. The bar's links fold into the
   phone menu at 960px and below.
 
 ## Layout

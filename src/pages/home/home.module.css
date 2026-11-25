@@ -304,13 +304,59 @@
 
 /* #region steIteIte */
 
-.steIteIte { /* What: Step Item Item. Why: Each step's pin leads its words, as a marker leads a map's note. How: This sets the pin beside the step's text, a part's tier apart, aligned at the top. */
+.steIteIte { /* What: Step Item Item. Why: Each step's pin leads its words, like a stop on a trail. How: This stacks the numbered pin above the step's text, a part's tier apart, and positions the trail drawn after it. */
 
 
-	align-items           : start;
-	column-gap            : var( --tie-hor-004 ); /* Tier Horizontal 4, about 11px - 19.304px */
-	display               : grid;
-	grid-template-columns : auto 1fr;
+	--ste-pin-hei : calc( var( --ver-rhy-p04 ) * 1rem );    /* Vertical Rhythm Base Plus 4 ~= 44.876px */ /* What: Step Pin Height. Why: The trail lines up with the pin's head, so it needs the pin's size. How: This matches the large pin's height. */
+	--ste-pin-wid : calc( var( --ste-pin-hei ) * 30 / 38 ); /* What: Step Pin Width. Why: The trail starts just past the pin. How: The pin's width follows its 30 by 38 shape. */
+
+	align-content : start;
+	display       : grid;
+	position      : relative;
+	row-gap       : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+.steIteIte:not( :last-child )::after { /* What: Step Item Item Trail. Why: A dotted coral trail runs from each step's pin to the next, so the steps read as a route from search to supper. How: This draws a row of round coral dots from just past the pin, level with its head, to just short of the next column's pin. */
+
+
+	background-image  : radial-gradient( circle, var( --acc-sec-col ) 40%, transparent 45% );     /* Accent Secondary Color = #f26a4b */
+	background-repeat : repeat-x;
+	background-size   : calc( var( --ver-rhy-m02 ) * 1rem ) 100%;                                 /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	content           : '';
+	height            : calc( var( --ver-rhy-m02 ) * 1rem );                                      /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	left              : calc( var( --ste-pin-wid ) + var( --tie-hor-005 ) );                      /* Tier Horizontal 5, about 6.268px - 11px */
+	position          : absolute;
+	right             : calc( var( --tie-hor-003 ) * -1 + var( --tie-hor-005 ) );                 /* Tier Horizontal 3, about 19.304px - 33.876px, Tier Horizontal 5, about 6.268px - 11px */
+	top               : calc( var( --ste-pin-hei ) * 14 / 38 - var( --ver-rhy-m02 ) * 1rem / 2 ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */ /* What: Trail Height. Why: The trail runs level with the pins' heads. How: The head's center sits 14 of the pin's 38 units down, less half the dots' row. */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Step Item Item. Why: Stacked steps read best with each pin beside its words. How: This applies 960px wide and below. */
+
+
+	.steIteIte { /* What: Stacked Step Item Item. Why: The pin leads its words from the side once the steps stack. How: This sets the pin beside the text, a part's tier apart. */
+
+
+		column-gap            : var( --tie-hor-004 ); /* Tier Horizontal 4, about 11px - 19.304px */
+		grid-template-columns : auto 1fr;
+
+
+	}
+	.steIteIte:not( :last-child )::after { /* What: Stacked Step Item Item Trail. Why: Once the steps stack, the trail runs down from each pin to the next. How: This draws a column of coral dots centered under the pin, from just below it to just short of the next pin. */
+
+
+		background-repeat : repeat-y;
+		background-size   : 100% calc( var( --ver-rhy-m02 ) * 1rem );                           /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+		bottom            : calc( var( --tie-ver-003 ) * -1 + var( --tie-ver-005 ) );           /* Tier Vertical 3 ~= 33.876px, Tier Vertical 5 = 11px */
+		height            : auto;
+		left              : calc( var( --ste-pin-wid ) / 2 - var( --ver-rhy-m02 ) * 1rem / 2 ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+		right             : auto;
+		top               : calc( var( --ste-pin-hei ) + var( --tie-ver-005 ) );                /* Tier Vertical 5 = 11px */
+		width             : calc( var( --ver-rhy-m02 ) * 1rem );                                /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+
+
+	}
 
 
 }

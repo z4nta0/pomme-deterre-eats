@@ -6,8 +6,8 @@
 import cssModObj from './not-found.module.css'; // What: CSS Module Object. Why: The 404 page is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
 
-import { Link      } from 'react-router';           // What: Link. Why: The page's buttons move to other pages without a full page load. How: This renders each one as a router link.
-import { MapPinCom } from '../../ui/map-pin.tsx';   // What: Map Pin Component. Why: The page's picture is a map pin, for a page that isn't on the map. How: This draws the large pin.
+import { AppPinCom } from './apple-pin.tsx'; // What: Apple Pin Component. Why: The page's picture is an apple on a map pin, for an apple that rolled off the map. How: This draws it.
+import { Link      } from 'react-router';   // What: Link. Why: The page's buttons move to other pages without a full page load. How: This renders each one as a router link.
 
 // #endregion Imports
 
@@ -17,9 +17,9 @@ import { MapPinCom } from '../../ui/map-pin.tsx';   // What: Map Pin Component. 
  * not-found.tsx = Not Found Page
  *
  * @summary
- * The page every unknown address shows, kept out of search: a map pin, a
- * short message that the page isn't on the map, and two ways onward, back
- * home and on to the listing. It keeps index.html's description, since
+ * The page every unknown address shows, kept out of search: an apple tipping
+ * off a map pin, for the name's "apple of the earth", a short message that
+ * the page isn't here, and two ways onward, back home and on to the listing. It keeps index.html's description, since
  * search engines never show it.
  *
  * Sections:
@@ -75,13 +75,13 @@ function NotFouCom () : React.JSX.Element {
 
 
 
-			<MapPinCom sizStr='large' />{ /* What: Map Pin Component. Why: A page that isn't on the map gets a lone pin. How: This draws the large pin with its coral dot. */ }
+			<AppPinCom />{ /* What: Apple Pin Component. Why: The page's picture plays on the name's "apple of the earth". How: This draws an apple tipping off a map pin. */ }
 
 
 
-			<h1 className={ cssModObj.notTitHea }>That page isn't on the map</h1>{ /* What: Not Found Title Heading Element. Why: The page's one heading says what happened, with a little of the site's fun. How: This shows it large in navy. */ }
+			<h1 className={ cssModObj.notTitHea }>This apple rolled off the map</h1>{ /* What: Not Found Title Heading Element. Why: The page's one heading says what happened, with a little of the site's fun and a nod to the name's "apple of the earth". How: This shows it large in navy. */ }
 
-			<p className={ cssModObj.notTexPar }>The address may be mistyped, or the page may have moved. The guide's places are all still here.</p>{ /* What: Not Found Text Paragraph Element. Why: A visitor should know what went wrong and that the guide is fine. How: This says so in slate. */ }
+			<p className={ cssModObj.notTexPar }>The page you're looking for isn't here. The address may be mistyped, or the page may have moved, but every place in the guide is still on the map.</p>{ /* What: Not Found Text Paragraph Element. Why: A visitor should know what went wrong and that the guide is fine. How: This says so in slate. */ }
 
 
 

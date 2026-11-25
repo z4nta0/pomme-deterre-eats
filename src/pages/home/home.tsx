@@ -316,7 +316,7 @@ function HomPagCom () : React.JSX.Element {
 								key={ steRecObj.numStr }
 
 								className={ cssModObj.steIteIte }
-							>{ /* What: Step Item Item Element. Why: Each step's pin leads its words. How: This sets the numbered pin beside the step's title and text. */ }
+							>{ /* What: Step Item Item Element. Why: Each step's pin leads its words, like a stop on a trail. How: This sets the numbered pin above the step's title and text above 960px wide, and beside them at 960px and below, with a dotted trail running on to the next step's pin. */ }
 
 
 								<MapPinCom

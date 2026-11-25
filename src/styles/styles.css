@@ -142,6 +142,7 @@
 
 	--acc-dar-col : ;                     /* What: Accent Dark Color. Why: The standard role set includes a darker accent shade for text. How: The lake navy already reads at well over 4.5:1 on every light surface, so this site leaves it empty. */
 	--acc-hov-col : #0b2340;              /* What: Accent Hover Color. Why: A navy button or link has to show it's hovered. How: This is the lake navy darkened, the same shade as the footer. */
+	--acc-lea-col : #6fbf73;              /* What: Accent Leaf Color. Why: The apple motif, from the name's "apple of the earth", carries a small green leaf. How: This is a fresh leaf green, for drawings only, never text. */
 	--acc-lig-col : #9fc3e8;              /* What: Accent Light Color. Why: Links and focus rings on the dark navy bands would sink in the main navy. How: This is a pale lake blue that reaches about 6.8:1 on the navy. */
 	--acc-mai-col : #12355b;              /* What: Accent Main Color. Why: This is the brand's deep lake navy, for headings, buttons, and the owners' band. How: This is the Harbor direction's navy. */
 	--acc-sec-col : #f26a4b;              /* What: Accent Secondary Color. Why: This is the brand's sunset coral, for marks, pins, and fills behind dark text. How: This is the Harbor direction's coral; it reaches only about 3:1 on white, so it never sets text there. */
@@ -487,6 +488,23 @@ body { /* What: Page Body. Why: Every page shares one font, color, and backgroun
 	font-size        : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height      : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 	overflow-x       : hidden;
+
+
+}
+@media ( min-width : 1440px ) { /* What: Wide Page Body. Why: On a wide screen the page's side margins sit empty beside the centered column. How: This applies 1,440px wide and above, where each margin is about 170px or more, room for the map lines without reaching the content. */
+
+
+	body { /* What: Mapped Page Body. Why: Faint contour lines in the margins carry the trail map motif quietly through every page. How: This sets one contour fragment at the left edge near the top and one at the right edge lower down, held still as the page scrolls; their stroke is the strong border gray, written into each file. */
+
+
+		background-attachment : fixed, fixed;
+		background-image      : url( '../assets/images/contour-left.svg' ), url( '../assets/images/contour-right.svg' );
+		background-position   : left top var( --tie-ver-001 ), right bottom var( --tie-ver-002 );                        /* Tier Vertical 1 ~= 104.323px, Tier Vertical 2 ~= 59.447px */
+		background-repeat     : no-repeat, no-repeat;
+		background-size       : calc( var( --ver-rhy-p09 ) * 1rem ) auto, calc( var( --ver-rhy-p09 ) * 1rem ) auto;      /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+
+
+	}
 
 
 }

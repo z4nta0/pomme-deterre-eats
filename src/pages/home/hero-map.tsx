@@ -15,17 +15,35 @@ import cssModObj from './hero-map.module.css'; // What: CSS Module Object. Why: 
  * @summary
  * The home page hero's backdrop: a simple trail map of the lake country,
  * drawn as one inline SVG covering the hero, with a soft lake, contour lines
- * around it, and a dotted coral trail running between three navy pins. It's
- * decoration behind the hero's words, so it's hidden from screen readers and
- * takes no pointer events.
+ * around it, and a dotted coral trail running between three navy pins, which
+ * drop into place one after another as the page opens. It's decoration
+ * behind the hero's words, so it's hidden from screen readers and takes no
+ * pointer events.
  *
  * Sections:
+ *  - Constants
  *  - Components
  *  - Exports
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
 */
+
+
+
+// #region Constants
+
+const PIN_REC_ARR = [ // What: Pin Record Array. Why: The pins sit along the trail, dropping in from the lowest up. How: Each row names a pin and the drawing-space spot its tip stands on.
+
+
+	{ ideStr : 'low',  xcoNum : 890,  ycoNum : 330 }, // What: Low Pin Row. Why: The trail's first pin sits beside the lake's lower shore. How: This places its tip there.
+	{ ideStr : 'mid',  xcoNum : 1090, ycoNum : 180 }, // What: Middle Pin Row. Why: The trail's second pin sits past the lake. How: This places its tip there.
+	{ ideStr : 'high', xcoNum : 1210, ycoNum : 80  }  // What: High Pin Row. Why: The trail's last pin sits near the map's top. How: This places its tip there.
+
+
+];
+
+// #endregion Constants
 
 
 
@@ -100,48 +118,42 @@ function HerMapCom () : React.JSX.Element {
 			<path
 				className={ cssModObj.mapTraPat }
 
-				d='M640 470c90-70 170-110 250-140s140-60 200-150 90-120 120-120'
+				d='M640 470c90-70 170-110 250-140s140-60 200-150 90-100 120-100'
 			/>{ /* What: Map Trail Path Element. Why: A dotted trail ties the pins together, as on a trail map. How: This strokes a dotted coral line from the lower middle up past the lake. */ }
 
 
 
-			<g className={ cssModObj.mapPinGro }>{ /* What: Map Pins Group Element. Why: Pins mark places to eat along the trail. How: This fills every pin in the group with navy, each with a coral dot. */ }
+			{ PIN_REC_ARR.map( ( pinRecObj, pinIndNum ) => ( // What: Pin Map. Why: Each place along the trail gets a pin. How: This renders one pin group per row of PIN_REC_ARR, with its place in the drop.
 
 
-				<path d='M890 330c0 0-13-14-13-23a13 13 0 0 1 26 0c0 9-13 23-13 23z' />{ /* What: Map Pin Path Element. Why: A pin marks a place along the trail. How: This is the lowest pin. */ }
+				<g
+					key={ pinRecObj.ideStr }
 
-				<path d='M1090 180c0 0-13-14-13-23a13 13 0 0 1 26 0c0 9-13 23-13 23z' />{ /* What: Map Pin Path Element. Why: A pin marks a place along the trail. How: This is the middle pin. */ }
+					className={ cssModObj.mapPinGro }
 
-				<path d='M1210 60c0 0-13-14-13-23a13 13 0 0 1 26 0c0 9-13 23-13 23z' />{ /* What: Map Pin Path Element. Why: A pin marks a place along the trail. How: This is the highest pin. */ }
-
-
-			</g>
-
+					style={ { '--pin-ind' : pinIndNum } as React.CSSProperties } // What: Pin Index. Why: The pins drop in one after another. How: This hands each group its place, which the stylesheet multiplies into its delay. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
+				>{ /* What: Map Pin Group Element. Why: A pin's body and its dot drop in together. How: This groups them, dropping into place once as the page opens. */ }
 
 
-			<g className={ cssModObj.mapDotGro }>{ /* What: Map Dots Group Element. Why: Each pin's head carries a coral dot. How: This fills every dot in the group with coral. */ }
+					<path
+						className={ cssModObj.pinBodPat }
+
+						d={ `M${ pinRecObj.xcoNum } ${ pinRecObj.ycoNum }c0 0-13-14-13-23a13 13 0 0 1 26 0c0 9-13 23-13 23z` } // What: Pin Shape Data. Why: Every pin is the same teardrop, standing on its own spot. How: This starts the shape at the row's tip and draws the teardrop up from it.
+					/>{ /* What: Pin Body Path Element. Why: The marker is the pin's teardrop shape. How: This fills it in navy. */ }
+
+					<circle
+						className={ cssModObj.pinDotCir }
+
+						cx={ pinRecObj.xcoNum }
+						cy={ pinRecObj.ycoNum - 23 } // What: Dot Height. Why: The dot sits at the center of the pin's round head. How: The head's center is 23 units above the tip.
+						r='5'
+					/>{ /* What: Pin Dot Circle Element. Why: Each pin's head carries a coral dot. How: This draws the dot at the head's center. */ }
 
 
-				<circle
-					cx='890'
-					cy='307'
-					r='5'
-				/>{ /* What: Map Dot Circle Element. Why: The pin's head carries a dot. How: This is the lowest pin's dot. */ }
-
-				<circle
-					cx='1090'
-					cy='157'
-					r='5'
-				/>{ /* What: Map Dot Circle Element. Why: The pin's head carries a dot. How: This is the middle pin's dot. */ }
-
-				<circle
-					cx='1210'
-					cy='37'
-					r='5'
-				/>{ /* What: Map Dot Circle Element. Why: The pin's head carries a dot. How: This is the highest pin's dot. */ }
+				</g>
 
 
-			</g>
+			))}
 
 
 		</svg>

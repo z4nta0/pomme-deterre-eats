@@ -7,8 +7,8 @@
  * @summary
  * Styles for HerMapCom: the map covers the hero behind its words, taking no
  * pointer events, with a pale blue lake, contour lines in the strong border
- * gray, a dotted coral trail, and navy pins with coral dots, every color
- * read from the color tokens.
+ * gray, a dotted coral trail, and navy pins with coral dots that drop into
+ * place as the page opens, every color read from the color tokens.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -60,7 +60,54 @@
 
 }
 
-.mapPinGro { /* What: Map Pins Group. Why: The pins are the brand's navy markers. How: This fills them with the accent color. */
+/* #region mapPinGro */
+
+.mapPinGro { /* What: Map Pin Group. Why: The pins drop into place one after another as the page opens, a small welcome that plays once. How: This plays the drop on each pin, delayed by one stagger step per place in the trail, holding each pin hidden until its turn, its own box the origin of its move. */
+
+
+	animation     : mapPinGroEnterDrop var( --dur-ani-p04 ) var( --mot-ove-eas ) calc( var( --dur-ani-p01 ) * ( var( --pin-ind ) + 2 ) ) backwards; /* Duration Animation Base Plus 4 ~= 486.1ms, Motion Overshoot Easing = cubic-bezier( .34, 1.2, .5, 1 ), Duration Animation Base Plus 1 ~= 209.1ms, Pin Index, set by each pin's style */
+	transform-box : fill-box;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Map Pin Group. Why: Someone who asked for less motion should see the pins already in place. How: This applies only when the reduced-motion preference is set. */
+
+
+	.mapPinGro { /* What: Still Map Pin Group. Why: The pins should simply be there. How: This turns the drop off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes mapPinGroEnterDrop { /* What: Map Pin Group Enter Drop. Why: A pin dropping onto the map reads as marking a spot. How: This fades each pin in from a step above its place, settling with a gentle overshoot. */
+
+
+	from {
+
+
+		opacity   : 0;
+		transform : translateY( calc( var( --spa-ver-p02 ) * -1 ) ); /* Spacing Vertical Base Plus 2 ~= -25.572px */
+
+
+	}
+
+	to {
+
+
+		opacity   : 1;
+		transform : none;
+
+
+	}
+
+
+}
+
+.pinBodPat { /* What: Pin Body Path. Why: The pins are the brand's navy markers. How: This fills each with the accent color. */
 
 
 	fill : var( --acc-mai-col ); /* Accent Main Color = #12355b */
@@ -68,13 +115,15 @@
 
 }
 
-.mapDotGro { /* What: Map Dots Group. Why: Each pin's dot is the brand's coral. How: This fills them with the secondary accent. */
+.pinDotCir { /* What: Pin Dot Circle. Why: Each pin's dot is the brand's coral. How: This fills each with the secondary accent. */
 
 
 	fill : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
 
 
 }
+
+/* #endregion mapPinGro */
 
 /* #endregion herMapSvg */
 

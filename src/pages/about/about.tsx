@@ -19,7 +19,8 @@ import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page D
  * @summary
  * The page that says what the guide is: why it gathers every place to eat
  * around the lake into one guide, where its listings come from and how to
- * keep them current, what's coming for owners, and who builds it. It reads
+ * keep them current, what's coming for owners, what its name means, and who
+ * builds it. It reads
  * as one column of headed prose under the page's heading.
  *
  * Sections:
@@ -115,6 +116,10 @@ function AboPagCom () : React.JSX.Element {
 				<h2>For owners</h2>{ /* What: Owners Heading Element. Why: Owners are the guide's other audience. How: This names their section. */ }
 
 				<p>If you run a place to eat near the lake, you can ask to <Link className={ cssModObj.aboBodAnc } to='/contact?reason=add'>add your place</Link> or <Link className={ cssModObj.aboBodAnc } to='/contact?reason=update'>update your listing</Link> at any time. Each place will also get a page of its own, styled like the business, with its menu, its hours, and its story.</p>{ /* What: Owners Paragraph Element. Why: Owners should know how to take part and what's coming. How: This links to the Contact page for adding or updating, and mentions the pages on the way. */ }
+
+				<h2>About the name</h2>{ /* What: Name Heading Element. Why: Visitors may wonder what Pomme de Terre means. How: This names the section. */ }
+
+				<p>Pomme de terre is French for potato, but word for word it means "apple of the earth." The lake takes its name from the Pomme de Terre River, which feeds it. We like the word-for-word version best, and you'll spot a little apple here and there around the site.</p>{ /* What: Name Paragraph Element. Why: The name is half the charm, and its literal meaning gives the site its apple. How: This gives the French, its word-for-word meaning, and where the lake's name comes from. */ }
 
 				<h2>Who's behind it</h2>{ /* What: Builder Heading Element. Why: Visitors may want to know who runs the guide. How: This names the section. */ }
 

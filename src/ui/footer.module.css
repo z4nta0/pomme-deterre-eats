@@ -6,8 +6,10 @@
  *
  * @summary
  * Styles for SitFooCom: the deep navy footer with generous room above and
- * below, the brand and its tagline beside two columns of links, and a
- * closing row of fine print below a faint rule. The brand and the columns
+ * below, a layered wave along its top edge, the brand with its tagline and
+ * the note on the name beside two columns of links and a small trail map, a
+ * wrapping row of town links, and a closing row of fine print
+ * below a faint rule. The brand and the columns
  * sit side by side above 640px wide and stack at 640px and below, where the
  * closing row stacks too. Its links shift color on hover and dim on press,
  * and its focus rings draw in the light accent, which holds up on the navy.
@@ -20,17 +22,54 @@
 
 /* #region sitFooFoo */
 
-.sitFooFoo { /* What: Site Footer Footer. Why: Every page ends on the same calm, roomy footer. How: This sets the deep navy with the inverse text colors, pads it by the page frame's tier above and below, and sets focus rings to the light accent for the dark surface. */
+.sitFooFoo { /* What: Site Footer Footer. Why: Every page ends on the same calm, roomy footer. How: This sets the deep navy with the inverse text colors, pads it by the page frame's tier above and below, positions its wave, and sets focus rings to the light accent for the dark surface. */
 
 
 	--foc-rin-col : var( --acc-lig-col ); /* Accent Light Color = #9fc3e8 */ /* What: Footer Focus Ring Color. Why: The navy focus ring would sink into the footer. How: This hands every link inside the pale lake blue instead. */
 
 	background : var( --bac-inv-col );   /* Background Inverse Color = #0b2340 */
+	isolation  : isolate;                /* What: Footer Stacking Context. Why: The map sits behind the footer's words at a negative layer, which has to stay inside the footer. How: This makes the footer its own stacking context. */
 	color      : var( --tex-inm-col );   /* Text Inverse-Muted Color = #c7d3e0 */
 	padding    : var( --tie-ver-001 ) 0; /* Tier Vertical 1 ~= 104.323px */
+	position   : relative;
 
 
 }
+
+
+/* #region fooWavSvg */
+
+.fooWavSvg { /* What: Footer Wave SVG. Why: The wave rises from the page just above the footer, across its full width. How: This places the stretched drawing on the footer's top edge, about 59px tall, outside its box. */
+
+
+	bottom   : calc( 100% - var( --bor-wid-bas ) ); /* Border Width Base ~= 1.160px */ /* What: Wave Overlap. Why: A wave ending exactly at the footer's edge can leave a hairline seam where the two meet. How: This sinks the wave a hairline into the footer, which covers the seam. */
+	height   : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
+	left     : 0;
+	position : absolute;
+	width    : 100%;
+
+
+}
+
+.wavBacPat { /* What: Wave Back Path. Why: The back wave is a step lighter than the footer, giving the edge depth. How: This fills it with the raised navy. */
+
+
+	fill : var( --bac-inr-col ); /* Background Inverse Raised Color = #1c4a78 */
+
+
+}
+
+.wavFroPat { /* What: Wave Front Path. Why: The front wave flows into the footer itself. How: This fills it with the footer's deep navy. */
+
+
+	fill : var( --bac-inv-col ); /* Background Inverse Color = #0b2340 */
+
+
+}
+
+/* #endregion fooWavSvg */
+
+
 
 
 /* #region fooInnDiv */
@@ -42,6 +81,7 @@
 	margin    : 0 auto;
 	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
 	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	position  : relative;
 	row-gap   : var( --tie-ver-002 );   /* Tier Vertical 2 ~= 59.447px */
 
 
@@ -50,18 +90,32 @@
 
 /* #region fooTopDiv */
 
-.fooTopDiv { /* What: Footer Top Div. Why: The brand leads on the left and the link columns sit at the right. How: This places the brand in a wide first column and the links in the second, a section's tier apart. */
+.fooTopDiv { /* What: Footer Top Div. Why: The brand leads on the left, with the link columns and the small map at the right. How: This places the brand in a wide first column, then the links and the map, each a section's tier apart. */
 
 
 	align-items           : start;
-	column-gap            : var( --tie-hor-002 );  /* Tier Horizontal 2, about 33.876px - 59.447px */
+	column-gap            : var( --tie-hor-002 );            /* Tier Horizontal 2, about 33.876px - 59.447px */
 	display               : grid;
-	grid-template-areas   : 'fooBraDiv fooLinNav';
-	grid-template-columns : 1fr auto;
+	grid-template-areas   : 'fooBraDiv fooLinNav fooMapSvg';
+	grid-template-columns : 1fr auto auto;
 
 
 }
-@media ( max-width : 640px ) { /* What: Narrow Footer Top Div. Why: The brand and the columns don't fit side by side on a phone. How: This applies 640px wide and below. */
+@media ( max-width : 960px ) { /* What: Narrow Footer Top Div. Why: The map drops out on a narrower screen. How: This applies 960px wide and below. */
+
+
+	.fooTopDiv { /* What: Mapless Footer Top Div. Why: The brand and the columns share the row without the map. How: This drops the map's area and column. */
+
+
+		grid-template-areas   : 'fooBraDiv fooLinNav';
+		grid-template-columns : 1fr auto;
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Footer Top Div. Why: The brand and the columns don't fit side by side on a phone. How: This applies 640px wide and below. */
 
 
 	.fooTopDiv { /* What: Stacked Footer Top Div. Why: The links read best below the brand. How: This stacks the two areas a section's tier apart. */
@@ -151,6 +205,15 @@
 
 
 	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
+
+
+}
+
+.fooSigPar { /* What: Footer Sign-Off Paragraph. Why: The note on the name is an aside under the tagline, quieter than it but easy to read. How: This sets it at the body size in the light coral, capped at the small text width. */
+
+
+	color     : var( --acs-lig-col ); /* Accent-Secondary Light Color = #ffb29e */
 	max-width : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 
 
@@ -255,7 +318,123 @@
 
 /* #endregion fooLinNav */
 
+
+
+/* #region fooMapSvg */
+
+.fooMapSvg { /* What: Footer Map SVG. Why: The small map sits beside the link columns, sized so the apple reads. How: This places it in its own grid area, about 183px wide, its height following its shape. */
+
+
+	grid-area : fooMapSvg;
+	width     : calc( var( --ver-rhy-p09 ) * 1rem ); /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Footer Map SVG. Why: The map would crowd the brand and the columns on a narrower screen. How: This applies 960px wide and below. */
+
+
+	.fooMapSvg { /* What: Hidden Footer Map SVG. Why: The map is decoration the narrower footer can do without. How: This takes it out of the layout. */
+
+
+		display : none;
+
+
+	}
+
+
+}
+
+.mapConGro { /* What: Map Contours Group. Why: The contour lines should sit quietly on the navy. How: This strokes them in the raised navy, a step off the footer's own, with no fill. */
+
+
+	fill         : none;
+	stroke       : var( --bac-inr-col ); /* Background Inverse Raised Color = #1c4a78 */
+	stroke-width : 3;                    /* What: Contour Stroke Width. Why: The line's width is in the SVG's own drawing space, which scales with the map. How: This sets it in drawing units. */
+
+
+}
+
+.mapTraPat { /* What: Map Trail Path. Why: The trail leads the eye to the apple without shouting. How: This strokes it as round coral dots at a little over half strength, with no fill. */
+
+
+	fill             : none;
+	opacity          : var( --cdn-pow-002-rec ); /* Core-Design-Number to the Power of 2 Reciprocal ~= 0.570 */
+	stroke           : var( --acc-sec-col );     /* Accent Secondary Color = #f26a4b */
+	stroke-dasharray : 2 18;                     /* What: Trail Dash Pattern. Why: The trail reads as a dotted line, as on the hero's map. How: This sets short dashes, rounded into dots by the line cap, in drawing units. */
+	stroke-linecap   : round;
+	stroke-width     : 7;                        /* What: Trail Stroke Width. Why: The dots should be bolder than the contours. How: This sets the line's width in drawing units. */
+
+
+}
+
+.pinBodPat { /* What: Pin Body Path. Why: The pin stands out softly on the navy. How: This fills it in the pale blue gray. */
+
+
+	fill : var( --tex-inm-col ); /* Text Inverse-Muted Color = #c7d3e0 */
+
+
+}
+
+.pinAppPat { /* What: Pin Apple Path. Why: The apple is the footer's one bright touch. How: This fills it with the coral. */
+
+
+	fill : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
+
+
+}
+
+.pinStePat { /* What: Pin Stem Path. Why: The stem should read against the pale pin. How: This strokes it in the deep navy, rounded at its ends. */
+
+
+	fill           : none;
+	stroke         : var( --bac-inv-col ); /* Background Inverse Color = #0b2340 */
+	stroke-linecap : round;
+	stroke-width   : 1.5;                  /* What: Stem Stroke Width. Why: The stem is a fine line in the drawing. How: This sets its width in drawing units. */
+
+
+}
+
+.pinLeaPat { /* What: Pin Leaf Path. Why: A green leaf finishes the apple. How: This fills it in the leaf green. */
+
+
+	fill : var( --acc-lea-col ); /* Accent Leaf Color = #6fbf73 */
+
+
+}
+
+/* #endregion fooMapSvg */
+
 /* #endregion fooTopDiv */
+
+
+
+/* #region fooTowNav */
+
+.fooTowNav { /* What: Footer Towns Nav. Why: The towns row's heading leads its links. How: This stacks the heading above the row a part's tier apart. */
+
+
+	display : grid;
+	row-gap : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+
+/* What: Footer Column Heading Pointer. Why: The towns row's heading shares the link columns' heading class. How: Its rule sits in the fooColDiv region above. */
+
+.fooTowUno { /* What: Footer Towns Unordered. Why: The towns run across the footer, wrapping onto more lines as they need, each keeping its own width, which grid can't do without fixed tracks. How: This drops the list's bullets and wraps its items a piece's tier apart. */
+
+
+	display    : flex;
+	flex-wrap  : wrap;
+	gap        : var( --tie-ver-005 ) var( --tie-hor-003 ); /* Tier Vertical 5 = 11px, Tier Horizontal 3, about 19.304px - 33.876px */
+	list-style : none;
+
+
+}
+
+/* What: Footer Link Anchor Pointer. Why: The town links share the link columns' link class. How: Its rule sits in the fooLinUno region above. */
+
+/* #endregion fooTowNav */
 
 
 
