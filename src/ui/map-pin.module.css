@@ -1,0 +1,70 @@
+
+
+
+/**
+ * map-pin.module.css = Map Pin Module
+ *
+ * @summary
+ * Styles for MapPinCom: the pin's two sizes, each a height on the rhythm
+ * with the width following the marker's 30 by 38 shape, and the colors of
+ * its navy body, coral dot, and white step number.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region mapPinSvg */
+
+.mapPinSvg { /* What: Map Pin SVG. Why: The pin keeps the marker's shape at either size. How: This sets the box to the marker's 30 by 38 proportions, the width following the height. */
+
+
+	aspect-ratio : 30 / 38;
+	width        : auto;
+
+
+}
+.mapPinSvg--large { /* What: Map Pin SVG Large. Why: A how it works step's pin leads its text. How: This sets it about 44px tall. */
+
+
+	height : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
+
+
+}
+.mapPinSvg--small { /* What: Map Pin SVG Small. Why: A pin beside a town should sit at the text's own size. How: This sets it a little taller than the text's em. */
+
+
+	height : calc( var( --cdn-pow-001 ) * 1em ); /* Core-Design-Number to the Power of 1 ~= 1.325em */
+
+
+}
+
+.pinBodPat { /* What: Pin Body Path. Why: The marker is the brand's navy. How: This fills it with the accent color. */
+
+
+	fill : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+
+.pinDotCir { /* What: Pin Dot Circle. Why: A plain pin's dot is the brand's coral, as on a trail map. How: This fills it with the secondary accent. */
+
+
+	fill : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
+
+
+}
+
+.pinNumTex { /* What: Pin Number Text. Why: A step's number has to read on the navy marker. How: This sets it bold and white. */
+
+
+	fill        : var( --tex-acc-col ); /* Text Accent Color = #ffffff */
+	font-weight : 800;
+
+
+}
+
+/* #endregion mapPinSvg */
+
+

@@ -1,0 +1,710 @@
+
+
+
+/**
+ * home.module.css = Home Page Module
+ *
+ * @summary
+ * Styles for HomPagCom: the hero on the pale navy tint over its trail map,
+ * with a large navy heading and a search box beside its button; the white
+ * how it works band with its numbered pins; the "Worth the drive" picks in
+ * a grid of place cards; and the rounded navy owners' band with its coral
+ * and outlined buttons. Each section's width and side padding are the
+ * page's shared container values, and the space between them reads the
+ * spacing tiers.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region homPagDiv */
+
+.homPagDiv { /* What: Home Page Div. Why: The page arrives gently, its sections stacked. How: This plays the shared page entrance fade and stacks the sections in a grid. */
+
+
+	animation : global( pageEnterFadeIn ) var( --dur-ani-p03 ) var( --mot-dec-eas ); /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	display   : grid;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Home Page Div. Why: Someone who asked for less motion should see the page appear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.homPagDiv { /* What: Still Home Page Div. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+
+/* #region homHerSec */
+
+.homHerSec { /* What: Home Hero Section. Why: The hero opens the page on the lake country's map. How: This fills it with the pale navy tint, padded by the page frame's tier above and below, and holds the map, which it positions and clips. */
+
+
+	background : var( --acc-tin-col );   /* Accent Tint Color = #eaf0f6 */
+	isolation  : isolate;                /* What: Hero Stacking Context. Why: The map and the text layer against each other only inside the hero. How: This makes the hero its own stacking context. */
+	overflow   : hidden;
+	padding    : var( --tie-ver-001 ) 0; /* Tier Vertical 1 ~= 104.323px */
+	position   : relative;
+
+
+}
+
+
+/* #region herInnDiv */
+
+.herInnDiv { /* What: Hero Inner Div. Why: The hero's words sit in the page's centered column, above the map. How: This stacks them a part's tier apart within the capped column and its side padding, layered over the map. */
+
+
+	display   : grid;
+	margin    : 0 auto;
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	position  : relative;
+	row-gap   : var( --tie-ver-004 );   /* Tier Vertical 4 ~= 19.304px */
+	width     : 100%;
+
+
+}
+
+.herEyePar { /* What: Hero Eyebrow Paragraph. Why: The eyebrow sets up the heading without competing with it. How: This sets it bold in navy at Base Plus 1. */
+
+
+	color       : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+	font-weight : 700;
+
+
+}
+
+.herTitHea { /* What: Hero Title Heading. Why: The page's one heading should be its largest text, growing with the screen. How: This sets it between Base Plus 5 and Base Plus 6, scaling with the viewport between them, capped so it wraps onto a few lines. */
+
+
+	font-size : clamp( var( --fon-siz-p05 ), 6vw, var( --fon-siz-p06 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 6 ~= 59.447px */
+	max-width : calc( var( --cdn-pow-009 ) * 1em );                       /* Core-Design-Number to the Power of 9 ~= 12.564em */
+
+
+}
+
+.herLeaPar { /* What: Hero Lead Paragraph. Why: The lead reads a step larger than body text but quieter than the heading. How: This sets it at Base Plus 2 in slate, capped at the base text width. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+
+/* #region herSeaFor */
+
+.herSeaFor { /* What: Hero Search Form. Why: The search box and its button read as one control. How: This sets the box beside the button, capped in width, with a small gap between. */
+
+
+	column-gap            : var( --tie-hor-005 );                /* Tier Horizontal 5, about 6.268px - 11px */
+	display               : grid;
+	grid-template-columns : 1fr auto;
+	margin-top            : var( --spa-ver-m02 );                /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	max-width             : calc( var( --ver-rhy-p13 ) * 1rem ); /* Vertical Rhythm Base Plus 13 ~= 563.794px */
+
+
+}
+@media ( max-width : 480px ) { /* What: Narrowest Hero Search Form. Why: On a small phone the box would be too narrow beside its button. How: This applies 480px wide and below. */
+
+
+	.herSeaFor { /* What: Stacked Hero Search Form. Why: The box reads best across the screen with the button below. How: This stacks them a piece's tier apart. */
+
+
+		grid-template-columns : 1fr;
+		row-gap               : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+
+
+	}
+
+
+}
+
+.visHidSpa { /* What: Visually Hidden Span. Why: The search box's label is for screen reader users only. How: This shrinks the label to a clipped single pixel off to the side, out of view but still read aloud. */
+
+
+	clip-path   : inset( 50% );
+	height      : 1px;
+	overflow    : hidden;
+	position    : absolute;
+	white-space : nowrap;
+	width       : 1px;
+
+
+}
+
+.herSeaInp { /* What: Hero Search Input. Why: The box should be large, clear, and show it's ready for typing. How: This sets it white with a strong border and rounded corners, padded for a comfortable tap, easing its border color and focus ring. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #c9d3de */
+	border-radius : var( --rad-bor-lar );                            /* Radius Border Large ~= 14.572px */
+	font-size     : var( --fon-siz-p02 );                            /* Font Size Base Plus 2 ~= 19.304px */
+	min-width     : 0;
+	padding       : var( --spa-ver-bas ) var( --spa-hor-p01 );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 1 ~= 19.304px */
+	transition    : border-color var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.herSeaInp::placeholder { /* What: Hero Search Input Placeholder. Why: The hint should read clearly but stay quieter than typed words. How: This sets it in the muted gray. */
+
+
+	color : var( --tex-mut-col ); /* Text Muted Color = #5b6778 */
+
+
+}
+.herSeaInp:hover { /* What: Hovered Hero Search Input. Why: The box should respond to the pointer. How: This darkens its border to the navy. */
+
+
+	border-color : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Search Input. Why: Someone who asked for less motion should see the box's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.herSeaInp { /* What: Motionless Hero Search Input. Why: The hover and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.herSeaBut { /* What: Hero Search Button. Why: The search's one action is a filled navy button. How: This sets it bold and white on navy with rounded corners, easing its hover fill and lift, its press, and its focus ring. */
+
+
+	background    : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
+	border        : none;
+	border-radius : var( --rad-bor-lar );                      /* Radius Border Large ~= 14.572px */
+	color         : var( --tex-acc-col );                      /* Text Accent Color = #ffffff */
+	font-size     : var( --fon-siz-p02 );                      /* Font Size Base Plus 2 ~= 19.304px */
+	font-weight   : 700;
+	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.herSeaBut:hover { /* What: Hovered Hero Search Button. Why: The button should respond to the pointer. How: This deepens the navy and lifts it 2px. */
+
+
+	background : var( --acc-hov-col );                            /* Accent Hover Color = #0b2340 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.herSeaBut:active { /* What: Pressed Hero Search Button. Why: A press should register before the listing opens. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Search Button. Why: Someone who asked for less motion should see the button's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.herSeaBut { /* What: Motionless Hero Search Button. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion herSeaFor */
+
+/* #endregion herInnDiv */
+
+/* #endregion homHerSec */
+
+
+
+/* #region homSteSec */
+
+.homSteSec { /* What: Home Steps Section. Why: The how it works band reads apart from the hero and the picks. How: This sets it on white between soft gray rules. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border-bottom : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
+	border-top    : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
+
+
+}
+
+
+/* #region steInnDiv */
+
+.steInnDiv { /* What: Steps Inner Div. Why: The steps sit in the page's centered column. How: This stacks the heading above the steps a heading's tier apart, padded by a section's tier above and below, within the capped column and its side padding. */
+
+
+	display   : grid;
+	margin    : 0 auto;
+	max-width : var( --con-max-wid );                      /* Container Maximum Width ~= 1,094.093px */
+	padding   : var( --tie-ver-002 ) var( --gut-sid-pad ); /* Tier Vertical 2 ~= 59.447px, Gutter Side Padding, about 19.304px - 44.876px */
+	row-gap   : var( --tie-ver-003 );                      /* Tier Vertical 3 ~= 33.876px */
+
+
+}
+
+.secTitHea { /* What: Section Title Heading. Why: Each section of the page names itself in one size. How: This sets the heading at Base Plus 4. */
+
+
+	font-size : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
+
+
+}
+
+
+/* #region steLisOrd */
+
+.steLisOrd { /* What: Steps List Ordered. Why: The three steps read side by side on a wide screen. How: This drops the list's numbers, which the pins show, and sets the steps in three equal columns an item's tier apart. */
+
+
+	column-gap            : var( --tie-hor-003 ); /* Tier Horizontal 3, about 19.304px - 33.876px */
+	display               : grid;
+	grid-template-columns : repeat( 3, 1fr );
+	list-style            : none;
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Steps List Ordered. Why: Three columns get too narrow for the steps' text. How: This applies 960px wide and below. */
+
+
+	.steLisOrd { /* What: Stacked Steps List Ordered. Why: The steps read best one above another. How: This stacks them an item's tier apart. */
+
+
+		grid-template-columns : 1fr;
+		row-gap               : var( --tie-ver-003 ); /* Tier Vertical 3 ~= 33.876px */
+
+
+	}
+
+
+}
+
+
+/* #region steIteIte */
+
+.steIteIte { /* What: Step Item Item. Why: Each step's pin leads its words, as a marker leads a map's note. How: This sets the pin beside the step's text, a part's tier apart, aligned at the top. */
+
+
+	align-items           : start;
+	column-gap            : var( --tie-hor-004 ); /* Tier Horizontal 4, about 11px - 19.304px */
+	display               : grid;
+	grid-template-columns : auto 1fr;
+
+
+}
+
+
+/* #region steTexDiv */
+
+.steTexDiv { /* What: Step Text Div. Why: The step's title and text read as one block. How: This stacks them a piece's tier apart. */
+
+
+	display : grid;
+	row-gap : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+
+
+}
+
+.steTitHea { /* What: Step Title Heading. Why: Each step's title leads its text. How: This sets it at Base Plus 2. */
+
+
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+
+
+}
+
+.steTexPar { /* What: Step Text Paragraph. Why: The step's sentence reads quieter than its title. How: This sets it in slate. */
+
+
+	color : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+
+
+}
+
+/* #endregion steTexDiv */
+
+/* #endregion steIteIte */
+
+/* #endregion steLisOrd */
+
+/* #endregion steInnDiv */
+
+/* #endregion homSteSec */
+
+
+
+/* #region homPicSec */
+
+.homPicSec { /* What: Home Picks Section. Why: The picks sit in the page's centered column, a section's tier below the steps. How: This stacks the heading row above the cards a heading's tier apart, within the capped column and its side padding. */
+
+
+	display   : grid;
+	margin    : 0 auto;
+	max-width : var( --con-max-wid );                        /* Container Maximum Width ~= 1,094.093px */
+	padding   : var( --tie-ver-002 ) var( --gut-sid-pad ) 0; /* Tier Vertical 2 ~= 59.447px, Gutter Side Padding, about 19.304px - 44.876px */
+	row-gap   : var( --tie-ver-003 );                        /* Tier Vertical 3 ~= 33.876px */
+	width     : 100%;
+
+
+}
+
+
+/* #region picHeaDiv */
+
+.picHeaDiv { /* What: Picks Heading Div. Why: The heading and the link to the full listing share a row, the link wrapping below the heading where the row runs out of room. How: This spreads them to the row's two ends, aligned on their baselines, wrapping the link onto its own line while each keeps its own width, which grid can't do without fixed tracks. */
+
+
+	align-items     : baseline;
+	display         : flex;
+	flex-wrap       : wrap;
+	gap             : var( --tie-ver-005 ) var( --tie-hor-003 ); /* Tier Vertical 5 = 11px, Tier Horizontal 3, about 19.304px - 33.876px */
+	justify-content : space-between;
+
+
+}
+
+/* What: Section Title Heading Pointer. Why: The picks' heading shares the steps' heading class. How: Its rule sits in the steInnDiv region above. */
+
+
+/* #region picAllAnc */
+
+.picAllAnc { /* What: Picks All Anchor. Why: The link to the full listing should read as a link and respond to the pointer without moving its line. How: This sets it bold in navy, easing its hover color, press dim, and focus ring. */
+
+
+	color       : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+	font-weight : 700;
+	transition  : color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.picAllAnc:hover { /* What: Hovered Picks All Anchor. Why: A link should respond to the pointer. How: This shifts it to the coral's text shade. */
+
+
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color = #b13d22 */
+
+
+}
+.picAllAnc:active { /* What: Pressed Picks All Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Picks All Anchor. Why: Someone who asked for less motion should see the link's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.picAllAnc { /* What: Motionless Picks All Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.picArrSpa { /* What: Picks Arrow Span. Why: The arrow invites the click, nudging toward the listing on hover. How: This sets it as an inline block so it can move, easing its nudge on the decelerating curve. */
+
+
+	display    : inline-block;
+	transition : transform var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.picAllAnc:hover .picArrSpa { /* What: Hovered Picks Arrow Span. Why: The arrow nudges toward where the link goes. How: This moves it 3px to the right while the link is hovered. */
+
+
+	transform : translateX( var( --spa-hor-m05 ) ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Picks Arrow Span. Why: Someone who asked for less motion shouldn't see the arrow slide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.picArrSpa { /* What: Motionless Picks Arrow Span. Why: The nudge should simply apply. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion picAllAnc */
+
+/* #endregion picHeaDiv */
+
+.picGriDiv { /* What: Picks Grid Div. Why: The three picks read as one row of cards, never leaving a short row hanging. How: This sets them in three equal columns, an item's tier apart. */
+
+
+	display               : grid;
+	gap                   : var( --tie-ver-003 ) var( --tie-hor-003 ); /* Tier Vertical 3 ~= 33.876px, Tier Horizontal 3, about 19.304px - 33.876px */
+	grid-template-columns : repeat( 3, 1fr );
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Picks Grid Div. Why: Three cards across get too narrow for their text. How: This applies 960px wide and below. */
+
+
+	.picGriDiv { /* What: Paired Picks Grid Div. Why: Two cards fit across, and the third keeps their width, centered below them. How: This sets four tracks, each card spanning two, and starts the third card on the second track. */
+
+
+		grid-template-columns : repeat( 4, 1fr );
+
+
+	}
+	.picGriDiv > * { /* What: Paired Picks Grid Cards. Why: Each card takes half the row. How: This spans every card across two of the four tracks; the cards are rendered by their own component, so the grid names them by position. */
+
+
+		grid-column : span 2;
+
+
+	}
+	.picGriDiv > :nth-child( 3 ) { /* What: Centered Third Picks Grid Card. Why: The odd card should sit centered at its neighbors' width, never hanging at the row's start. How: This starts the third card on the second track. */
+
+
+		grid-column : 2 / span 2;
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Picks Grid Div. Why: Two cards across get too narrow on a phone. How: This applies 640px wide and below. */
+
+
+	.picGriDiv { /* What: Stacked Picks Grid Div. Why: The cards read best one above another. How: This sets a single column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+	.picGriDiv > *,
+	.picGriDiv > :nth-child( 3 ) { /* What: Stacked Picks Grid Cards. Why: Each card takes the whole column. How: This resets every card's span to the one track. */
+
+
+		grid-column : auto;
+
+
+	}
+
+
+}
+
+/* #endregion homPicSec */
+
+
+
+/* #region homOwnSec */
+
+.homOwnSec { /* What: Home Owners Section. Why: The owners' band closes the page, a section's tier below the picks and the page frame's tier above the footer. How: This pads it so within the capped column and its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --con-max-wid );                                           /* Container Maximum Width ~= 1,094.093px */
+	padding   : var( --tie-ver-002 ) var( --gut-sid-pad ) var( --tie-ver-001 ); /* Tier Vertical 2 ~= 59.447px, Gutter Side Padding, about 19.304px - 44.876px, Tier Vertical 1 ~= 104.323px */
+	width     : 100%;
+
+
+}
+
+
+/* #region ownBanDiv */
+
+.ownBanDiv { /* What: Owners Band Div. Why: The invitation stands apart on the brand's navy. How: This sets the words beside the buttons on a rounded navy panel padded by a section's tier, and hands the panel's links the light focus ring, which holds up on the navy. */
+
+
+	--foc-rin-col : var( --acc-lig-col ); /* Accent Light Color = #9fc3e8 */ /* What: Band Focus Ring Color. Why: The navy focus ring would sink into the band. How: This hands every link inside the pale lake blue instead. */
+
+	align-items           : center;
+	background            : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
+	border-radius         : var( --rad-bor-xla );                      /* Radius Border Extra Large ~= 19.304px */
+	column-gap            : var( --tie-hor-002 );                      /* Tier Horizontal 2, about 33.876px - 59.447px */
+	display               : grid;
+	grid-template-columns : 1fr auto;
+	padding               : var( --tie-ver-002 ) var( --tie-hor-002 ); /* Tier Vertical 2 ~= 59.447px, Tier Horizontal 2, about 33.876px - 59.447px */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Owners Band Div. Why: The words and the buttons don't fit side by side on a narrower screen. How: This applies 960px wide and below. */
+
+
+	.ownBanDiv { /* What: Stacked Owners Band Div. Why: The buttons read best below the words. How: This stacks them a heading's tier apart. */
+
+
+		grid-template-columns : 1fr;
+		row-gap               : var( --tie-ver-003 ); /* Tier Vertical 3 ~= 33.876px */
+
+
+	}
+
+
+}
+
+
+/* #region ownTexDiv */
+
+.ownTexDiv { /* What: Owners Text Div. Why: The invitation's words read as one block. How: This stacks them a piece's tier apart. */
+
+
+	display : grid;
+	row-gap : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+
+
+}
+
+.ownEyePar { /* What: Owners Eyebrow Paragraph. Why: The eyebrow says who the band is for without competing with the heading. How: This sets it small, extra bold, uppercase, and spaced in the light coral. */
+
+
+	color          : var( --acs-lig-col );                   /* Accent-Secondary Light Color = #ffb29e */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 1rem */
+	font-weight    : 800;
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	text-transform : uppercase;
+
+
+}
+
+.ownTitHea { /* What: Owners Title Heading. Why: The band's question reads in white on the navy. How: This sets it at Base Plus 4 in the inverse text color. */
+
+
+	color     : var( --tex-inv-col ); /* Text Inverse Color = #ffffff */
+	font-size : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
+
+
+}
+
+.ownTexPar { /* What: Owners Text Paragraph. Why: The band's sentence reads quieter than its heading. How: This sets it at Base Plus 2 in the pale blue, capped at the base text width. */
+
+
+	color     : var( --tex-inm-col ); /* Text Inverse-Muted Color = #c7d3e0 */
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+/* #endregion ownTexDiv */
+
+
+
+/* #region ownActDiv */
+
+.ownActDiv { /* What: Owners Actions Div. Why: The two buttons sit together, wrapping onto two lines where they don't fit, each keeping its own width, which grid can't do without fixed tracks. How: This sets them in a wrapping row a piece's tier apart. */
+
+
+	display   : flex;
+	flex-wrap : wrap;
+	gap       : var( --tie-ver-005 ) var( --tie-hor-005 ); /* Tier Vertical 5 = 11px, Tier Horizontal 5, about 6.268px - 11px */
+
+
+}
+
+.butBasAnc { /* What: Button Base Anchor. Why: The band's links read as buttons. How: This sets them bold with rounded corners and padding, easing their hover fill and lift, their press, and their focus ring. */
+
+
+	border        : var( --bor-wid-lar ) solid transparent;    /* Border Width Large ~= 2.035px */
+	border-radius : var( --rad-bor-lar );                      /* Radius Border Large ~= 14.572px */
+	display       : inline-grid;
+	font-size     : var( --fon-siz-p02 );                      /* Font Size Base Plus 2 ~= 19.304px */
+	font-weight   : 800;
+	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-sta-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.butBasAnc:hover { /* What: Hovered Button Base Anchor. Why: A button should respond to the pointer. How: This lifts it 2px, its variant changing its colors. */
+
+
+	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.butBasAnc:active { /* What: Pressed Button Base Anchor. Why: A press should register before the page changes. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+.butBasAnc--coral { /* What: Button Base Anchor Coral. Why: Adding a place is the band's main action, so it takes the brand's bright coral. How: This fills it coral with the dark text, which reaches about 5.1:1 on it. */
+
+
+	background : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
+	color      : var( --tex-mai-col ); /* Text Main Color = #1b2533 */
+
+
+}
+.butBasAnc--coral:hover { /* What: Hovered Button Base Anchor Coral. Why: The coral button should respond to the pointer. How: This lightens its fill to the light coral. */
+
+
+	background : var( --acs-lig-col ); /* Accent-Secondary Light Color = #ffb29e */
+
+
+}
+.butBasAnc--outline { /* What: Button Base Anchor Outline. Why: Updating a listing is the band's other action, so it reads quieter than the coral one. How: This draws a white outline with white text on the navy. */
+
+
+	border-color : var( --tex-inv-col ); /* Text Inverse Color = #ffffff */
+	color        : var( --tex-inv-col ); /* Text Inverse Color = #ffffff */
+
+
+}
+.butBasAnc--outline:hover { /* What: Hovered Button Base Anchor Outline. Why: The outlined button should fill in under the pointer. How: This fills it white with navy text. */
+
+
+	background : var( --tex-inv-col ); /* Text Inverse Color = #ffffff */
+	color      : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Base Anchor. Why: Someone who asked for less motion should see the buttons' looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.butBasAnc { /* What: Motionless Button Base Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion ownActDiv */
+
+/* #endregion ownBanDiv */
+
+/* #endregion homOwnSec */
+
+/* #endregion homPagDiv */
+
+

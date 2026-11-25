@@ -1,0 +1,468 @@
+
+
+
+/**
+ * places.module.css = Places Page Module
+ *
+ * @summary
+ * Styles for PlaPagCom: the heading block, the white filter panel with its
+ * search box, two selects drawn with the site's own arrow, and its clear
+ * button, the match count, and the grid of place cards, or the white note
+ * shown when nothing matches. The page sits in the shared centered column,
+ * padded by the page frame's tier above and below, its parts a section's or
+ * a heading's tier apart.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region plaPagDiv */
+
+.plaPagDiv { /* What: Places Page Div. Why: The page arrives gently and holds its parts in the centered column. How: This plays the shared page entrance fade, and stacks the parts a heading's tier apart within the capped column, its side padding, and the page frame's tier above and below. */
+
+
+	align-content : start;
+	animation     : global( pageEnterFadeIn ) var( --dur-ani-p03 ) var( --mot-dec-eas ); /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	display       : grid;
+	margin        : 0 auto;
+	max-width     : var( --con-max-wid );                                                /* Container Maximum Width ~= 1,094.093px */
+	padding       : var( --tie-ver-001 ) var( --gut-sid-pad );                           /* Tier Vertical 1 ~= 104.323px, Gutter Side Padding, about 19.304px - 44.876px */
+	row-gap       : var( --tie-ver-003 );                                                /* Tier Vertical 3 ~= 33.876px */
+	width         : 100%;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Places Page Div. Why: Someone who asked for less motion should see the page appear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.plaPagDiv { /* What: Still Places Page Div. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region plaHeaDiv */
+
+.plaHeaDiv { /* What: Places Heading Div. Why: The heading, the lead, and the note read as one block. How: This stacks them a part's tier apart. */
+
+
+	display : grid;
+	row-gap : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+
+.plaTitHea { /* What: Places Title Heading. Why: The page's one heading should be its largest text, growing with the screen. How: This sets it between Base Plus 4 and Base Plus 5, scaling with the viewport between them. */
+
+
+	font-size : clamp( var( --fon-siz-p04 ), 5vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 4 ~= 33.876px, Font Size Base Plus 5 ~= 44.876px */
+
+
+}
+
+.plaLeaPar { /* What: Places Lead Paragraph. Why: The lead reads a step larger than body text but quieter than the heading. How: This sets it at Base Plus 2 in slate, capped at the base text width. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+
+/* #region plaNotPar */
+
+.plaNotPar { /* What: Places Note Paragraph. Why: The invitation to add a place is a quiet aside. How: This sets it in the muted gray. */
+
+
+	color : var( --tex-mut-col ); /* Text Muted Color = #5b6778 */
+
+
+}
+
+.plaNotAnc { /* What: Places Note Anchor. Why: The link should read as one within its sentence. How: This sets it bold in navy with an underline, easing its hover color, press dim, and focus ring. */
+
+
+	color                 : var( --acc-mai-col );                   /* Accent Main Color = #12355b */
+	font-weight           : 700;
+	text-decoration       : underline;
+	text-underline-offset : calc( var( --cdn-pow-005-rec ) * 1em ); /* Core-Design-Number to the Power of 5 Reciprocal ~= 0.245em */
+	transition            : color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.plaNotAnc:hover { /* What: Hovered Places Note Anchor. Why: A link should respond to the pointer. How: This shifts it to the coral's text shade. */
+
+
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color = #b13d22 */
+
+
+}
+.plaNotAnc:active { /* What: Pressed Places Note Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Places Note Anchor. Why: Someone who asked for less motion should see the link's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.plaNotAnc { /* What: Motionless Places Note Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion plaNotPar */
+
+/* #endregion plaHeaDiv */
+
+
+
+/* #region filPanFor */
+
+.filPanFor { /* What: Filter Panel Form. Why: The search and the filters read as one panel, the box widest. How: This sets them in a row on a white panel with a soft border, the box twice a filter's width and the clear button as wide as its word, aligned along their bottoms. */
+
+
+	align-items           : end;
+	background            : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border                : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
+	border-radius         : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
+	display               : grid;
+	gap                   : var( --tie-ver-004 ) var( --tie-hor-004 );       /* Tier Vertical 4 ~= 19.304px, Tier Horizontal 4, about 11px - 19.304px */
+	grid-template-columns : 2fr 1fr 1fr auto;
+	padding               : var( --tie-ver-004 ) var( --tie-hor-004 );       /* Tier Vertical 4 ~= 19.304px, Tier Horizontal 4, about 11px - 19.304px */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Filter Panel Form. Why: The box gets too narrow beside both filters. How: This applies 960px wide and below. */
+
+
+	.filPanFor { /* What: Wrapped Filter Panel Form. Why: The box reads best across the panel, the filters and the button below it. How: This sets three columns, the search box's field spanning all of them. */
+
+
+		grid-template-columns : 1fr 1fr auto;
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Filter Panel Form. Why: Two filters side by side get too narrow on a phone. How: This applies 640px wide and below. */
+
+
+	.filPanFor { /* What: Stacked Filter Panel Form. Why: Every control reads best across the panel. How: This sets a single column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region filFieDiv */
+
+.filFieDiv { /* What: Filter Field Div. Why: Each control's label sits close above it. How: This stacks them a piece's tier apart. */
+
+
+	display : grid;
+	row-gap : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Filter Field Div. Why: The panel's search box takes a row of its own on a narrower screen. How: This applies 960px wide and below. */
+
+
+	.filFieDiv:first-child { /* What: Spanning First Filter Field Div. Why: The search box's field takes the whole first row. How: This spans it across the panel's three columns. */
+
+
+		grid-column : 1 / -1;
+
+
+	}
+
+
+}
+
+.filLabLab { /* What: Filter Label Label. Why: Each control's name reads small and bold above it. How: This sets it bold in navy at the base size. */
+
+
+	color       : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+	font-size   : var( --fon-siz-bas ); /* Font Size Base = 1rem */
+	font-weight : 700;
+
+
+}
+
+.filConInp,
+.filConSel { /* What: Filter Control Fields. Why: The box and the selects share one field look. How: This sets them on the page gray with a strong border and rounded corners, padded for a comfortable tap, easing their border color and focus ring. */
+
+
+	background-color : var( --bac-pag-col );                            /* Background Page Color = #f6f8fa */
+	border           : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #c9d3de */
+	border-radius    : var( --rad-bor-lar );                            /* Radius Border Large ~= 14.572px */
+	min-width        : 0;
+	padding          : var( --spa-ver-m01 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
+	transition       : border-color var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	width            : 100%;
+
+
+}
+.filConInp::placeholder { /* What: Filter Control Input Placeholder. Why: The hint should read clearly but stay quieter than typed words. How: This sets it in the muted gray. */
+
+
+	color : var( --tex-mut-col ); /* Text Muted Color = #5b6778 */
+
+
+}
+.filConInp:hover,
+.filConSel:hover { /* What: Hovered Filter Control Fields. Why: A field should respond to the pointer. How: This darkens its border to the navy. */
+
+
+	border-color : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Control Fields. Why: Someone who asked for less motion should see the fields' looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.filConInp,
+	.filConSel { /* What: Motionless Filter Control Fields. Why: The hover and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.filConSel { /* What: Filter Control Select. Why: The selects draw the site's own arrow in every browser, never the browser's. How: This turns off the browser's own look and sets the arrow file at the right edge, sized on the rhythm, with room so the text never runs under it; its stroke is the muted text color, written into the file. */
+
+
+	appearance          : none;
+	background-image    : url( '../../assets/images/select-arrow.svg' );
+	background-position : right var( --spa-hor-bas ) center;             /* Spacing Horizontal Base ~= 14.572px */
+	background-repeat   : no-repeat;
+	background-size     : calc( var( --ver-rhy-m01 ) * 1rem );           /* Vertical Rhythm Base Minus 1 = 11px */
+	padding-right       : var( --spa-hor-p03 );                          /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+
+
+}
+
+/* #endregion filFieDiv */
+
+.filCleBut { /* What: Filter Clear Button. Why: Clearing is a quiet, secondary action beside the filters. How: This sets it as an outlined navy button, as tall as the fields beside it, easing its hover fill, its press, and its focus ring, and fades it back while it's disabled. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-bas ) solid var( --acc-mai-col ); /* Border Width Base ~= 1.160px, Accent Main Color = #12355b */
+	border-radius : var( --rad-bor-lar );                            /* Radius Border Large ~= 14.572px */
+	color         : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
+	font-weight   : 700;
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-p01 );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 1 ~= 19.304px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.filCleBut:enabled:hover { /* What: Hovered Filter Clear Button. Why: The button should respond to the pointer when it can do something. How: This fills it navy with white text and lifts it 2px. */
+
+
+	background : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
+	color      : var( --tex-acc-col );                            /* Text Accent Color = #ffffff */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.filCleBut:enabled:active { /* What: Pressed Filter Clear Button. Why: A press should register before the list resets. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+.filCleBut:disabled { /* What: Disabled Filter Clear Button. Why: With nothing chosen there's nothing to clear, and the button should say so. How: This fades it and shows the default cursor. */
+
+
+	cursor  : default;
+	opacity : var( --cdn-pow-002-rec ); /* Core-Design-Number to the Power of 2 Reciprocal ~= 0.570 */
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Filter Clear Button. Why: On a phone the button takes its own row. How: This applies 640px wide and below. */
+
+
+	.filCleBut { /* What: Full Width Filter Clear Button. Why: A wide button is easier to tap. How: This stretches it across the panel. */
+
+
+		width : 100%;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Clear Button. Why: Someone who asked for less motion should see the button's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.filCleBut { /* What: Motionless Filter Clear Button. Why: The hover, press, disabled, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion filPanFor */
+
+.resCouPar { /* What: Results Count Paragraph. Why: The count is a quiet line above the cards. How: This sets it bold in the muted gray. */
+
+
+	color       : var( --tex-mut-col ); /* Text Muted Color = #5b6778 */
+	font-weight : 700;
+
+
+}
+
+.resGriDiv { /* What: Results Grid Div. Why: The matches read as a grid of cards that never leaves a short row hanging. How: This sets them two across on four tracks an item's tier apart, each card spanning two, and starts an odd last card on the second track, so it sits centered below the others at their width. */
+
+
+	display               : grid;
+	gap                   : var( --tie-ver-003 ) var( --tie-hor-003 ); /* Tier Vertical 3 ~= 33.876px, Tier Horizontal 3, about 19.304px - 33.876px */
+	grid-template-columns : repeat( 4, 1fr );
+
+
+}
+.resGriDiv > * { /* What: Results Grid Cards. Why: Each card takes half the row. How: This spans every card across two of the four tracks; the cards are rendered by their own component, so the grid names them by position. */
+
+
+	grid-column : span 2;
+
+
+}
+.resGriDiv > :last-child:nth-child( odd ) { /* What: Centered Odd Results Grid Card. Why: An odd count leaves one card alone, which should sit centered at its neighbors' width. How: This starts the last card on the second track when it's an odd one. */
+
+
+	grid-column : 2 / span 2;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Results Grid Div. Why: Two cards across get too narrow on a phone. How: This applies 640px wide and below. */
+
+
+	.resGriDiv { /* What: Stacked Results Grid Div. Why: The cards read best one above another. How: This sets a single column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+	.resGriDiv > *,
+	.resGriDiv > :last-child:nth-child( odd ) { /* What: Stacked Results Grid Cards. Why: Each card takes the whole column. How: This resets every card's span to the one track. */
+
+
+		grid-column : auto;
+
+
+	}
+
+
+}
+
+
+/* #region resNonDiv */
+
+.resNonDiv { /* What: Results None Div. Why: The empty note should stand where the cards would. How: This sets the note above its button on a white panel with a soft border, a part's tier apart, centered. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
+	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
+	display       : grid;
+	justify-items : center;
+	padding       : var( --tie-ver-002 ) var( --tie-hor-003 );       /* Tier Vertical 2 ~= 59.447px, Tier Horizontal 3, about 19.304px - 33.876px */
+	row-gap       : var( --tie-ver-004 );                            /* Tier Vertical 4 ~= 19.304px */
+	text-align    : center;
+
+
+}
+
+.resNonPar { /* What: Results None Paragraph. Why: The note reads a step larger than body text. How: This sets it at Base Plus 2 in slate, capped at the small text width. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
+
+
+}
+
+.resNonBut { /* What: Results None Button. Why: Getting back to every place is the note's one action. How: This sets it as a filled navy button, easing its hover fill and lift, its press, and its focus ring. */
+
+
+	background    : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
+	border        : none;
+	border-radius : var( --rad-bor-lar );                      /* Radius Border Large ~= 14.572px */
+	color         : var( --tex-acc-col );                      /* Text Accent Color = #ffffff */
+	font-weight   : 700;
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.resNonBut:hover { /* What: Hovered Results None Button. Why: The button should respond to the pointer. How: This deepens the navy and lifts it 2px. */
+
+
+	background : var( --acc-hov-col );                            /* Accent Hover Color = #0b2340 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.resNonBut:active { /* What: Pressed Results None Button. Why: A press should register before the list resets. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Results None Button. Why: Someone who asked for less motion should see the button's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.resNonBut { /* What: Motionless Results None Button. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion resNonDiv */
+
+/* #endregion plaPagDiv */
+
+

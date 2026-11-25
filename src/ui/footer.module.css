@@ -1,0 +1,363 @@
+
+
+
+/**
+ * footer.module.css = Site Footer Module
+ *
+ * @summary
+ * Styles for SitFooCom: the deep navy footer with generous room above and
+ * below, the brand and its tagline beside two columns of links, and a
+ * closing row of fine print below a faint rule. The brand and the columns
+ * sit side by side above 640px wide and stack at 640px and below, where the
+ * closing row stacks too. Its links shift color on hover and dim on press,
+ * and its focus rings draw in the light accent, which holds up on the navy.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region sitFooFoo */
+
+.sitFooFoo { /* What: Site Footer Footer. Why: Every page ends on the same calm, roomy footer. How: This sets the deep navy with the inverse text colors, pads it by the page frame's tier above and below, and sets focus rings to the light accent for the dark surface. */
+
+
+	--foc-rin-col : var( --acc-lig-col ); /* Accent Light Color = #9fc3e8 */ /* What: Footer Focus Ring Color. Why: The navy focus ring would sink into the footer. How: This hands every link inside the pale lake blue instead. */
+
+	background : var( --bac-inv-col );   /* Background Inverse Color = #0b2340 */
+	color      : var( --tex-inm-col );   /* Text Inverse-Muted Color = #c7d3e0 */
+	padding    : var( --tie-ver-001 ) 0; /* Tier Vertical 1 ~= 104.323px */
+
+
+}
+
+
+/* #region fooInnDiv */
+
+.fooInnDiv { /* What: Footer Inner Div. Why: The footer's content sits in the page's centered column. How: This caps it at the container width with the side gutter, and stacks the top block above the closing row a section's tier apart. */
+
+
+	display   : grid;
+	margin    : 0 auto;
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	row-gap   : var( --tie-ver-002 );   /* Tier Vertical 2 ~= 59.447px */
+
+
+}
+
+
+/* #region fooTopDiv */
+
+.fooTopDiv { /* What: Footer Top Div. Why: The brand leads on the left and the link columns sit at the right. How: This places the brand in a wide first column and the links in the second, a section's tier apart. */
+
+
+	align-items           : start;
+	column-gap            : var( --tie-hor-002 );  /* Tier Horizontal 2, about 33.876px - 59.447px */
+	display               : grid;
+	grid-template-areas   : 'fooBraDiv fooLinNav';
+	grid-template-columns : 1fr auto;
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Footer Top Div. Why: The brand and the columns don't fit side by side on a phone. How: This applies 640px wide and below. */
+
+
+	.fooTopDiv { /* What: Stacked Footer Top Div. Why: The links read best below the brand. How: This stacks the two areas a section's tier apart. */
+
+
+		grid-template-areas   : 'fooBraDiv' 'fooLinNav';
+		grid-template-columns : 1fr;
+		row-gap               : var( --tie-ver-002 );    /* Tier Vertical 2 ~= 59.447px */
+
+
+	}
+
+
+}
+
+
+/* #region fooBraDiv */
+
+.fooBraDiv { /* What: Footer Brand Div. Why: The brand and its tagline read as one block. How: This stacks them a part's tier apart. */
+
+
+	display   : grid;
+	grid-area : fooBraDiv;
+	row-gap   : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+
+
+/* #region fooBraAnc */
+
+.fooBraAnc { /* What: Footer Brand Anchor. Why: The mark and the name read as one link home, larger than the bar's, so the footer has a presence of its own. How: This sets the mark beside the name in a row, in the extra bold white at Base Plus 3, easing its press and focus. */
+
+
+	align-items     : center;
+	color           : var( --tex-inv-col );                    /* Text Inverse Color = #ffffff */
+	column-gap      : var( --tie-hor-005 );                    /* Tier Horizontal 5, about 6.268px - 11px */
+	display         : grid;
+	font-size       : var( --fon-siz-p03 );                    /* Font Size Base Plus 3 ~= 25.572px */
+	font-weight     : 800;
+	grid-auto-flow  : column;
+	justify-content : start;
+	letter-spacing  : calc( var( --cdn-pow-014-rec ) * -1em ); /* Core-Design-Number to the Power of 14 Reciprocal ~= -0.020em */
+	transition      : opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.fooBraAnc:hover { /* What: Hovered Footer Brand Anchor. Why: The brand link should respond to the pointer. How: This dims it slightly, the press dimming it further. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+.fooBraAnc:active { /* What: Pressed Footer Brand Anchor. Why: A press should register before the page changes. How: This dims the brand further while it's held. */
+
+
+	opacity : var( --cdn-pow-002-rec ); /* Core-Design-Number to the Power of 2 Reciprocal ~= 0.570 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Footer Brand Anchor. Why: Someone who asked for less motion should see the hover, press, and focus switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.fooBraAnc { /* What: Motionless Footer Brand Anchor. Why: The brand's looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.fooEatSpa { /* What: Footer Eats Span. Why: The name's last word carries the brand's coral, as in the bar. How: This sets "Eats" in the light coral, which holds up on the navy. */
+
+
+	color : var( --acs-lig-col ); /* Accent-Secondary Light Color = #ffb29e */
+
+
+}
+
+/* #endregion fooBraAnc */
+
+.fooTagPar { /* What: Footer Tagline Paragraph. Why: The tagline says in a line what the guide is. How: This sets it at Base Plus 2 in the quiet pale blue, capped at the small text width. */
+
+
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
+
+
+}
+
+/* #endregion fooBraDiv */
+
+
+
+/* #region fooLinNav */
+
+.fooLinNav { /* What: Footer Links Nav. Why: The two link columns sit side by side. How: This sets them in two columns a section's tier apart. */
+
+
+	column-gap            : var( --tie-hor-002 ); /* Tier Horizontal 2, about 33.876px - 59.447px */
+	display               : grid;
+	grid-area             : fooLinNav;
+	grid-template-columns : auto auto;
+	justify-content       : start;
+
+
+}
+
+
+/* #region fooColDiv */
+
+.fooColDiv { /* What: Footer Column Div. Why: Each column's heading leads its links. How: This stacks the heading above the list a part's tier apart. */
+
+
+	align-content : start;
+	display       : grid;
+	row-gap       : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+
+.fooColHea { /* What: Footer Column Heading. Why: A column's heading labels its links without competing with them. How: This sets it small, bold, uppercase, and spaced in the light coral. */
+
+
+	color          : var( --acs-lig-col );                   /* Accent-Secondary Light Color = #ffb29e */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 1rem */
+	font-weight    : 800;
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	line-height    : var( --ver-rhy-p01 );                   /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	text-transform : uppercase;
+
+
+}
+
+
+/* #region fooLinUno */
+
+.fooLinUno { /* What: Footer Links Unordered. Why: A column's links stack with room to tap each one. How: This drops the list's bullets and stacks its items a piece's tier apart. */
+
+
+	display    : grid;
+	list-style : none;
+	row-gap    : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+
+
+}
+
+.fooLinAnc { /* What: Footer Link Anchor. Why: Each link should read as a link and respond to the pointer without jostling the column. How: This sets it at Base Plus 1 in the pale blue, easing its hover color, press dim, and focus ring. */
+
+
+	color      : var( --tex-inm-col ); /* Text Inverse-Muted Color = #c7d3e0 */
+	transition : color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.fooLinAnc:hover { /* What: Hovered Footer Link Anchor. Why: A link should respond to the pointer. How: This brightens it to white. */
+
+
+	color : var( --tex-inv-col ); /* Text Inverse Color = #ffffff */
+
+
+}
+.fooLinAnc:active { /* What: Pressed Footer Link Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Footer Link Anchor. Why: Someone who asked for less motion should see the link's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.fooLinAnc { /* What: Motionless Footer Link Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion fooLinUno */
+
+/* #endregion fooColDiv */
+
+/* #endregion fooLinNav */
+
+/* #endregion fooTopDiv */
+
+
+
+/* #region fooBotDiv */
+
+.fooBotDiv { /* What: Footer Bottom Div. Why: The fine print closes the footer, set apart from the links. How: This draws a faint rule above it, padded a section's tier below it, and sets the copyright and the project note at the row's two ends. */
+
+
+	border-top      : var( --bor-wid-bas ) solid oklch( from var( --tex-inm-col ) l c h / var( --cdn-pow-007-rec ) ); /* Border Width Base ~= 1.160px, Text Inverse-Muted Color = #c7d3e0 @ 0.140 opacity */
+	column-gap      : var( --tie-hor-003 );                                                                           /* Tier Horizontal 3, about 19.304px - 33.876px */
+	display         : grid;
+	grid-auto-flow  : column;
+	justify-content : space-between;
+	padding-top     : var( --tie-ver-003 );                                                                           /* Tier Vertical 3 ~= 33.876px */
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Footer Bottom Div. Why: The two lines don't fit side by side on a phone. How: This applies 640px wide and below. */
+
+
+	.fooBotDiv { /* What: Stacked Footer Bottom Div. Why: The project note reads best below the copyright. How: This stacks them a piece's tier apart, aligned to the start. */
+
+
+		grid-auto-flow  : row;
+		justify-content : start;
+		row-gap         : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+
+
+	}
+
+
+}
+
+.fooCopPar { /* What: Footer Copyright Paragraph. Why: The fine print reads small and quiet. How: This sets it at the base size. */
+
+
+	font-size : var( --fon-siz-bas ); /* Font Size Base = 1rem */
+
+
+}
+
+
+/* #region fooBuiAnc */
+
+.fooBuiAnc { /* What: Footer Builder Anchor. Why: The builder's link should read as a link within its line. How: This sets it bold in white with an underline, easing its hover color, press dim, and focus ring. */
+
+
+	color                 : var( --tex-inv-col );                   /* Text Inverse Color = #ffffff */
+	font-weight           : 700;
+	text-decoration       : underline;
+	text-underline-offset : calc( var( --cdn-pow-005-rec ) * 1em ); /* Core-Design-Number to the Power of 5 Reciprocal ~= 0.245em */
+	transition            : color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.fooBuiAnc:hover { /* What: Hovered Footer Builder Anchor. Why: A link should respond to the pointer. How: This shifts it to the light coral. */
+
+
+	color : var( --acs-lig-col ); /* Accent-Secondary Light Color = #ffb29e */
+
+
+}
+.fooBuiAnc:active { /* What: Pressed Footer Builder Anchor. Why: A press should register before the new tab opens. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Footer Builder Anchor. Why: Someone who asked for less motion should see the link's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.fooBuiAnc { /* What: Motionless Footer Builder Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.visHidSpa { /* What: Visually Hidden Span. Why: The new tab note is for screen reader users only. How: This shrinks the span to a clipped single pixel off to the side, out of view but still read aloud. */
+
+
+	clip-path   : inset( 50% );
+	height      : 1px;
+	overflow    : hidden;
+	position    : absolute;
+	white-space : nowrap;
+	width       : 1px;
+
+
+}
+
+/* #endregion fooBuiAnc */
+
+/* #endregion fooBotDiv */
+
+/* #endregion fooInnDiv */
+
+/* #endregion sitFooFoo */
+
+

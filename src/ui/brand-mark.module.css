@@ -1,0 +1,55 @@
+
+
+
+/**
+ * brand-mark.module.css = Brand Mark Module
+ *
+ * @summary
+ * Styles for BraMarCom: the mark's size, an em square that follows the font
+ * size of the text beside it, and the colors of its navy disc, white upper
+ * wave, and coral lower wave, read from the color tokens.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region braMarSvg */
+
+.braMarSvg { /* What: Brand Mark SVG. Why: The mark should match the size of the name beside it. How: This sizes it to a square a little larger than the text's own em, keeping it from shrinking in a tight row. */
+
+
+	height      : calc( var( --cdn-pow-002 ) * 1em ); /* Core-Design-Number to the Power of 2 ~= 1.755em */
+	width       : calc( var( --cdn-pow-002 ) * 1em ); /* Core-Design-Number to the Power of 2 ~= 1.755em */
+
+
+}
+
+.marDisCir { /* What: Mark Disc Circle. Why: The mark sits on the brand's navy. How: This fills the disc with the accent color. */
+
+
+	fill : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+
+.marUppPat { /* What: Mark Upper Path. Why: The upper wave is the lake's surface. How: This strokes it white. */
+
+
+	stroke : var( --bac-sur-col ); /* Background Surface Color = #ffffff */
+
+
+}
+
+.marLowPat { /* What: Mark Lower Path. Why: The lower wave is the sunset on the water. How: This strokes it in the coral accent. */
+
+
+	stroke : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
+
+
+}
+
+/* #endregion braMarSvg */
+
+

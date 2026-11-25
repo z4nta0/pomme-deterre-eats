@@ -1,0 +1,189 @@
+
+
+
+/**
+ * about.module.css = About Page Module
+ *
+ * @summary
+ * Styles for AboPagCom: the heading block, then a column of headed prose
+ * capped at the base text width, its links bold and underlined in navy. The
+ * page sits in the shared centered column, padded by the page frame's tier
+ * above and below.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region aboPagDiv */
+
+.aboPagDiv { /* What: About Page Div. Why: The page arrives gently and holds its parts in the centered column. How: This plays the shared page entrance fade, and stacks the heading above the prose a section's tier apart within the capped column, its side padding, and the page frame's tier above and below. */
+
+
+	align-content : start;
+	animation     : global( pageEnterFadeIn ) var( --dur-ani-p03 ) var( --mot-dec-eas ); /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	display       : grid;
+	margin        : 0 auto;
+	max-width     : var( --con-max-wid );                                                /* Container Maximum Width ~= 1,094.093px */
+	padding       : var( --tie-ver-001 ) var( --gut-sid-pad );                           /* Tier Vertical 1 ~= 104.323px, Gutter Side Padding, about 19.304px - 44.876px */
+	row-gap       : var( --tie-ver-002 );                                                /* Tier Vertical 2 ~= 59.447px */
+	width         : 100%;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion About Page Div. Why: Someone who asked for less motion should see the page appear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.aboPagDiv { /* What: Still About Page Div. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region aboHeaDiv */
+
+.aboHeaDiv { /* What: About Heading Div. Why: The eyebrow, the heading, and the lead read as one block. How: This stacks them a part's tier apart. */
+
+
+	display : grid;
+	row-gap : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+
+.aboEyePar { /* What: About Eyebrow Paragraph. Why: The eyebrow names the page without competing with the heading. How: This sets it small, extra bold, uppercase, and spaced in the coral's text shade. */
+
+
+	color          : var( --acs-dar-col );                   /* Accent-Secondary Dark Color = #b13d22 */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 1rem */
+	font-weight    : 800;
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	text-transform : uppercase;
+
+
+}
+
+.aboTitHea { /* What: About Title Heading. Why: The page's one heading should be its largest text, growing with the screen. How: This sets it between Base Plus 4 and Base Plus 5, scaling with the viewport between them, capped so it wraps onto a couple of lines. */
+
+
+	font-size : clamp( var( --fon-siz-p04 ), 5vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 4 ~= 33.876px, Font Size Base Plus 5 ~= 44.876px */
+	max-width : calc( var( --cdn-pow-010 ) * 1em );                       /* Core-Design-Number to the Power of 10 ~= 16.643em */
+
+
+}
+
+.aboLeaPar { /* What: About Lead Paragraph. Why: The lead reads a step larger than body text but quieter than the heading. How: This sets it at Base Plus 2 in slate, capped at the base text width. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+/* #endregion aboHeaDiv */
+
+
+
+/* #region aboBodDiv */
+
+.aboBodDiv { /* What: About Body Div. Why: The page's prose reads as one column, each heading closer to its own paragraph than to the one before it. How: This stacks the headings and paragraphs a piece's tier apart. */
+
+
+	display : grid;
+	row-gap : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+
+
+}
+
+.aboBodDiv h2 { /* What: About Body Headings. Why: Each section of the prose names itself, a heading's tier below the paragraph before it. How: This sets the headings at Base Plus 3 with room above; long-form prose keeps tag selectors on its container's class. */
+
+
+	font-size  : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
+	margin-top : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+.aboBodDiv h2:first-child { /* What: First About Body Heading. Why: The first heading starts the column, with nothing above it to clear. How: This drops its top margin. */
+
+
+	margin-top : 0;
+
+
+}
+
+.aboBodDiv p { /* What: About Body Paragraphs. Why: The prose reads at a comfortable line length. How: This sets the paragraphs in slate at Base Plus 2, capped at the base text width. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+.aboBodAnc { /* What: About Body Anchor. Why: The prose's links should read as links within their sentences. How: This sets them bold in navy with an underline, easing their hover color, press dim, and focus ring. */
+
+
+	color                 : var( --acc-mai-col );                   /* Accent Main Color = #12355b */
+	font-weight           : 700;
+	text-decoration       : underline;
+	text-underline-offset : calc( var( --cdn-pow-005-rec ) * 1em ); /* Core-Design-Number to the Power of 5 Reciprocal ~= 0.245em */
+	transition            : color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.aboBodAnc:hover { /* What: Hovered About Body Anchor. Why: A link should respond to the pointer. How: This shifts it to the coral's text shade. */
+
+
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color = #b13d22 */
+
+
+}
+.aboBodAnc:active { /* What: Pressed About Body Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion About Body Anchor. Why: Someone who asked for less motion should see the links' looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.aboBodAnc { /* What: Motionless About Body Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.visHidSpa { /* What: Visually Hidden Span. Why: The builder link's new tab note is for screen reader users only. How: This shrinks the span to a clipped single pixel off to the side, out of view but still read aloud. */
+
+
+	clip-path   : inset( 50% );
+	height      : 1px;
+	overflow    : hidden;
+	position    : absolute;
+	white-space : nowrap;
+	width       : 1px;
+
+
+}
+
+/* #endregion aboBodDiv */
+
+/* #endregion aboPagDiv */
+
+

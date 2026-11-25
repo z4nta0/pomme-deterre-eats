@@ -1,0 +1,638 @@
+
+
+
+/**
+ * contact.module.css = Contact Page Module
+ *
+ * @summary
+ * Styles for ConPagCom: the heading block, then the white form panel beside
+ * two note panels, which stack below it at 960px wide and below. The form's
+ * fields share one look, the reason menu draws the site's own arrow, an
+ * error rises in above the button, and the thank-you rises into the form's
+ * place. The page sits in the shared centered column, padded by the page
+ * frame's tier above and below.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region conPagDiv */
+
+.conPagDiv { /* What: Contact Page Div. Why: The page arrives gently and holds its parts in the centered column. How: This plays the shared page entrance fade, and stacks the heading above the columns a heading's tier apart within the capped column, its side padding, and the page frame's tier above and below. */
+
+
+	align-content : start;
+	animation     : global( pageEnterFadeIn ) var( --dur-ani-p03 ) var( --mot-dec-eas ); /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	display       : grid;
+	margin        : 0 auto;
+	max-width     : var( --con-max-wid );                                                /* Container Maximum Width ~= 1,094.093px */
+	padding       : var( --tie-ver-001 ) var( --gut-sid-pad );                           /* Tier Vertical 1 ~= 104.323px, Gutter Side Padding, about 19.304px - 44.876px */
+	row-gap       : var( --tie-ver-003 );                                                /* Tier Vertical 3 ~= 33.876px */
+	width         : 100%;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Contact Page Div. Why: Someone who asked for less motion should see the page appear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.conPagDiv { /* What: Still Contact Page Div. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region conHeaDiv */
+
+.conHeaDiv { /* What: Contact Heading Div. Why: The eyebrow, the heading, and the lead read as one block. How: This stacks them a part's tier apart. */
+
+
+	display : grid;
+	row-gap : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+
+.conEyePar { /* What: Contact Eyebrow Paragraph. Why: The eyebrow names the page without competing with the heading. How: This sets it small, extra bold, uppercase, and spaced in the coral's text shade. */
+
+
+	color          : var( --acs-dar-col );                   /* Accent-Secondary Dark Color = #b13d22 */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 1rem */
+	font-weight    : 800;
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	text-transform : uppercase;
+
+
+}
+
+.conTitHea { /* What: Contact Title Heading. Why: The page's one heading should be its largest text, growing with the screen. How: This sets it between Base Plus 4 and Base Plus 5, scaling with the viewport between them, capped so it wraps onto a couple of lines. */
+
+
+	font-size : clamp( var( --fon-siz-p04 ), 5vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 4 ~= 33.876px, Font Size Base Plus 5 ~= 44.876px */
+	max-width : calc( var( --cdn-pow-010 ) * 1em );                       /* Core-Design-Number to the Power of 10 ~= 16.643em */
+
+
+}
+
+.conLeaPar { /* What: Contact Lead Paragraph. Why: The lead reads a step larger than body text but quieter than the heading. How: This sets it at Base Plus 2 in slate, capped at the base text width. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+/* #endregion conHeaDiv */
+
+
+
+/* #region conGriDiv */
+
+.conGriDiv { /* What: Contact Grid Div. Why: The form leads, with the notes beside it on a wide screen. How: This sets the form in a column twice the notes' width, a section's tier apart, aligned at the top. */
+
+
+	align-items           : start;
+	column-gap            : var( --tie-hor-002 ); /* Tier Horizontal 2, about 33.876px - 59.447px */
+	display               : grid;
+	grid-template-columns : 2fr 1fr;
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Contact Grid Div. Why: The form gets too narrow beside the notes. How: This applies 960px wide and below. */
+
+
+	.conGriDiv { /* What: Stacked Contact Grid Div. Why: The notes read best below the form. How: This stacks them a heading's tier apart. */
+
+
+		grid-template-columns : 1fr;
+		row-gap               : var( --tie-ver-003 ); /* Tier Vertical 3 ~= 33.876px */
+
+
+	}
+
+
+}
+
+
+/* #region forWraDiv */
+
+.forWraDiv { /* What: Form Wrap Div. Why: The form and its thank-you share one white panel. How: This sets the panel white with a soft border and rounded corners, padded by a part's tier, or a section's across on a wide screen. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
+	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
+	padding       : var( --tie-ver-003 ) var( --tie-hor-003 );       /* Tier Vertical 3 ~= 33.876px, Tier Horizontal 3, about 19.304px - 33.876px */
+
+
+}
+
+
+/* #region sucStaDiv */
+
+.sucStaDiv { /* What: Success State Div. Why: The thank-you arrives in the form's place. How: This stacks its heading, text, and button a part's tier apart, rising and fading into view. */
+
+
+	animation     : sucStaDivEnterFadeUp var( --dur-ani-p03 ) var( --mot-dec-eas ); /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	display       : grid;
+	justify-items : start;
+	row-gap       : var( --tie-ver-004 );                                           /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Success State Div. Why: Someone who asked for less motion should see the thank-you appear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.sucStaDiv { /* What: Still Success State Div. Why: The thank-you should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes sucStaDivEnterFadeUp { /* What: Success State Div Enter Fade Up. Why: The thank-you should rise into the form's place as the result of the send. How: This fades it in from a spacing step below its place. */
+
+
+	from {
+
+
+		opacity   : 0;
+		transform : translateY( var( --spa-ver-m02 ) ); /* Spacing Vertical Base Minus 2 ~= 8.304px */
+
+
+	}
+
+	to {
+
+
+		opacity   : 1;
+		transform : none;
+
+
+	}
+
+
+}
+
+.sucTitHea { /* What: Success Title Heading. Why: The thank-you's heading says what happened, and takes focus by script rather than as a control. How: This sets it at Base Plus 4 in the success green and drops its focus ring, since a ring around a heading would only confuse. */
+
+
+	color     : var( --suc-dar-col ); /* Success Dark Color = #1d6b45 */
+	font-size : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
+	outline   : none;
+
+
+}
+
+.sucTexPar { /* What: Success Text Paragraph. Why: The next steps read quieter than the heading. How: This sets them in slate. */
+
+
+	color : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+
+
+}
+
+.butOutBut { /* What: Button Outline Button. Why: Sending another message is a quiet, secondary action. How: This sets it as an outlined navy button, easing its hover fill and lift, its press, and its focus ring. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-bas ) solid var( --acc-mai-col ); /* Border Width Base ~= 1.160px, Accent Main Color = #12355b */
+	border-radius : var( --rad-bor-lar );                            /* Radius Border Large ~= 14.572px */
+	color         : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
+	font-weight   : 700;
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-p01 );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 1 ~= 19.304px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.butOutBut:hover { /* What: Hovered Button Outline Button. Why: The button should respond to the pointer. How: This fills it navy with white text and lifts it 2px. */
+
+
+	background : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
+	color      : var( --tex-acc-col );                            /* Text Accent Color = #ffffff */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.butOutBut:active { /* What: Pressed Button Outline Button. Why: A press should register before the form returns. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Outline Button. Why: Someone who asked for less motion should see the button's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.butOutBut { /* What: Motionless Button Outline Button. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion sucStaDiv */
+
+
+/* #region conForFor */
+
+.conForFor { /* What: Contact Form Form. Why: The form's fields, alert, and button read top to bottom. How: This stacks them a part's tier apart, the button at its own width. */
+
+
+	display       : grid;
+	justify-items : stretch;
+	row-gap       : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+
+.honPotPar { /* What: Honeypot Paragraph. Why: The honeypot has to stay out of sight while bots still find it. How: This moves it off the screen to the left, a technique rather than spacing, so its offset stays literal. */
+
+
+	left     : -9999px;
+	position : absolute;
+
+
+}
+
+.forRowDiv { /* What: Form Row Div. Why: The name and email are short and sit together. How: This sets their fields in two equal columns an item's tier apart. */
+
+
+	column-gap            : var( --tie-hor-003 ); /* Tier Horizontal 3, about 19.304px - 33.876px */
+	display               : grid;
+	grid-template-columns : 1fr 1fr;
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Form Row Div. Why: Two fields side by side get too narrow on a phone. How: This applies 640px wide and below. */
+
+
+	.forRowDiv { /* What: Stacked Form Row Div. Why: The fields read best one above another. How: This stacks them a part's tier apart. */
+
+
+		grid-template-columns : 1fr;
+		row-gap               : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+
+
+	}
+
+
+}
+
+
+/* #region forFieDiv */
+
+.forFieDiv { /* What: Form Field Div. Why: Each field's label sits close above it. How: This stacks them a piece's tier apart. */
+
+
+	display : grid;
+	row-gap : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+
+
+}
+
+
+/* #region forLabLab */
+
+.forLabLab { /* What: Form Label Label. Why: Each field's name reads bold above it. How: This sets it bold in navy. */
+
+
+	color       : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+	font-weight : 700;
+
+
+}
+
+.forOptSpa { /* What: Form Optional Span. Why: The optional note shouldn't read as loud as the label. How: This sets it in the muted gray at the regular weight. */
+
+
+	color       : var( --tex-mut-col ); /* Text Muted Color = #5b6778 */
+	font-weight : 400;
+
+
+}
+
+/* #endregion forLabLab */
+
+.forConInp,
+.forConSel,
+.forConTex { /* What: Form Control Fields. Why: The boxes, the menu, and the message share one field look. How: This sets them on the page gray with a strong border and rounded corners, padded for a comfortable tap, easing their border color and focus ring. */
+
+
+	background-color : var( --bac-pag-col );                            /* Background Page Color = #f6f8fa */
+	border           : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #c9d3de */
+	border-radius    : var( --rad-bor-lar );                            /* Radius Border Large ~= 14.572px */
+	min-width        : 0;
+	padding          : var( --spa-ver-m01 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
+	transition       : border-color var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	width            : 100%;
+
+
+}
+.forConTex::placeholder { /* What: Form Control Textarea Placeholder. Why: The hint should read clearly but stay quieter than typed words. How: This sets it in the muted gray. */
+
+
+	color : var( --tex-mut-col ); /* Text Muted Color = #5b6778 */
+
+
+}
+.forConInp:hover,
+.forConSel:hover,
+.forConTex:hover { /* What: Hovered Form Control Fields. Why: A field should respond to the pointer. How: This darkens its border to the navy. */
+
+
+	border-color : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Form Control Fields. Why: Someone who asked for less motion should see the fields' looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.forConInp,
+	.forConSel,
+	.forConTex { /* What: Motionless Form Control Fields. Why: The hover and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.forConSel { /* What: Form Control Select. Why: The reason menu draws the site's own arrow in every browser, never the browser's. How: This turns off the browser's own look and sets the arrow file at the right edge, sized on the rhythm, with room so the text never runs under it; its stroke is the muted text color, written into the file. */
+
+
+	appearance          : none;
+	background-image    : url( '../../assets/images/select-arrow.svg' );
+	background-position : right var( --spa-hor-bas ) center;             /* Spacing Horizontal Base ~= 14.572px */
+	background-repeat   : no-repeat;
+	background-size     : calc( var( --ver-rhy-m01 ) * 1rem );           /* Vertical Rhythm Base Minus 1 = 11px */
+	padding-right       : var( --spa-hor-p03 );                          /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+
+
+}
+
+.forConTex { /* What: Form Control Textarea. Why: A message may run long, and the box should grow only downward. How: This lets the visitor resize it vertically. */
+
+
+	resize : vertical;
+
+
+}
+
+/* #endregion forFieDiv */
+
+.errAleDiv { /* What: Error Alert Div. Why: A failed send should stand out above the button, rising into view. How: This sets the message in the error colors on its tint with a matching border, rising and fading in on the decelerating curve. */
+
+
+	animation     : errAleDivEnterFadeUp var( --dur-ani-p02 ) var( --mot-dec-eas ); /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	background    : var( --err-tin-col );                                           /* Error Tint Color = #fbe9e6 */
+	border        : var( --bor-wid-bas ) solid var( --err-mai-col );                /* Border Width Base ~= 1.160px, Error Main Color = #c8432f */
+	border-radius : var( --rad-bor-lar );                                           /* Radius Border Large ~= 14.572px */
+	color         : var( --err-dar-col );                                           /* Error Dark Color = #a12a1c */
+	font-weight   : 700;
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );                      /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
+
+
+}
+.errAleDiv:empty { /* What: Empty Error Alert Div. Why: The empty region must stay in the page for its message to be announced, without adding a gap to the form's column. How: This takes it out of the layout while it's empty, rather than hiding it, which some engines read as removing its role. */
+
+
+	border   : none;
+	padding  : 0;
+	position : absolute;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Error Alert Div. Why: Someone who asked for less motion should see the error appear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.errAleDiv { /* What: Still Error Alert Div. Why: The error should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes errAleDivEnterFadeUp { /* What: Error Alert Div Enter Fade Up. Why: The error should rise into view as the result of the send. How: This fades it in from a spacing step below its place. */
+
+
+	from {
+
+
+		opacity   : 0;
+		transform : translateY( var( --spa-ver-m03 ) ); /* Spacing Vertical Base Minus 3 ~= 6.268px */
+
+
+	}
+
+	to {
+
+
+		opacity   : 1;
+		transform : none;
+
+
+	}
+
+
+}
+
+.butSolBut { /* What: Button Solid Button. Why: Sending is the form's main action, a filled navy button. How: This sets it bold and white on navy, as wide as its words, easing its hover fill and lift, its press, its label as it changes, and its focus ring, and fades it back while it's disabled. */
+
+
+	background    : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
+	border        : none;
+	border-radius : var( --rad-bor-lar );                      /* Radius Border Large ~= 14.572px */
+	color         : var( --tex-acc-col );                      /* Text Accent Color = #ffffff */
+	font-size     : var( --fon-siz-p02 );                      /* Font Size Base Plus 2 ~= 19.304px */
+	font-weight   : 700;
+	justify-self  : start;
+	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.butSolBut:enabled:hover { /* What: Hovered Button Solid Button. Why: The button should respond to the pointer when it can send. How: This deepens the navy and lifts it 2px. */
+
+
+	background : var( --acc-hov-col );                            /* Accent Hover Color = #0b2340 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.butSolBut:enabled:active { /* What: Pressed Button Solid Button. Why: A press should register before the message sends. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+.butSolBut:disabled { /* What: Disabled Button Solid Button. Why: While the message is out, the button can't send again. How: This fades it and shows the default cursor. */
+
+
+	cursor  : default;
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Button Solid Button. Why: On a phone a wide button is easier to tap. How: This applies 640px wide and below. */
+
+
+	.butSolBut { /* What: Full Width Button Solid Button. Why: The button reads best across the form. How: This stretches it across the column. */
+
+
+		justify-self : stretch;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Solid Button. Why: Someone who asked for less motion should see the button's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.butSolBut { /* What: Motionless Button Solid Button. Why: The hover, press, disabled, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion conForFor */
+
+/* #endregion forWraDiv */
+
+
+
+/* #region conNotAsi */
+
+.conNotAsi { /* What: Contact Notes Aside. Why: The two notes stack beside the form. How: This stacks them an item's tier apart. */
+
+
+	display : grid;
+	row-gap : var( --tie-ver-003 ); /* Tier Vertical 3 ~= 33.876px */
+
+
+}
+
+
+/* #region notCarDiv */
+
+.notCarDiv { /* What: Note Card Div. Why: Each note reads as a panel of its own, holding still since it holds information rather than repeating as an item. How: This sets it on the pale navy tint with rounded corners, stacking its parts a piece's tier apart. */
+
+
+	background    : var( --acc-tin-col );                      /* Accent Tint Color = #eaf0f6 */
+	border-radius : var( --rad-bor-xla );                      /* Radius Border Extra Large ~= 19.304px */
+	display       : grid;
+	padding       : var( --tie-ver-004 ) var( --tie-hor-004 ); /* Tier Vertical 4 ~= 19.304px, Tier Horizontal 4, about 11px - 19.304px */
+	row-gap       : var( --tie-ver-005 );                      /* Tier Vertical 5 = 11px */
+
+
+}
+
+.notTitHea { /* What: Note Title Heading. Why: Each note names its subject. How: This sets the heading at Base Plus 2. */
+
+
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+
+
+}
+
+/* #region notTexPar */
+
+.notTexPar { /* What: Note Text Paragraph. Why: A note's sentence reads quieter than its heading. How: This sets it in slate. */
+
+
+	color : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+
+
+}
+
+.notEmaAnc { /* What: Note Email Anchor. Why: The address should read as a link and wrap rather than spill on a narrow screen. How: This sets it bold in navy with an underline, breaking anywhere when it has to, easing its hover color, press dim, and focus ring. */
+
+
+	color                 : var( --acc-mai-col );                   /* Accent Main Color = #12355b */
+	font-weight           : 700;
+	overflow-wrap         : anywhere;
+	text-decoration       : underline;
+	text-underline-offset : calc( var( --cdn-pow-005-rec ) * 1em ); /* Core-Design-Number to the Power of 5 Reciprocal ~= 0.245em */
+	transition            : color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.notEmaAnc:hover { /* What: Hovered Note Email Anchor. Why: A link should respond to the pointer. How: This shifts it to the coral's text shade. */
+
+
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color = #b13d22 */
+
+
+}
+.notEmaAnc:active { /* What: Pressed Note Email Anchor. Why: A press should register before the email app opens. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Note Email Anchor. Why: Someone who asked for less motion should see the link's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.notEmaAnc { /* What: Motionless Note Email Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion notTexPar */
+
+.notLisUno { /* What: Note List Unordered. Why: The checklist reads as a list with its own markers. How: This indents it so its bullets sit inside the panel, the items a little apart, in slate. */
+
+
+	color        : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+	display      : grid;
+	padding-left : var( --spa-hor-p01 ); /* Spacing Horizontal Base Plus 1 ~= 19.304px */
+	row-gap      : var( --spa-ver-m03 ); /* Spacing Vertical Base Minus 3 ~= 6.268px */
+
+
+}
+
+/* #endregion notCarDiv */
+
+/* #endregion conNotAsi */
+
+/* #endregion conGriDiv */
+
+/* #endregion conPagDiv */
+
+

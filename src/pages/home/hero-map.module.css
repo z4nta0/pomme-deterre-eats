@@ -1,0 +1,81 @@
+
+
+
+/**
+ * hero-map.module.css = Hero Map Module
+ *
+ * @summary
+ * Styles for HerMapCom: the map covers the hero behind its words, taking no
+ * pointer events, with a pale blue lake, contour lines in the strong border
+ * gray, a dotted coral trail, and navy pins with coral dots, every color
+ * read from the color tokens.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region herMapSvg */
+
+.herMapSvg { /* What: Hero Map SVG. Why: The map is a backdrop, filling the hero behind its words without catching clicks. How: This covers the hero, which positions it, and lets the pointer pass through. */
+
+
+	height         : 100%;
+	inset          : 0;
+	pointer-events : none;
+	position       : absolute;
+	width          : 100%;
+
+
+}
+
+.mapLakPat { /* What: Map Lake Path. Why: The lake should read as water without competing with the words. How: This fills it with the light accent at a third of its strength. */
+
+
+	fill : oklch( from var( --acc-lig-col ) l c h / var( --cdn-pow-004-rec ) ); /* Accent Light Color = #9fc3e8, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
+
+
+}
+
+.mapConGro { /* What: Map Contours Group. Why: The contour lines should sit quietly behind the words. How: This strokes them thin in the strong border gray, with no fill. */
+
+
+	fill         : none;
+	stroke       : var( --bor-str-col ); /* Border Strong Color = #c9d3de */
+	stroke-width : 1.5;                  /* What: Contour Stroke Width. Why: The line's width is in the SVG's own drawing space, which scales with the map. How: This sets it in drawing units, a thin line at any size. */
+
+
+}
+
+.mapTraPat { /* What: Map Trail Path. Why: The trail is the map's one bright line. How: This strokes it as round coral dots spaced along the path, with no fill. */
+
+
+	fill             : none;
+	stroke           : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
+	stroke-dasharray : 2 12;                 /* What: Trail Dash Pattern. Why: The trail reads as a dotted line. How: This sets short dashes, rounded into dots by the line cap, in the SVG's own drawing units. */
+	stroke-linecap   : round;
+	stroke-width     : 4;                    /* What: Trail Stroke Width. Why: The dots should be bolder than the contours. How: This sets the line's width in drawing units. */
+
+
+}
+
+.mapPinGro { /* What: Map Pins Group. Why: The pins are the brand's navy markers. How: This fills them with the accent color. */
+
+
+	fill : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+
+.mapDotGro { /* What: Map Dots Group. Why: Each pin's dot is the brand's coral. How: This fills them with the secondary accent. */
+
+
+	fill : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
+
+
+}
+
+/* #endregion herMapSvg */
+
+

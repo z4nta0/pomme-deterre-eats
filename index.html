@@ -1,0 +1,113 @@
+<!doctype html><!-- What: Document Type Declaration. Why: Browsers render the page in standards mode only with a doctype. How: This declares HTML5. -->
+
+
+
+<html lang='en'><!-- What: Root HTML Element. Why: Screen readers and translation tools need the page's language. How: This marks the document as English. -->
+
+
+	<head><!-- What: Document Head Element. Why: The page's metadata and icons load before the body paints. How: This holds them in the sections below. -->
+
+
+		<!-- #region Document -->
+
+		<meta charset='UTF-8' />                                                 <!-- What: Character Set Meta. Why: The browser has to decode the page as UTF-8 before it reads anything else. How: This sits first in the head, inside the first 1,024 bytes the browser reads. -->
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' /> <!-- What: Viewport Meta. Why: Phones should lay the site out at device width instead of a zoomed-out desktop width. How: This sets the layout width to the device's and starts at no zoom. -->
+		<title>Lake Pomme de Terre Eats | Where to Eat Around the Lake</title>    <!-- What: Page Title Element. Why: Link checkers and crawlers that never run the site's script read only this file, so it carries the home page's title in full. How: Every other page renders its own title, which React places ahead of this one. -->
+
+		<!-- #endregion Document -->
+
+
+		<!-- #region Search -->
+
+		<!--
+			index.html = Search Section
+
+			@summary
+			Each page renders its own canonical link or noindex tag, and every
+			page but Home its own title, since React 19 adds those beside any
+			in this file rather than replacing them. So this section holds no
+			canonical or robots tag, and the title above is the home page's.
+
+			@author z4nta0 <https://github.com/z4nta0>
+
+		-->
+
+
+
+		<meta name='author'      content='techgeek.dev' />                                                                                                         <!-- What: Author Meta. Why: Search engines and link preview inspectors look for who built a page. How: This names techgeek.dev, which builds and runs the guide. -->
+		<meta name='description' content='Every place to eat around Lake Pomme de Terre in one guide: diners, marina grills, pizza, barbecue, and more by the lake.' /> <!-- What: Description Meta. Why: Search listings show a summary under the title, and checkers and crawlers read it from this file. How: This carries the home page's description, which other pages swap while they show. -->
+
+		<!-- #endregion Search -->
+
+
+		<!-- #region Web App -->
+
+		<meta name='theme-color' content='#12355b' /> <!-- What: Theme Color Meta. Why: Mobile browsers tint their chrome around the page, and Discord edges its link previews in this color. How: This sets it to the lake navy, the site's main accent. -->
+
+		<!-- #endregion Web App -->
+
+
+		<!-- #region Icons -->
+
+		<link href='/favicon.svg' rel='icon' type='image/svg+xml' /> <!-- What: SVG Icon Link. Why: A vector favicon stays sharp at any size. How: This points at the site's mark in public/. -->
+
+		<!-- #endregion Icons -->
+
+
+	</head>
+
+
+
+	<body><!-- What: Document Body Element. Why: This holds the site's mount point, the hidden copy of the contact form Netlify reads, and the entry script. How: The mount point stays empty until React renders the site into it. -->
+
+
+		<div id='appMouDiv'></div><!-- What: App Mount Div Element. Why: React needs one element to render the site into. How: main.tsx renders the app into this ID. -->
+
+		<form
+			name='contact'
+
+			data-netlify='true'
+			netlify-honeypot='bot-field'
+
+			hidden
+		><!-- What: Contact Form Element. Why: Netlify registers a site's forms by reading the built HTML, and the Contact page's form only exists once React runs. How: This hidden copy carries the form's name and every field the page posts, with the honeypot Netlify should check. -->
+
+			<input
+				name='name'
+				type='text'
+			/><!-- What: Name Input Element. Why: Netlify records the fields it finds here. How: This declares the name field. -->
+
+			<input
+				name='email'
+				type='email'
+			/><!-- What: Email Input Element. Why: Netlify records the fields it finds here, and uses a field named email as the reply-to. How: This declares the email field. -->
+
+			<input
+				name='reason'
+				type='text'
+			/><!-- What: Reason Input Element. Why: Netlify records the fields it finds here. How: This declares the reason field, which the page posts as the chosen reason's label. -->
+
+			<input
+				name='place'
+				type='text'
+			/><!-- What: Place Input Element. Why: Netlify records the fields it finds here. How: This declares the place field. -->
+
+			<textarea name='message'></textarea><!-- What: Message Textarea Element. Why: Netlify records the fields it finds here. How: This declares the message field. -->
+
+			<input
+				name='bot-field'
+				type='text'
+			/><!-- What: Bot Input Element. Why: Netlify drops any submission that fills its honeypot field. How: This declares the bot-field honeypot named in the form's netlify-honeypot attribute. -->
+
+		</form>
+
+		<script
+			src='/src/main.tsx'
+			type='module'
+		>/* What: Site Module Script Element. Why: This loads the site itself. How: Vite replaces it with the built, hashed bundle at build time. */</script>
+
+
+	</body>
+
+
+</html>

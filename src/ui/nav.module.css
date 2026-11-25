@@ -1,0 +1,633 @@
+
+
+
+/**
+ * nav.module.css = Navigation Bar Module
+ *
+ * @summary
+ * Styles for NavBarCom: the white bar across the top of the page, with the
+ * brand (the mark and the name, its last word in coral) on the left and the
+ * page links as pills on the right, the current page's tinted, ending in the
+ * navy "Add your place" button. At 960px wide and below the links and the
+ * button move into a panel below the bar, which fades in over a scrim that
+ * dims the page while the three-bar toggle has it open, its rows arriving one
+ * after another, and the toggle's bars turn into a cross. The bar's states
+ * are attributes rather than classes: aria-expanded on the toggle,
+ * data-mobile-menu-open on the links and the scrim, and aria-current on the
+ * current page's link.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+.navSkiAnc { /* What: Navigation Skip Anchor. Why: A keyboard user should be able to jump past the bar, and the link shouldn't show until it's needed. How: This sets it as a navy pill with white text and a soft shadow, like the site's filled buttons, fixed just above the screen's top edge at the page's side gutter, and eases its slide into view and back out, leaving on the accelerating curve, along with its hover fill and lift, its press, and its focus ring. */
+
+
+	background      : var( --acc-mai-col );                               /* Accent Main Color = #12355b */
+	border-radius   : 999px;
+	box-shadow      : var( --ele-med-sha );                               /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
+	color           : var( --tex-acc-col );                               /* Text Accent Color = #ffffff */
+	font-size       : var( --fon-siz-p01 );                               /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight     : 700;
+	left            : var( --gut-sid-pad );                               /* Gutter Side Padding, about 19.304px - 44.876px */
+	padding         : var( --spa-ver-bas ) var( --spa-hor-p02 );          /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	position        : fixed;
+	text-decoration : none;
+	top             : var( --spa-ver-m02 );                               /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	transform       : translateY( calc( -100% - var( --spa-ver-p04 ) ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px */ /* What: Hidden Offset. Why: The link waits above the screen until it's focused, clear of the edge so no sliver of it or its soft shadow shows. How: This raises it by its own height plus more than its top offset, its shadow's drop, and its blur together. */
+	transition      : background var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-acc-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	z-index         : 5;                                                  /* What: Skip Link Layer. Why: The focused link has to show above the bar, at 4, and the scrim, at 3. How: This sets it one layer above the bar. */
+
+
+}
+.navSkiAnc:focus { /* What: Focused Navigation Skip Anchor. Why: The link has to come into view however focus reaches it. How: This slides it down over the bar's corner on the decelerating curve, still easing its hover fill and lift, its press, and its focus ring, on :focus rather than :focus-visible so a script's focus shows it too. */
+
+
+	transform  : translateY( 0 );
+	transition : background var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.navSkiAnc:focus:hover { /* What: Hovered Navigation Skip Anchor. Why: The button should respond to the pointer while it's in view. How: This deepens the navy and lifts the pill 2px, like the filled buttons, only while it's focused, so a hover can't pull it down from above the screen. */
+
+
+	background : var( --acc-hov-col );                            /* Accent Hover Color = #0b2340 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.navSkiAnc:active { /* What: Pressed Navigation Skip Anchor. Why: A press should register before focus moves. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Skip Anchor. Why: Someone who asked for less motion shouldn't see the link slide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navSkiAnc,
+	.navSkiAnc:focus { /* What: Motionless Navigation Skip Anchor. Why: The link should simply appear, and its hover, press, and focus changes should switch on at once. How: This turns the transition off on both the hidden and the focused rule, since the focused rule outranks the base. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.navScrDiv { /* What: Navigation Scrim Div. Why: The open phone menu should stand apart from the page, and a tap anywhere on the page should close it. How: This covers the whole screen in the scrim color, layered beneath the bar, hidden until the menu opens, fading out on the accelerating curve as it closes and only then leaving the page clickable. */
+
+
+	background : oklch( from var( --scr-mai-col ) l c h / var( --cdn-pow-003-rec ) );                          /* Scrim Main Color = #1b2533, Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
+	display    : none;
+	inset      : 0;
+	opacity    : 0;
+	position   : fixed;
+	transition : opacity var( --dur-tra-p03 ) var( --mot-acc-eas ), visibility 0s linear var( --dur-tra-p03 ); /* Duration Transition Base Plus 3 ~= 366.9ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
+	visibility : hidden;
+	z-index    : 3;                                                                                            /* What: Scrim Layer. Why: The scrim has to cover the page and stay under the bar at 4. How: This puts it one layer below the bar. */
+
+
+}
+.navScrDiv[data-mobile-menu-open] { /* What: Open Navigation Scrim Div. Why: The page dims as the menu opens. How: This fades the scrim in on the decelerating curve, showing it at once so a tap can close the menu straight away. */
+
+
+	opacity    : 1;
+	transition : opacity var( --dur-tra-p03 ) var( --mot-dec-eas ), visibility 0s; /* Duration Transition Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	visibility : visible;
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Navigation Scrim Div. Why: Only the phone menu dims the page. How: This applies 960px wide and below. */
+
+
+	.navScrDiv { /* What: Shown Navigation Scrim Div. Why: The scrim exists only where the menu does. How: This lets it render, still hidden until the menu opens. */
+
+
+		display : block;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Scrim Div. Why: Someone who asked for less motion should see the page dim and clear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navScrDiv,
+	.navScrDiv[data-mobile-menu-open] { /* What: Motionless Navigation Scrim Div. Why: The scrim should simply show and hide. How: This turns both transitions off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+
+
+/* #region navBarHed */
+
+.navBarHed { /* What: Navigation Bar Header. Why: The bar sits across the top of every page, above the scrim, and anchors the phone menu's panel. How: This sets it white with a soft gray rule below, positioned so the panel can hang from its bottom edge. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border-bottom : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
+	position      : relative;
+	z-index       : 4;                                               /* What: Bar Layer. Why: The bar and its open menu have to stay above the scrim at 3. How: This sits one layer above the scrim. */
+
+
+}
+
+
+/* #region navInnDiv */
+
+.navInnDiv { /* What: Navigation Inner Div. Why: The brand and the links share one row in the page's centered column. How: This places the brand at the start and the links at the end of a row about 79px tall, within the page's capped column and its side padding. */
+
+
+	align-items           : center;
+	display               : grid;
+	grid-template-areas   : 'navBraAnc navLinNav';
+	grid-template-columns : auto auto;
+	height                : calc( var( --ver-rhy-p06 ) * 1rem ); /* Vertical Rhythm Base Plus 6 ~= 78.751px */
+	justify-content       : space-between;
+	margin                : 0 auto;
+	max-width             : var( --con-max-wid );                /* Container Maximum Width ~= 1,094.093px */
+	padding               : 0 var( --gut-sid-pad );              /* Gutter Side Padding, about 19.304px - 44.876px */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Navigation Inner Div. Why: The links don't fit beside the brand on a narrower screen, so the toggle takes their place. How: This applies 960px wide and below. */
+
+
+	.navInnDiv { /* What: Toggled Navigation Inner Div. Why: The row holds the brand and the toggle. How: This swaps the links' area for the toggle's. */
+
+
+		grid-template-areas : 'navBraAnc navTogBut';
+
+
+	}
+
+
+}
+
+
+/* #region navBraAnc */
+
+.navBraAnc { /* What: Navigation Brand Anchor. Why: The mark and the name read as one link home. How: This sets the mark beside the name in a row, in the extra bold navy at Base Plus 2, with no underline, easing its press and focus. */
+
+
+	align-items     : center;
+	color           : var( --acc-mai-col );                    /* Accent Main Color = #12355b */
+	column-gap      : var( --tie-hor-005 );                    /* Tier Horizontal 5, about 6.268px - 11px */
+	display         : grid;
+	font-size       : var( --fon-siz-p02 );                    /* Font Size Base Plus 2 ~= 19.304px */
+	font-weight     : 800;
+	grid-area       : navBraAnc;
+	grid-auto-flow  : column;
+	letter-spacing  : calc( var( --cdn-pow-014-rec ) * -1em ); /* Core-Design-Number to the Power of 14 Reciprocal ~= -0.020em */
+	text-decoration : none;
+	transition      : opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.navBraAnc:active { /* What: Pressed Navigation Brand Anchor. Why: A press should register before the page changes. How: This dims the brand slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( max-width : 440px ) { /* What: Narrowest Navigation Brand Anchor. Why: The full name and the toggle have to share a phone's width. How: This applies 440px wide and below. */
+
+
+	.navBraAnc { /* What: Smaller Navigation Brand Anchor. Why: At Base Plus 2 the name would crowd the toggle off the row. How: This sets the brand a step smaller, at Base Plus 1. */
+
+
+		font-size : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Brand Anchor. Why: Someone who asked for less motion should see the press and focus switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navBraAnc { /* What: Motionless Navigation Brand Anchor. Why: The press and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+
+/* #region braNamSpa */
+
+.braNamSpa { /* What: Brand Name Span. Why: The name should show the brand link responds to the pointer. How: This eases its color, which deepens on hover. */
+
+
+	transition : color var( --dur-tra-p01 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease */
+
+
+}
+.navBraAnc:hover .braNamSpa { /* What: Hovered Brand Name Span. Why: The brand link should respond to the pointer, and the name is what shows it. How: This deepens the name to the hover navy while the link is hovered. */
+
+
+	color : var( --acc-hov-col ); /* Accent Hover Color = #0b2340 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Brand Name Span. Why: Someone who asked for less motion should see the color switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.braNamSpa { /* What: Motionless Brand Name Span. Why: The hover color should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.braEatSpa { /* What: Brand Eats Span. Why: The name's last word carries the brand's coral, as in the mark. How: This sets "Eats" in the coral's text shade, which keeps its contrast on the white bar. */
+
+
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color = #b13d22 */
+
+
+}
+
+/* #endregion braNamSpa */
+
+/* #endregion navBraAnc */
+
+
+
+/* #region navTogBut */
+
+.navTogBut { /* What: Navigation Toggle Button. Why: Wide screens show the links in the bar, so the toggle stays hidden there. How: This hides it, and stacks its bars on a bare, borderless button once a narrower screen shows it, easing its press and focus. */
+
+
+	background : none;
+	border     : none;
+	display    : none;
+	grid-area  : navTogBut;
+	padding    : var( --spa-ver-m01 ) var( --spa-hor-m03 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 3 ~= 6.268px */
+	row-gap    : var( --spa-ver-m04 );                      /* Spacing Vertical Base Minus 4 ~= 4.732px */
+	transition : transform var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.navTogBut:active { /* What: Pressed Navigation Toggle Button. Why: A press should register before the menu opens. How: This presses the button in slightly. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Navigation Toggle Button. Why: The links don't fit the bar on a narrower screen, so the toggle has to show. How: This applies 960px wide and below. */
+
+
+	.navTogBut { /* What: Shown Navigation Toggle Button. Why: The menu needs a way to open. How: This shows the toggle as a column of bars. */
+
+
+		display : grid;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Toggle Button. Why: Someone who asked for less motion should see the press and focus switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navTogBut { /* What: Motionless Navigation Toggle Button. Why: The press and focus looks should simply switch, the press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.togBarSpa { /* What: Toggle Bar Span. Why: The toggle draws as three navy bars. How: This sizes and rounds each bar, easing their color, fade, and turn so the cross forms smoothly. */
+
+
+	background       : var( --acc-mai-col );                /* Accent Main Color = #12355b */
+	border-radius    : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.572px */
+	height           : calc( var( --ver-rhy-m05 ) * 1rem ); /* Vertical Rhythm Base Minus 5 ~= 3.572px */
+	transform-origin : center;
+	transition       : background var( --dur-tra-p02 ) var( --mot-sta-eas ), opacity var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	width            : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+
+
+}
+.navTogBut:hover .togBarSpa { /* What: Hovered Toggle Bar Span. Why: The toggle should respond to the pointer, and its bars are what shows it. How: This deepens every bar to the hover navy while the button is hovered. */
+
+
+	background : var( --acc-hov-col ); /* Accent Hover Color = #0b2340 */
+
+
+}
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 1 ) { /* What: Open Toggle Bar Span Top. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
+
+
+	transform : translateY( calc( var( --ver-rhy-m02 ) * 1rem ) ) rotate( 45deg ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */ /* What: Bar Drop Distance. Why: The top bar has to land exactly on the middle one. How: One bar (m05) plus one gap (m04) sums to m02, so this reads that rhythm step rather than a spacing step. */
+
+
+}
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 2 ) { /* What: Open Toggle Bar Span Middle. Why: The cross has only two strokes. How: This fades the middle bar out. */
+
+
+	opacity : 0;
+
+
+}
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Toggle Bar Span Bottom. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
+
+
+	transform : translateY( calc( var( --ver-rhy-m02 ) * -1rem ) ) rotate( -45deg ); /* Vertical Rhythm Base Minus 2 ~= -8.304px */ /* What: Bar Lift Distance. Why: The bottom bar has to land exactly on the middle one. How: One bar (m05) plus one gap (m04) sums to m02, so this reads that rhythm step rather than a spacing step. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Toggle Bar Span. Why: Someone who asked for less motion shouldn't see the bars move. How: This applies only when the reduced-motion preference is set. */
+
+
+	.togBarSpa { /* What: Motionless Toggle Bar Span. Why: The bars should simply switch between three lines and a cross. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion navTogBut */
+
+
+
+/* #region navLinNav */
+
+.navLinNav { /* What: Navigation Links Nav. Why: Wide screens show the page links and the owners' button in a row in the bar. How: This lines them up with small gaps. */
+
+
+	align-items    : center;
+	column-gap     : var( --tie-hor-005 ); /* Tier Horizontal 5, about 6.268px - 11px */
+	display        : grid;
+	grid-area      : navLinNav;
+	grid-auto-flow : column;
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Navigation Links Nav. Why: The links don't fit the bar on a narrower screen. How: This applies 960px wide and below. */
+
+
+	.navLinNav { /* What: Closed Navigation Links Nav. Why: On a narrower screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen, hung from the bar's bottom edge, faded out a step above its place and hidden while closed, which also keeps its links out of the Tab order, easing its fade and rise on the accelerating curve as it closes and on the decelerating curve as it opens. */
+
+
+		background     : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+		border-bottom  : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
+		box-shadow     : var( --ele-lar-sha );                            /* Elevation Large Shadow ~= 0 19.304px 44.876px -14.572px plus 0 6.268px 14.572px -3.572px */
+		grid-auto-flow : row;
+		left           : 0;
+		opacity        : 0;
+		padding        : var( --tie-ver-004 ) var( --gut-sid-pad );       /* Tier Vertical 4 ~= 19.304px, Gutter Side Padding, about 19.304px - 44.876px */
+		position       : absolute;
+		right          : 0;
+		row-gap        : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
+		top            : 100%;
+		transform      : translateY( calc( var( --spa-ver-m02 ) * -1 ) ); /* Spacing Vertical Base Minus 2 ~= -8.304px */
+		transition     : opacity var( --dur-tra-p02 ) var( --mot-acc-eas ), transform var( --dur-tra-p02 ) var( --mot-acc-eas ), visibility 0s linear var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */ /* What: Closing Transition. Why: The panel fades and rises away as it closes, and only then leaves the tab order. How: Visibility waits for the fade to finish before hiding the panel. */
+		visibility     : hidden;
+
+
+	}
+	.navLinNav[data-mobile-menu-open] { /* What: Open Navigation Links Nav. Why: The panel shows its links once the toggle opens it. How: This fades the panel in and settles it into place while data-mobile-menu-open is set. */
+
+
+		opacity    : 1;
+		transform  : none;
+		transition : opacity var( --dur-tra-p02 ) var( --mot-dec-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ), visibility 0s; /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Opening Transition. Why: The panel should be reachable the moment it starts arriving. How: Visibility switches at once while the panel fades and settles into place. */
+		visibility : visible;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Links Nav. Why: Someone who asked for less motion should see the panel appear and vanish at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navLinNav,
+	.navLinNav[data-mobile-menu-open] { /* What: Motionless Navigation Links Nav. Why: The panel should simply show and hide. How: This turns both transitions off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Menu Item Stagger. Why: Only the phone menu's rows arrive in turn. How: This applies 960px wide and below. */
+
+
+	.navLinNav[data-mobile-menu-open] .navLinAnc,
+	.navLinNav[data-mobile-menu-open] .navAddAnc { /* What: Arriving Menu Items. Why: Each row should follow the one above it in. How: This plays the fade on every opening, delayed by one stagger step per place in the list, holding the row's start until its turn but nothing after, so a link's press still applies. */
+
+
+		animation : menuItemOpenFadeIn var( --dur-ani-p02 ) var( --mot-dec-eas ) calc( var( --dur-ani-m03 ) * ( var( --nav-ite-ind ) + 1 ) ) backwards; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Animation Base Minus 3 ~= 67.9ms, Navigation Item Index, set by each row's style */
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Item Stagger. Why: Someone who asked for less motion should see the rows appear together. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navLinNav[data-mobile-menu-open] .navLinAnc,
+	.navLinNav[data-mobile-menu-open] .navAddAnc { /* What: Still Menu Items. Why: The rows should simply be there. How: This turns the stagger off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes menuItemOpenFadeIn { /* What: Menu Item Open Fade In. Why: The phone menu's rows arrive one after another rather than all at once. How: This lowers each row a step into place as it fades in. */
+
+
+	from {
+
+
+		opacity   : 0;
+		transform : translateY( calc( var( --spa-ver-m02 ) * -1 ) ); /* Spacing Vertical Base Minus 2 ~= -8.304px */
+
+
+	}
+
+	to {
+
+
+		opacity   : 1;
+		transform : none;
+
+
+	}
+
+
+}
+
+.navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page as a soft pill. How: This sets it bold in slate gray with pill padding and rounding, easing its hover, press, and focus, and the tint and border it takes as the current page's link, the border leaving on the accelerating curve. */
+
+
+	border        : var( --bor-wid-bas ) solid transparent;    /* Border Width Base ~= 1.160px */ /* What: Resting Clear Border. Why: The current page's link draws a soft border, which would otherwise appear at once and grow the pill. How: Every link keeps a border of the same width, clear at rest, so becoming current only changes its color, which the transition eases. */
+	border-radius : 999px;
+	color         : var( --tex-sec-col );                      /* Text Secondary Color = #4a5668 */
+	font-size     : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight   : 700;
+	padding       : var( --spa-ver-m02 ) var( --spa-hor-bas ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base ~= 14.572px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-acc-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.navLinAnc:hover { /* What: Hovered Navigation Link Anchor. Why: A link should respond to the pointer. How: This tints the pill pale navy with navy text. */
+
+
+	background : var( --acc-tin-col ); /* Accent Tint Color = #eaf0f6 */
+	color      : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+.navLinAnc[aria-current='page'] { /* What: Current Navigation Link Anchor. Why: The link for the page being shown should stand out. How: This tints the pill pale navy with navy text and a soft border, the border arriving on the decelerating curve. */
+
+
+	background   : var( --acc-tin-col ); /* Accent Tint Color = #eaf0f6 */
+	border-color : var( --bor-str-col ); /* Border Strong Color = #c9d3de */
+	color        : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+	transition   : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-dec-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.navLinAnc:active { /* What: Pressed Navigation Link Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Navigation Link Anchor. Why: The menu's links stack down the panel and are tapped rather than clicked. How: This applies 960px wide and below. */
+
+
+	.navLinAnc { /* What: Full Width Navigation Link Anchor. Why: A wide target is easier to tap. How: This pads the pill taller across the panel and centers its text. */
+
+
+		padding    : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
+		text-align : center;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Link Anchor. Why: Someone who asked for less motion shouldn't see the links animate. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navLinAnc,
+	.navLinAnc[aria-current='page'] { /* What: Motionless Navigation Link Anchor. Why: The hover and current looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.navAddAnc { /* What: Navigation Add Anchor. Why: The owners' way in is the bar's one filled button, so it stands apart from the page links. How: This sets it as a navy pill with white text, a little apart from the last link, easing its hover fill and lift, its press, and its focus ring. */
+
+
+	background    : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
+	border-radius : 999px;
+	color         : var( --tex-acc-col );                      /* Text Accent Color = #ffffff */
+	font-size     : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight   : 700;
+	margin-left   : var( --tie-hor-004 );                      /* Tier Horizontal 4, about 11px - 19.304px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-p01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 1 ~= 19.304px */
+	text-align    : center;
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.navAddAnc:hover { /* What: Hovered Navigation Add Anchor. Why: The button should respond to the pointer. How: This deepens the navy and lifts the pill 2px. */
+
+
+	background : var( --acc-hov-col );                            /* Accent Hover Color = #0b2340 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.navAddAnc:active { /* What: Pressed Navigation Add Anchor. Why: A press should register before the page changes. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Navigation Add Anchor. Why: In the panel the button sits below the links rather than beside them. How: This applies 960px wide and below. */
+
+
+	.navAddAnc { /* What: Stacked Navigation Add Anchor. Why: The gap beside the last link becomes a gap above the button. How: This drops the side margin and sets one above it instead. */
+
+
+		margin-left : 0;
+		margin-top  : var( --spa-ver-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px */
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Add Anchor. Why: Someone who asked for less motion should see the button's changes switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navAddAnc { /* What: Motionless Navigation Add Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion navLinNav */
+
+/* #endregion navInnDiv */
+
+/* #endregion navBarHed */
+
+

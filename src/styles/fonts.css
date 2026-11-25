@@ -1,0 +1,34 @@
+
+
+
+/**
+ * fonts.css = Fonts
+ *
+ * @summary
+ * The site's self-hosted font, Plus Jakarta Sans, so a visit makes no
+ * requests to a third party. The file is the latin subset Fontsource
+ * publishes from the Google Fonts release (version 5.3.0), covering every
+ * character the copy uses except its arrows and symbols, which render from a
+ * fallback font. It's variable across weights, so the face declares its whole
+ * 200 to 800 range. The site loads no italic file. The file lives in
+ * src/assets/fonts/ and is pulled in through url(), so Vite fingerprints it.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+@font-face { /* What: Plus Jakarta Sans Font Face. Why: Plus Jakarta Sans is the site's one font, for headings, body text, labels, and buttons. How: This loads its latin variable file across its full 200 to 800 weight range, showing fallback text until it arrives. */
+
+
+	font-display : swap;
+	font-family  : 'Plus Jakarta Sans';
+	font-style   : normal;
+	font-weight  : 200 800;
+	src          : url( '../assets/fonts/plus-jakarta-sans-latin-normal.woff2' ) format( 'woff2' );
+
+
+}
+
+

@@ -1,0 +1,274 @@
+
+
+
+/**
+ * place-card.module.css = Place Card Module
+ *
+ * @summary
+ * Styles for PlaCarCom: a white card with a soft border that lifts on hover,
+ * a shadow fading in beneath it, holding the town and kinds in small coral
+ * letters, the name in the navy heading style, the description in slate,
+ * a pale coral note for a seasonal place, the address, a wrapping row of
+ * small outlined links for calling, directions, and the place's own site,
+ * and a quiet owner link at its foot.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region plaCarArt */
+
+.plaCarArt { /* What: Place Card Article. Why: Each place reads as a card of its own, the same size as its row's neighbors. How: This stacks the card's parts on a white panel with a soft border and rounded corners, the owner link pushed to the foot, easing its hover lift on the decelerating curve both ways. */
+
+
+	align-content      : start;
+	background         : var( --bac-sur-col );                                /* Background Surface Color = #ffffff */
+	border             : var( --bor-wid-bas ) solid var( --bor-mai-col );     /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
+	border-radius      : var( --rad-bor-xla );                                /* Radius Border Extra Large ~= 19.304px */
+	display            : grid;
+	grid-template-rows : auto auto auto auto auto auto 1fr;
+	padding            : var( --tie-ver-004 ) var( --tie-hor-004 );           /* Tier Vertical 4 ~= 19.304px, Tier Horizontal 4, about 11px - 19.304px */
+	isolation          : isolate;                                             /* What: Card Stacking Context. Why: The shadow layer sits behind the card at a negative layer, which has to stay inside the card. How: This makes the card its own stacking context. */
+	position           : relative;
+	row-gap            : var( --tie-ver-005 );                                /* Tier Vertical 5 = 11px */
+	transition         : transform var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.plaCarArt::after { /* What: Place Card Article Shadow. Why: The card should seem to rise as it lifts, and a shadow fading in reads as that without repainting the card's own shadow every frame. How: This lays a layer the card's shape behind it carrying the large elevation shadow, invisible at rest, fading out on the accelerating curve. */
+
+
+	border-radius  : inherit;
+	box-shadow     : var( --ele-lar-sha );                              /* Elevation Large Shadow ~= 0 19.304px 44.876px -14.572px plus 0 6.268px 14.572px -3.572px */
+	content        : '';
+	inset          : 0;
+	opacity        : 0;
+	pointer-events : none;
+	position       : absolute;
+	transition     : opacity var( --dur-tra-p01 ) var( --mot-acc-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
+	z-index        : -1;                                                /* What: Shadow Layer. Why: The shadow has to sit behind the card's white panel. How: This stacks it below the card's content, inside the card's own stacking context. */
+
+
+}
+.plaCarArt:hover { /* What: Hovered Place Card Article. Why: A card that repeats as an item lifts a little under the pointer. How: This raises it 2px. */
+
+
+	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.plaCarArt:hover::after { /* What: Hovered Place Card Article Shadow. Why: The shadow arrives with the lift. How: This fades the layer in on the decelerating curve. */
+
+
+	opacity    : 1;
+	transition : opacity var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Place Card Article. Why: Someone who asked for less motion should see the lift and shadow switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.plaCarArt,
+	.plaCarArt::after,
+	.plaCarArt:hover::after { /* What: Motionless Place Card Article. Why: The lift and shadow should simply switch. How: This turns every transition off, the hovered shadow's included, since it outranks the base. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+
+.carMetPar { /* What: Card Meta Paragraph. Why: The town and kinds read as a small label above the name. How: This sets the pin beside the text in a row, small, bold, and uppercase in the coral's text shade. */
+
+
+	align-items           : center;
+	color                 : var( --acs-dar-col );                   /* Accent-Secondary Dark Color = #b13d22 */
+	column-gap            : var( --tie-hor-005 );                   /* Tier Horizontal 5, about 6.268px - 11px */
+	display               : grid;
+	font-size             : var( --fon-siz-bas );                   /* Font Size Base = 1rem */
+	font-weight           : 800;
+	grid-template-columns : auto 1fr;
+	letter-spacing        : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	text-transform        : uppercase;
+
+
+}
+
+.carNamHea { /* What: Card Name Heading. Why: The place's name is the card's heading. How: This sets it at Base Plus 3 with lines a little apart, since a long name wraps. */
+
+
+	font-size   : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
+	line-height : var( --ver-rhy-bas ); /* Vertical Rhythm Base ~= 1.325 */
+
+
+}
+
+.carDesPar { /* What: Card Description Paragraph. Why: The sentence about the place reads quieter than its name. How: This sets it in slate gray. */
+
+
+	color : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+
+
+}
+
+.carSeaPar { /* What: Card Seasonal Paragraph. Why: The seasonal note should catch the eye without alarming. How: This sets it as a small pale coral badge with the coral's text shade, as wide as its words. */
+
+
+	background    : var( --acs-tin-col );                      /* Accent-Secondary Tint Color = #fde5de */
+	border-radius : 999px;
+	color         : var( --acs-dar-col );                      /* Accent-Secondary Dark Color = #b13d22 */
+	font-size     : var( --fon-siz-bas );                      /* Font Size Base = 1rem */
+	font-weight   : 700;
+	justify-self  : start;
+	padding       : var( --spa-ver-m04 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+
+
+}
+
+.carAddPar { /* What: Card Address Paragraph. Why: The address is a detail, quieter than the description. How: This sets it in the muted gray at the base size. */
+
+
+	color     : var( --tex-mut-col ); /* Text Muted Color = #5b6778 */
+	font-size : var( --fon-siz-bas ); /* Font Size Base = 1rem */
+
+
+}
+
+
+/* #region carActUno */
+
+.carActUno { /* What: Card Actions Unordered. Why: The ways to reach a place sit together as a row of small buttons. How: This drops the list's bullets and wraps its items across the card, each keeping its own width, which grid can't do without fixed tracks. */
+
+
+	display     : flex;
+	flex-wrap   : wrap;
+	gap         : var( --spa-ver-m02 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+	list-style  : none;
+	padding-top : var( --spa-ver-m03 );                      /* Spacing Vertical Base Minus 3 ~= 6.268px */
+
+
+}
+
+/* #region carActAnc */
+
+.carActAnc { /* What: Card Action Anchor. Why: Each way to reach a place reads as a small outlined button. How: This sets it bold in navy on a pale navy tint with a soft border, easing its hover fill and lift, its press, and its focus ring. */
+
+
+	background    : var( --acc-tin-col );                            /* Accent Tint Color = #eaf0f6 */
+	border        : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #c9d3de */
+	border-radius : 999px;
+	color         : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
+	display       : inline-grid;
+	font-size     : var( --fon-siz-bas );                            /* Font Size Base = 1rem */
+	font-weight   : 700;
+	padding       : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-sta-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.carActAnc:hover { /* What: Hovered Card Action Anchor. Why: The button should respond to the pointer. How: This fills it navy with white text and lifts it 2px. */
+
+
+	background   : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
+	border-color : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
+	color        : var( --tex-acc-col );                            /* Text Accent Color = #ffffff */
+	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.carActAnc:active { /* What: Pressed Card Action Anchor. Why: A press should register before the call, map, or page opens. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Card Action Anchor. Why: Someone who asked for less motion should see the button's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.carActAnc { /* What: Motionless Card Action Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.visHidSpa { /* What: Visually Hidden Span. Why: The links' notes are for screen reader users only. How: This shrinks the span to a clipped single pixel off to the side, out of view but still read aloud. */
+
+
+	clip-path   : inset( 50% );
+	height      : 1px;
+	overflow    : hidden;
+	position    : absolute;
+	white-space : nowrap;
+	width       : 1px;
+
+
+}
+
+/* #endregion carActAnc */
+
+/* #endregion carActUno */
+
+
+/* #region carOwnAnc */
+
+.carOwnAnc { /* What: Card Owner Anchor. Why: The owner link is for the few who own the place, so it sits quiet at the card's foot. How: This sets it small in the muted gray with an underline, at the bottom of the card, easing its hover color, press dim, and focus ring. */
+
+
+	align-self            : end;
+	color                 : var( --tex-mut-col );                   /* Text Muted Color = #5b6778 */
+	font-size             : var( --fon-siz-bas );                   /* Font Size Base = 1rem */
+	justify-self          : start;
+	padding-top           : var( --spa-ver-m03 );                   /* Spacing Vertical Base Minus 3 ~= 6.268px */
+	text-decoration       : underline;
+	text-underline-offset : calc( var( --cdn-pow-005-rec ) * 1em ); /* Core-Design-Number to the Power of 5 Reciprocal ~= 0.245em */
+	transition            : color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.carOwnAnc:hover { /* What: Hovered Card Owner Anchor. Why: A link should respond to the pointer. How: This shifts it to the navy. */
+
+
+	color : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+.carOwnAnc:active { /* What: Pressed Card Owner Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Card Owner Anchor. Why: Someone who asked for less motion should see the link's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.carOwnAnc { /* What: Motionless Card Owner Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* What: Visually Hidden Span Pointer. Why: The owner link's hidden note shares the action links' class. How: Its rule sits in the carActAnc region above. */
+
+/* #endregion carOwnAnc */
+
+/* #endregion plaCarArt */
+
+

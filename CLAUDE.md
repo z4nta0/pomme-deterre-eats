@@ -30,10 +30,12 @@ Decided by the user 2026-11-25.
   - **Home** (`/`): what the site is and how to use it, a few randomly
     chosen eating places highlighted, and a section for owners explaining how
     to get in touch, either to add their place or to change its entry.
-  - **Listing** (`/places`, proposed): every eating place, with a search.
+  - **Listing** (`/places`, confirmed by the user 2026-11-25): every eating
+    place, with a search and town and kind filters kept in the address
+    (`q`, `town`, `kind`), so the home page's search opens it searched.
   - **About** (`/about`) and **Contact** (`/contact`), plus the 404 page.
-- **Each eating place's own page, built later** (`/places/<slug>`,
-  proposed): it works like a small website of its own and is styled after
+- **Each eating place's own page, built later** (`/places/<slug>`, confirmed
+  by the user 2026-11-25, each record's `sluStr`): it works like a small website of its own and is styled after
   the business. Most will have a hero, a menu section, and an about section,
   though not every one follows that exactly.
   - **Its bar is its own**: section links to that page's own sections, not
@@ -44,22 +46,88 @@ Decided by the user 2026-11-25.
 ## Listings
 Decided by the user 2026-11-25: the first listings come from research of
 public sources (each place's own site or page, official listings), drafted
-by Claude and reviewed by the user before anything ships. Nothing is
-invented: a detail no source confirms is left out, and a place that may have
-closed is listed for the user rather than published.
+by Claude. Nothing is invented: a detail no source confirms is left out.
+- **All in for now**: every place the research found, those that may have
+  closed included, is in `src/core/places.ts`, each with a `cheStr` check
+  level (`high`, `medium`, `low`, or `maybe-closed`). The user will verify
+  and curate them, and search for places the research missed, well before
+  launch. The home page's picks draw only from `high` and `medium`.
+- **Chain counters stay out** (decided by the user 2026-11-25): a national
+  chain's food counter inside a store or gas station (Casey's, Hunt Brothers
+  Pizza, Hangar 54) isn't listed.
+- **Descriptions are written for the guide**, never copied from a review or
+  a place's own site.
 
 ## Contact
 Decided by the user 2026-11-25: Netlify Forms, as on the TechGeek sites, a
-hidden copy of each form in `index.html` registering its fields and a
-`bot-field` honeypot, with each submission emailed to the user. **Open**: the
-receiving address.
+hidden copy of the form in `index.html` registering its fields and a
+`bot-field` honeypot, with each submission emailed to
+contact@pommedeterreeats.com, which the Contact page also shows. One form,
+`contact`: name, email, reason (add, update, tip, or question, which a link
+chooses with `?reason=`), place (which a card's owner link fills with
+`?place=`), and message. The user sets up the email notification in
+Netlify.
+
+## Theme
+Decided by the user 2026-11-25, from three directions shown on a design
+canvas: mostly "Harbor", with parts of "Trail Map".
+- **Harbor**: the lake navy (`#12355b`) with a sunset coral accent
+  (`#f26a4b`, never text on white; its text shade is `#b13d22`), the cool
+  page gray, white cards, the wave mark (`ui/brand-mark.tsx`, and
+  `public/favicon.svg`), and Plus Jakarta Sans as the one font,
+  self-hosted, headings extra bold.
+- **From Trail Map**: the hero (a trail map backdrop of contour lines, a
+  lake, a dotted coral trail, and pins, `pages/home/hero-map.tsx`), map pins
+  instead of circles for how it works (`ui/map-pin.tsx`, also beside each
+  card's town), and the "Worth the drive" heading for the picks.
+- **Footer**: bigger and roomy, modeled on the TechGeek footer's layout:
+  brand and tagline beside two link columns, then the copyright and "A
+  project by techgeek.dev". It reads only color tokens, so a place's own
+  page can restyle it.
+- **Breakpoints**: 440, 480, 640, and 960px. The bar's links fold into the
+  phone menu at 960px and below.
 
 ## Layout
 Decided by the user 2026-11-25: horizontal sizes use the fluid horizontal
 rhythm (the `--hor-rhy-*` viewport steps, with `clamp()` ends written as
 vertical rhythm steps times `1rem`), as the-bernie-bears and the TechGeek
-sites do. **Open**: the spacing tiers' top value, chosen with the user once
-the theme is.
+sites do.
+- **Spacing tiers** (top value chosen by the user 2026-11-25: p07), each two
+  rhythm steps below the one above:
+
+  | Tier | Vertical | Horizontal | Separates |
+  |---|---|---|---|
+  | 1 | p07, ~104px | about 59px - 104px | the bar or footer and a page's content |
+  | 2 | p05, ~59px | about 34px - 59px | a page's sections |
+  | 3 | p03, ~34px | about 19px - 34px | a heading and its content, a grid's items |
+  | 4 | p01, ~19px | about 11px - 19px | the parts of one item |
+  | 5 | m01, 11px | about 6px - 11px | the pieces of one part |
+- **Main content and skip link**: the main content is everything between
+  the bar and the footer, the one `<main id='main'>` in `app.tsx`.
+
+## Directory structure
+The-bernie-bears' layout for a site with routes:
+```
+src/
+  main.tsx, app.tsx      entry point; the routes, bar, and footer
+  assets/                fonts/ (Plus Jakarta Sans), images/ (the select
+                         arrow, shared by two pages)
+  core/                  places.ts, the listings table and its filter lists
+  pages/                 home/, places/, about/, contact/, not-found/
+  ui/                    the bar, the footer, the mark, the map pin, the
+                         place card, and the page description and scroll
+                         hooks
+  styles/                fonts.css, styles.css
+```
+
+## Next steps
+- **SEO and social previews**: structured data, the social preview card
+  and its tags, and the raster favicon set, each rendered by a script under
+  `design/`.
+- **The rest of the test suites** (interaction, rendering, responsive,
+  security, SEO, and the scripted accessibility checks), copied from the
+  siblings and adapted. Only the axe scan exists so far.
+- **The user's curation of the listings**, before launch.
 
 ## Test server
 The suites' dev server runs on port 5207 (the siblings use 5190 through

@@ -1,0 +1,157 @@
+
+
+
+/**
+ * not-found.module.css = Not Found Page Module
+ *
+ * @summary
+ * Styles for NotFouCom: the pin, the heading, the text, and the two buttons
+ * centered in the space between the bar and the footer, padded by the page
+ * frame's tier above and below.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region notPagDiv */
+
+.notPagDiv { /* What: Not Found Page Div. Why: The page's message sits centered in the space between the bar and the footer. How: This plays the shared page entrance fade and centers its parts a part's tier apart, padded by the page frame's tier above and below and the side gutter. */
+
+
+	align-content : center;
+	animation     : global( pageEnterFadeIn ) var( --dur-ani-p03 ) var( --mot-dec-eas ); /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	display       : grid;
+	justify-items : center;
+	padding       : var( --tie-ver-001 ) var( --gut-sid-pad );                           /* Tier Vertical 1 ~= 104.323px, Gutter Side Padding, about 19.304px - 44.876px */
+	row-gap       : var( --tie-ver-004 );                                                /* Tier Vertical 4 ~= 19.304px */
+	text-align    : center;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Not Found Page Div. Why: Someone who asked for less motion should see the page appear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.notPagDiv { /* What: Still Not Found Page Div. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+.notTitHea { /* What: Not Found Title Heading. Why: The page's one heading should be its largest text, growing with the screen. How: This sets it between Base Plus 4 and Base Plus 5, scaling with the viewport between them. */
+
+
+	font-size : clamp( var( --fon-siz-p04 ), 5vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 4 ~= 33.876px, Font Size Base Plus 5 ~= 44.876px */
+
+
+}
+
+.notTexPar { /* What: Not Found Text Paragraph. Why: The message reads a step larger than body text but quieter than the heading. How: This sets it at Base Plus 2 in slate, capped at the small text width. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
+
+
+}
+
+
+/* #region notActDiv */
+
+.notActDiv { /* What: Not Found Actions Div. Why: The two buttons sit together, wrapping onto two lines where they don't fit, each keeping its own width, which grid can't do without fixed tracks. How: This sets them in a centered, wrapping row a piece's tier apart, a little below the text. */
+
+
+	display         : flex;
+	flex-wrap       : wrap;
+	gap             : var( --tie-ver-005 ) var( --tie-hor-005 ); /* Tier Vertical 5 = 11px, Tier Horizontal 5, about 6.268px - 11px */
+	justify-content : center;
+	margin-top      : var( --spa-ver-m02 );                      /* Spacing Vertical Base Minus 2 ~= 8.304px */
+
+
+}
+
+.butBasAnc { /* What: Button Base Anchor. Why: The page's links read as buttons. How: This sets them bold with rounded corners and padding, easing their hover fill and lift, their press, and their focus ring. */
+
+
+	border        : var( --bor-wid-lar ) solid var( --acc-mai-col ); /* Border Width Large ~= 2.035px, Accent Main Color = #12355b */
+	border-radius : var( --rad-bor-lar );                            /* Radius Border Large ~= 14.572px */
+	display       : inline-grid;
+	font-size     : var( --fon-siz-p02 );                            /* Font Size Base Plus 2 ~= 19.304px */
+	font-weight   : 800;
+	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-sta-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.butBasAnc:hover { /* What: Hovered Button Base Anchor. Why: A button should respond to the pointer. How: This lifts it 2px, its variant changing its colors. */
+
+
+	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.butBasAnc:active { /* What: Pressed Button Base Anchor. Why: A press should register before the page changes. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+.butBasAnc--solid { /* What: Button Base Anchor Solid. Why: Going home is the page's main way onward. How: This fills it navy with white text. */
+
+
+	background : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+	color      : var( --tex-acc-col ); /* Text Accent Color = #ffffff */
+
+
+}
+.butBasAnc--solid:hover { /* What: Hovered Button Base Anchor Solid. Why: The filled button should deepen under the pointer. How: This deepens its fill and border to the hover navy. */
+
+
+	background   : var( --acc-hov-col ); /* Accent Hover Color = #0b2340 */
+	border-color : var( --acc-hov-col ); /* Accent Hover Color = #0b2340 */
+
+
+}
+.butBasAnc--outline { /* What: Button Base Anchor Outline. Why: The listing is the page's other way onward, so it reads quieter. How: This sets it white with a navy outline and navy text. */
+
+
+	background : var( --bac-sur-col ); /* Background Surface Color = #ffffff */
+	color      : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+.butBasAnc--outline:hover { /* What: Hovered Button Base Anchor Outline. Why: The outlined button should fill in under the pointer. How: This fills it navy with white text. */
+
+
+	background : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+	color      : var( --tex-acc-col ); /* Text Accent Color = #ffffff */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Base Anchor. Why: Someone who asked for less motion should see the buttons' looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.butBasAnc { /* What: Motionless Button Base Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion notActDiv */
+
+/* #endregion notPagDiv */
+
+

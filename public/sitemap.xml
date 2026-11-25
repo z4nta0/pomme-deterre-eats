@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'><!-- What: URL Set Element. Why: Search engines read the sitemap to find every page worth indexing. How: This holds one entry per indexable page, in the sitemaps.org format. -->
+
+
+	<url><!-- What: Home URL Element. Why: The home page is where a visitor starts. How: This lists it by its canonical address. -->
+
+
+		<loc>https://pommedeterreeats.com/</loc><!-- What: Home Location Element. Why: The entry has to name the page's address. How: This gives the canonical address, matching the page's canonical link. -->
+
+
+	</url>
+
+	<url><!-- What: Places URL Element. Why: The listing is the guide itself. How: This lists it by its canonical address. -->
+
+
+		<loc>https://pommedeterreeats.com/places</loc><!-- What: Places Location Element. Why: The entry has to name the page's address. How: This gives the canonical address, matching the page's canonical link. -->
+
+
+	</url>
+
+	<url><!-- What: About URL Element. Why: The About page says what the guide is. How: This lists it by its canonical address. -->
+
+
+		<loc>https://pommedeterreeats.com/about</loc><!-- What: About Location Element. Why: The entry has to name the page's address. How: This gives the canonical address, matching the page's canonical link. -->
+
+
+	</url>
+
+	<url><!-- What: Contact URL Element. Why: Owners add and update their places from the Contact page. How: This lists it by its canonical address. -->
+
+
+		<loc>https://pommedeterreeats.com/contact</loc><!-- What: Contact Location Element. Why: The entry has to name the page's address. How: This gives the canonical address, matching the page's canonical link. -->
+
+
+	</url>
+
+
+</urlset>

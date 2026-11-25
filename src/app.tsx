@@ -1,0 +1,171 @@
+
+
+
+// #region Imports
+
+import { AboPagCom    } from './pages/about/about.tsx';         // What: About Page Component. Why: The About route says what the guide is and who runs it. How: The About route renders it.
+import { ConPagCom    } from './pages/contact/contact.tsx';     // What: Contact Page Component. Why: The Contact route holds the form owners and visitors write in with. How: The Contact route renders it.
+import { HomPagCom    } from './pages/home/home.tsx';           // What: Home Page Component. Why: The site's root address is its home page. How: The Home route renders it.
+import { NavBarCom    } from './ui/nav.tsx';                    // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
+import { NotFouCom    } from './pages/not-found/not-found.tsx'; // What: Not Found Component. Why: Unknown addresses need a page of their own. How: The catch-all route renders it.
+import { PlaPagCom    } from './pages/places/places.tsx';       // What: Places Page Component. Why: The Places route lists every place to eat, with a search. How: The Places route renders it.
+import { Route        } from 'react-router';                    // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
+import { Routes       } from 'react-router';                    // What: Routes. Why: Only one page should render for any path. How: This renders the route whose path best matches the address.
+import { SitFooCom    } from './ui/footer.tsx';                 // What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders below the routes.
+import { useScrTopFun } from './ui/scroll-top.ts';              // What: Use Scroll Top Function. Why: A new page should open at its top rather than where the last one was scrolled. How: The app root calls it once, and it scrolls on every link-driven navigation.
+
+// #endregion Imports
+
+
+
+/**
+ * app.tsx = App
+ *
+ * @summary
+ * The site's root component, mounted by main.tsx inside the router: the bar,
+ * the main landmark holding whichever page the address matches, and the
+ * footer, stacked in a column at least as tall as the screen so the footer
+ * sits at the bottom of a short page. It also returns the window to the top
+ * after each link-driven navigation. A new page is added as another route
+ * here, above the catch-all route that sends every unknown address to the
+ * 404 page.
+ *
+ * Sections:
+ *  - Components
+ *  - Exports
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+// #region Components
+
+// #region AppRooCom
+
+/**
+ * AppRooCom = App Root Component
+ *
+ * @summary
+ * The top of the component tree: renders the bar, the page the address
+ * matches inside the main landmark, and the footer, so every page shares the
+ * same frame. The main landmark grows to fill the column, which keeps the
+ * footer at the bottom of the screen on a short page. It calls useScrTopFun
+ * once, so every link-driven navigation opens the new page at its top.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param props - This component does not use any props.
+ *
+ * @returns The app's wrapper div.
+ *
+ * @example
+ * ```tsx
+ * AppRooCom() // => <AppRooCom />
+ * ```
+ *
+*/
+
+function AppRooCom () : React.JSX.Element {
+
+
+	useScrTopFun(); // What: Scroll Top Call. Why: Every link to another page should open it at its top. How: This runs the hook once from the root, which stays mounted across every route.
+
+
+
+	return (
+
+
+		<div
+			style={{
+				display          : 'grid',
+				gridTemplateRows : 'auto 1fr auto',
+				minHeight        : '100vh',
+				position         : 'relative',
+				zIndex           : 1
+			}}
+		>{ /* What: App Wrapper Div Element. Why: The bar, the page, and the footer stack in one column at least as tall as the screen. How: This stacks them in a grid of three rows, the middle one taking the leftover height, in a stacking context of its own, so the bar's and scrim's layers are judged inside it. */ }
+
+
+			<NavBarCom />{ /* What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders it above the page. */ }
+
+
+
+			<main
+				id='main'
+
+				style={{ display : 'grid' }}
+
+				tabIndex={ -1 } // What: Main Focus Target. Why: The skip link moves focus here, and a main element can't take focus on its own. How: This makes it focusable without adding it to the Tab order.
+			>{ /* What: App Main Element. Why: Each page's content is the main landmark, the skip link jumps here, and it should fill the space between the bar and the footer. How: This holds whichever page the address matches, fills the middle row, and is a grid whose one row stretches, so a page such as the 404 page can fill it too; its ID stays the plain word `main`, since the skip link's #main address names it as a navigation target. */ }
+
+
+				<Routes>{ /* What: Page Routes. Why: Only one page should render for any path. How: This renders the route below whose path best matches the address. */ }
+
+
+					<Route
+						element={ <HomPagCom /> }
+						path='/'
+					/>{ /* What: Home Route. Why: The site's root address is its home page. How: This renders HomPagCom at the root path. */ }
+
+
+
+					<Route
+						element={ <PlaPagCom /> }
+						path='/places'
+					/>{ /* What: Places Route. Why: The listing is the guide itself. How: This renders PlaPagCom at /places. */ }
+
+
+
+					<Route
+						element={ <AboPagCom /> }
+						path='/about'
+					/>{ /* What: About Route. Why: The guide's story has its own page. How: This renders AboPagCom at /about. */ }
+
+
+
+					<Route
+						element={ <ConPagCom /> }
+						path='/contact'
+					/>{ /* What: Contact Route. Why: The way to get in touch has its own page. How: This renders ConPagCom at /contact. */ }
+
+
+
+					<Route
+						element={ <NotFouCom /> }
+						path='*' // What: Catch-All Path. Why: Any address the site doesn't have should land on the 404 page. How: The asterisk matches any path, and ranks below every route that has a path of its own.
+					/>{ /* What: Not Found Route. Why: Unknown paths need a page of their own. How: This renders NotFouCom for every other path. */ }
+
+
+				</Routes>
+
+
+			</main>
+
+
+
+			<SitFooCom />{ /* What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders it below the page. */ }
+
+
+		</div>
+
+
+	);
+
+
+}
+
+// #endregion AppRooCom
+
+// #endregion Components
+
+
+
+// #region Exports
+
+export { AppRooCom }; // What: Named Export. Why: The site's entry point mounts this as the root. How: This exports AppRooCom.
+
+// #endregion Exports
+
+
