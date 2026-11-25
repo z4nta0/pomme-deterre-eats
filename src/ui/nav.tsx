@@ -6,12 +6,13 @@
 import cssModObj from './nav.module.css'; // What: CSS Module Object. Why: The bar is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
 
-import { BraMarCom } from './brand-mark.tsx'; // What: Brand Mark Component. Why: The brand opens with the site's mark. How: This draws it beside the name.
-import { Link      } from 'react-router';     // What: Link. Why: The "Add your place" button moves to the Contact page without a full page load. How: This renders it as a router link.
-import { NavLink   } from 'react-router';     // What: Navigation Link. Why: The bar's links move between routes without a full page load, and the one for the current page is marked. How: This renders each link and sets aria-current on it while its route matches.
-import { useEffect } from 'react';            // What: Use Effect. Why: The open menu locks the page behind it and listens for Escape and resizing. How: This applies those while the menu is open and removes them after.
-import { useRef    } from 'react';            // What: Use Ref. Why: The menu's effect needs the bar, the scrim, and the toggle themselves. How: This attaches a reference to each.
-import { useState  } from 'react';            // What: Use State. Why: The phone menu opens and closes from the toggle. How: This holds whether it's open.
+import { BraMarCom   } from './brand-mark.tsx';  // What: Brand Mark Component. Why: The brand opens with the site's mark. How: This draws it beside the name.
+import { Link        } from 'react-router';      // What: Link. Why: The "Add your place" button moves to the Contact page without a full page load. How: This renders it as a router link.
+import { NavLink     } from 'react-router';      // What: Navigation Link. Why: The bar's links move between routes without a full page load, and the one for the current page is marked. How: This renders each link and sets aria-current on it while its route matches.
+import { TOW_NAM_ARR } from '../core/places.ts'; // What: Town Name Array. Why: The phone menu offers a chip for each town with places in the guide. How: This lists the towns.
+import { useEffect   } from 'react';             // What: Use Effect. Why: The open menu locks the page behind it and listens for Escape and resizing. How: This applies those while the menu is open and removes them after.
+import { useRef      } from 'react';             // What: Use Ref. Why: The menu's effect needs the bar, the scrim, and the toggle themselves. How: This attaches a reference to each.
+import { useState    } from 'react';             // What: Use State. Why: The phone menu opens and closes from the toggle. How: This holds whether it's open.
 
 // #endregion Imports
 
@@ -23,7 +24,9 @@ import { useState  } from 'react';            // What: Use State. Why: The phone
  * @summary
  * The site's top bar: the brand, which returns to the home page, a link to
  * each page, and an "Add your place" button for owners, with a toggle that
- * opens those links as a menu over a dimmed page at 960px wide and below.
+ * opens those links as a menu over a dimmed page at 960px wide and below,
+ * where the menu also offers a chip for each town, the guide's email, and
+ * the name's note.
  * The link for the current page is marked. It's led by a skip link, the
  * page's first stop, that jumps a keyboard user past the bar to the main
  * content.
@@ -342,7 +345,7 @@ function NavBarCom () : React.JSX.Element {
 
 								onAuxClick={ auxCloFun }
 								onClick={ cloMenFun }
-							>{ linRecObj.labStr }</NavLink> // What: Navigation Link Anchor Navigation Link. Why: Each link takes the visitor to its page. How: This routes to the row's path, carries aria-current there, and closes the phone menu on any click, a new tab's included.
+							>{ linRecObj.labStr }<span className={ cssModObj.linArrSpa } aria-hidden='true'>→</span></NavLink> // What: Navigation Link Anchor Navigation Link. Why: Each link takes the visitor to its page. How: This routes to the row's path, carries aria-current there, and closes the phone menu on any click, a new tab's included; its arrow, hidden from screen readers, shows only in the phone menu.
 
 
 						))}
@@ -359,6 +362,55 @@ function NavBarCom () : React.JSX.Element {
 							onAuxClick={ auxCloFun }
 							onClick={ cloMenFun }
 						>Add your place</Link>{ /* What: Navigation Add Anchor Link. Why: Owners are the guide's other audience, and the way in for them should always be in view. How: This routes to the Contact page with adding a place chosen, set as the bar's one filled button, and closes the phone menu on any click. */ }
+
+
+
+						<div
+							className={ cssModObj.menConDiv }
+
+							style={ { '--nav-ite-ind' : NAV_LIN_ARR.length + 1 } as React.CSSProperties } // What: Navigation Item Index. Why: The block fades in after the button. How: This hands it the next place in the stagger. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
+						>{ /* What: Menu Contents Div Element. Why: A few links and a button alone leave the phone menu bare, and a visitor on the go often wants the places in one town. How: This holds the towns, the guide's email, and the name's note on a pale panel under the button, shown only in the phone menu. */ }
+
+
+							<p className={ cssModObj.menEyePar }>Places to eat in</p>{ /* What: Menu Eyebrow Paragraph Element. Why: The town chips need a word on what they're for. How: This labels them in small uppercase letters. */ }
+
+
+
+							<ul className={ cssModObj.menTowUno }>{ /* What: Menu Towns Unordered Element. Why: The towns are a list, which screen readers count. How: This sets them as chips in a row that wraps. */ }
+
+
+								{ TOW_NAM_ARR.map( ( towNamStr ) => ( // What: Town Chip Map. Why: Each town gets a chip. How: This renders one item per town in the guide.
+
+
+									<li key={ towNamStr }>{ /* What: Menu Town Item Element. Why: Each town is one item of the list. How: This holds the town's chip. */ }
+
+
+										<Link
+											className={ cssModObj.menTowAnc }
+
+											to={ `/places?town=${ encodeURIComponent( towNamStr ) }` } // What: Town Listing Address. Why: The chip should open the listing already narrowed to the town. How: This names the town in the listing's query.
+
+											onAuxClick={ auxCloFun }
+											onClick={ cloMenFun }
+										>{ towNamStr }</Link>{ /* What: Menu Town Anchor Link. Why: Each chip opens its town's places. How: This routes to the listing filtered to the town and closes the menu on any click. */ }
+
+
+									</li>
+
+
+								))}
+
+
+							</ul>
+
+
+
+							<p className={ cssModObj.menEmaPar }>Questions? <a className={ cssModObj.menEmaAnc } href='mailto:contact@pommedeterreeats.com' onAuxClick={ auxCloFun } onClick={ cloMenFun }>contact@pommedeterreeats.com</a></p>{ /* What: Menu Email Paragraph Element. Why: Email is the quickest way to reach the guide without the form. How: This shows the address as a mail link that also closes the menu. */ }
+
+							<p className={ cssModObj.menTagPar }>Pomme de terre: word for word, "apple of the earth."</p>{ /* What: Menu Tagline Paragraph Element. Why: The menu ends on the name's note, as the footer does. How: This shows it small and quiet in the coral's text shade. */ }
+
+
+						</div>
 
 
 					</nav>

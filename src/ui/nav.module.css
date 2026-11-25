@@ -8,8 +8,10 @@
  * Styles for NavBarCom: the white bar across the top of the page, with the
  * brand (the mark and the name, its last word in coral) on the left and the
  * page links as pills on the right, the current page's tinted, ending in the
- * navy "Add your place" button. At 960px wide and below the links and the
- * button move into a panel below the bar, which fades in over a scrim that
+ * navy "Add your place" button. At 960px wide and below the links become
+ * roomy rows with arrows and, with the button and a pale panel of town
+ * chips, the guide's email, and the name's note, move into a panel below
+ * the bar, which fades in over a scrim that
  * dims the page while the three-bar toggle has it open, its rows arriving one
  * after another, and the toggle's bars turn into a cross. The bar's states
  * are attributes rather than classes: aria-expanded on the toggle,
@@ -451,7 +453,8 @@
 
 
 	.navLinNav[data-mobile-menu-open] .navLinAnc,
-	.navLinNav[data-mobile-menu-open] .navAddAnc { /* What: Arriving Menu Items. Why: Each row should follow the one above it in. How: This plays the fade on every opening, delayed by one stagger step per place in the list, holding the row's start until its turn but nothing after, so a link's press still applies. */
+	.navLinNav[data-mobile-menu-open] .navAddAnc,
+	.navLinNav[data-mobile-menu-open] .menConDiv { /* What: Arriving Menu Items. Why: Each row should follow the one above it in. How: This plays the fade on every opening, delayed by one stagger step per place in the list, holding the row's start until its turn but nothing after, so a link's press still applies. */
 
 
 		animation : menuItemOpenFadeIn var( --dur-ani-p02 ) var( --mot-dec-eas ) calc( var( --dur-ani-m03 ) * ( var( --nav-ite-ind ) + 1 ) ) backwards; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Animation Base Minus 3 ~= 67.9ms, Navigation Item Index, set by each row's style */
@@ -465,7 +468,8 @@
 
 
 	.navLinNav[data-mobile-menu-open] .navLinAnc,
-	.navLinNav[data-mobile-menu-open] .navAddAnc { /* What: Still Menu Items. Why: The rows should simply be there. How: This turns the stagger off. */
+	.navLinNav[data-mobile-menu-open] .navAddAnc,
+	.navLinNav[data-mobile-menu-open] .menConDiv { /* What: Still Menu Items. Why: The rows should simply be there. How: This turns the stagger off. */
 
 
 		animation : none;
@@ -498,6 +502,8 @@
 
 
 }
+
+/* #region navLinAnc */
 
 .navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page as a soft pill. How: This sets it bold in slate gray with pill padding and rounding, easing its hover, press, and focus, and the tint and border it takes as the current page's link, the border leaving on the accelerating curve. */
 
@@ -540,11 +546,14 @@
 @media ( max-width : 960px ) { /* What: Narrow Navigation Link Anchor. Why: The menu's links stack down the panel and are tapped rather than clicked. How: This applies 960px wide and below. */
 
 
-	.navLinAnc { /* What: Full Width Navigation Link Anchor. Why: A wide target is easier to tap. How: This pads the pill taller across the panel and centers its text. */
+	.navLinAnc { /* What: Row Navigation Link Anchor. Why: In the menu each link reads as a roomy row, easy to tap, with an arrow pointing on. How: This sets the link a step larger, left-aligned, with its label at the start and its arrow at the end of a padded row. */
 
 
-		padding    : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
-		text-align : center;
+		align-items           : center;
+		display               : grid;
+		font-size             : var( --fon-siz-p02 );                      /* Font Size Base Plus 2 ~= 19.304px */
+		grid-template-columns : 1fr auto;
+		padding               : var( --spa-ver-m01 ) var( --spa-hor-bas ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
 
 
 	}
@@ -565,6 +574,51 @@
 
 
 }
+
+.linArrSpa { /* What: Link Arrow Span. Why: The bar's pills need no arrow, which belongs to the menu's rows. How: This hides it on a wide screen, and sets it as a block that can move once the menu shows it, easing its nudge on the decelerating curve. */
+
+
+	color      : var( --acs-dar-col );                                /* Accent-Secondary Dark Color = #b13d22 */
+	display    : none;
+	transition : transform var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.navLinAnc:hover .linArrSpa { /* What: Hovered Link Arrow Span. Why: The arrow nudges toward where the row goes. How: This moves it 3px to the right while the row is hovered. */
+
+
+	transform : translateX( var( --spa-hor-m05 ) ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Link Arrow Span. Why: Only the menu's rows show the arrow. How: This applies 960px wide and below. */
+
+
+	.linArrSpa { /* What: Shown Link Arrow Span. Why: The row's arrow points on to its page. How: This shows it. */
+
+
+		display : block;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Link Arrow Span. Why: Someone who asked for less motion shouldn't see the arrow slide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.linArrSpa { /* What: Motionless Link Arrow Span. Why: The nudge should simply apply. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion navLinAnc */
 
 .navAddAnc { /* What: Navigation Add Anchor. Why: The owners' way in is the bar's one filled button, so it stands apart from the page links. How: This sets it as a navy pill with white text, a little apart from the last link, easing its hover fill and lift, its press, and its focus ring. */
 
@@ -623,6 +677,173 @@
 
 
 }
+
+/* #region menConDiv */
+
+.menConDiv { /* What: Menu Contents Div. Why: The menu's extras sit apart from the links, on a pale panel, and only the phone menu has them. How: This hides the block on a wide screen. */
+
+
+	display : none;
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Menu Contents Div. Why: The phone menu shows its extras. How: This applies 960px wide and below. */
+
+
+	.menConDiv { /* What: Shown Menu Contents Div. Why: The extras read as one panel under the button. How: This stacks them a piece's tier apart on the pale navy tint, rounded, a little below the button. */
+
+
+		background    : var( --acc-tin-col );                      /* Accent Tint Color = #eaf0f6 */
+		border-radius : var( --rad-bor-xla );                      /* Radius Border Extra Large ~= 19.304px */
+		display       : grid;
+		margin-top    : var( --spa-ver-m02 );                      /* Spacing Vertical Base Minus 2 ~= 8.304px */
+		padding       : var( --tie-ver-004 ) var( --tie-hor-004 ); /* Tier Vertical 4 ~= 19.304px, Tier Horizontal 4, about 11px - 19.304px */
+		row-gap       : var( --tie-ver-005 );                      /* Tier Vertical 5 = 11px */
+
+
+	}
+
+
+}
+
+.menEyePar { /* What: Menu Eyebrow Paragraph. Why: The label names the chips without competing with them. How: This sets it small, extra bold, uppercase, and spaced in the coral's text shade. */
+
+
+	color          : var( --acs-dar-col );                   /* Accent-Secondary Dark Color = #b13d22 */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 1rem */
+	font-weight    : 800;
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	text-transform : uppercase;
+
+
+}
+
+
+/* #region menTowUno */
+
+.menTowUno { /* What: Menu Towns Unordered. Why: The town chips wrap across the panel, each sized to its name, which grid can't do without fixed tracks. How: This drops the list's bullets and wraps the chips a small step apart. */
+
+
+	display    : flex;
+	flex-wrap  : wrap;
+	gap        : var( --spa-ver-m02 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+	list-style : none;
+
+
+}
+
+.menTowAnc { /* What: Menu Town Anchor. Why: Each town reads as a small white chip, a button of its own. How: This sets it bold in navy on white with a soft border and full rounding, easing its hover fill and lift, its press, and its focus ring. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #c9d3de */
+	border-radius : 999px;
+	color         : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
+	display       : inline-grid;
+	font-size     : var( --fon-siz-bas );                            /* Font Size Base = 1rem */
+	font-weight   : 700;
+	padding       : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-sta-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.menTowAnc:hover { /* What: Hovered Menu Town Anchor. Why: A chip should respond to the pointer. How: This fills it navy with white text and lifts it 2px. */
+
+
+	background   : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
+	border-color : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
+	color        : var( --tex-acc-col );                            /* Text Accent Color = #ffffff */
+	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.menTowAnc:active { /* What: Pressed Menu Town Anchor. Why: A press should register before the listing opens. How: This presses the chip in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Town Anchor. Why: Someone who asked for less motion should see the chip's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.menTowAnc { /* What: Motionless Menu Town Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion menTowUno */
+
+
+/* #region menEmaPar */
+
+.menEmaPar { /* What: Menu Email Paragraph. Why: The email line is a quiet aside. How: This sets it at the base size in slate. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+	font-size : var( --fon-siz-bas ); /* Font Size Base = 1rem */
+
+
+}
+
+.menEmaAnc { /* What: Menu Email Anchor. Why: The address should read as a link and wrap rather than spill on a narrow phone. How: This sets it bold in navy with an underline, breaking anywhere when it has to, easing its hover color, press dim, and focus ring. */
+
+
+	color                 : var( --acc-mai-col );                   /* Accent Main Color = #12355b */
+	font-weight           : 700;
+	overflow-wrap         : anywhere;
+	text-decoration       : underline;
+	text-underline-offset : calc( var( --cdn-pow-005-rec ) * 1em ); /* Core-Design-Number to the Power of 5 Reciprocal ~= 0.245em */
+	transition            : color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.menEmaAnc:hover { /* What: Hovered Menu Email Anchor. Why: A link should respond to the pointer. How: This shifts it to the coral's text shade. */
+
+
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color = #b13d22 */
+
+
+}
+.menEmaAnc:active { /* What: Pressed Menu Email Anchor. Why: A press should register before the email app opens. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Email Anchor. Why: Someone who asked for less motion should see the link's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.menEmaAnc { /* What: Motionless Menu Email Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion menEmaPar */
+
+.menTagPar { /* What: Menu Tagline Paragraph. Why: The menu closes on the name's note, small and warm. How: This sets it at the base size in the coral's text shade. */
+
+
+	color     : var( --acs-dar-col ); /* Accent-Secondary Dark Color = #b13d22 */
+	font-size : var( --fon-siz-bas ); /* Font Size Base = 1rem */
+
+
+}
+
+/* #endregion menConDiv */
 
 /* #endregion navLinNav */
 
