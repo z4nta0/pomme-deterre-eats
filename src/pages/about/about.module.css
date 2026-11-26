@@ -6,9 +6,10 @@
  *
  * @summary
  * Styles for AboPagCom: the heading block, then a column of headed prose
- * capped at the base text width, its links bold and underlined in navy. The
- * page sits in the shared centered column, padded by the page frame's tier
- * above and below.
+ * capped at the base text width, its links bold and underlined in navy,
+ * beside a sidebar of three panels above 960px wide, and above it from
+ * there down. The page sits in the shared centered column, padded by the
+ * page frame's tier above and below.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -93,13 +94,44 @@
 
 
 
+/* #region aboLayDiv */
+
+.aboLayDiv { /* What: About Layout Div. Why: The prose and the sidebar share the page's width, each starting at the top. How: This sets the prose in the wide column beside a sidebar about 321px wide, a section's tier apart. */
+
+
+	align-items           : start;
+	column-gap            : var( --tie-hor-002 );                                 /* Tier Horizontal 2, about 33.876px - 59.447px */
+	display               : grid;
+	grid-template-areas   : 'aboBodDiv aboSidAsi';
+	grid-template-columns : minmax( 0, 1fr ) calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.280px */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow About Layout Div. Why: The prose and the sidebar no longer fit side by side. How: This applies at 960px wide and below. */
+
+
+	.aboLayDiv { /* What: Stacked About Layout Div. Why: The sidebar reads best below the prose. How: This stacks them a section's tier apart. */
+
+
+		grid-template-areas   : 'aboBodDiv' 'aboSidAsi';
+		grid-template-columns : minmax( 0, 1fr );
+		row-gap               : var( --tie-ver-002 );    /* Tier Vertical 2 ~= 59.447px */
+
+
+	}
+
+
+}
+
+
 /* #region aboBodDiv */
 
-.aboBodDiv { /* What: About Body Div. Why: The page's prose reads as one column, each heading closer to its own paragraph than to the one before it. How: This stacks the headings and paragraphs a piece's tier apart. */
+.aboBodDiv { /* What: About Body Div. Why: The page's prose reads as one column, each heading closer to its own paragraph than to the one before it. How: This stacks the headings and paragraphs a piece's tier apart in the layout's wide column. */
 
 
-	display : grid;
-	row-gap : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+	display   : grid;
+	grid-area : aboBodDiv;
+	row-gap   : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
 
 
 }
@@ -183,6 +215,271 @@
 }
 
 /* #endregion aboBodDiv */
+
+
+
+/* #region aboSidAsi */
+
+.aboSidAsi { /* What: About Sidebar Aside. Why: The three panels read as one column, no wider than the prose once they sit below it. How: This stacks them a heading's tier apart in the layout's sidebar, capped at the prose's width. */
+
+
+	display   : grid;
+	grid-area : aboSidAsi;
+	max-width : calc( var( --cdn-pow-012 ) * var( --fon-siz-p02 ) ); /* Core-Design-Number to the Power of 12 ~= 29.207, Font Size Base Plus 2 ~= 19.304px */ /* What: Sidebar Width Cap. Why: Below the prose, the panels should line up with its paragraphs. How: This is the base text width at the paragraphs' font size, written out since an em here would follow the sidebar's own size. */
+	row-gap   : var( --tie-ver-003 );                                /* Tier Vertical 3 ~= 33.876px */
+
+
+}
+
+
+/* #region facCarSec */
+
+.facCarSec { /* What: Facts Card Section. Why: The figures sit on a card of their own. How: This stacks the heading and the figures a part's tier apart on a white, bordered, rounded card. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
+	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
+	display       : grid;
+	padding       : var( --tie-ver-003 ) var( --tie-hor-003 );       /* Tier Vertical 3 ~= 33.876px, Tier Horizontal 3, about 19.304px - 33.876px */
+	row-gap       : var( --tie-ver-004 );                            /* Tier Vertical 4 ~= 19.304px */
+
+
+}
+
+.sidTitHea { /* What: Sidebar Title Heading. Why: A panel's heading should sit below the prose's own headings in weight. How: This sets it at Base Plus 2. */
+
+
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+
+
+}
+.sidTitHea--inverse { /* What: Sidebar Title Heading Inverse. Why: The navy card's heading would sink in navy. How: This sets it in white. */
+
+
+	color : var( --tex-inv-col ); /* Text Inverse Color = #ffffff */
+
+
+}
+
+
+/* #region facLisDes */
+
+.facLisDes { /* What: Facts List Description. Why: The three figures read as one row. How: This sets them in three equal columns a piece's tier apart. */
+
+
+	column-gap            : var( --tie-hor-005 );          /* Tier Horizontal 5, about 6.268px - 11px */
+	display               : grid;
+	grid-template-columns : repeat( 3, minmax( 0, 1fr ) );
+
+
+}
+
+
+/* #region facIteDiv */
+
+.facIteDiv { /* What: Fact Item Div. Why: A figure reads number first, though its label comes first in the markup, as a description list asks. How: This places the number above the label by name. */
+
+
+	display             : grid;
+	grid-template-areas : 'facNumDet' 'facLabTer';
+
+
+}
+
+.facLabTer { /* What: Fact Label Term. Why: The label says what the figure counts without competing with it. How: This sets it small, extra bold, uppercase, and spaced in the muted text color, under the number. */
+
+
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #5b6778 */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 1rem */
+	font-weight    : 800;
+	grid-area      : facLabTer;
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	text-transform : uppercase;
+
+
+}
+
+.facNumDet { /* What: Fact Number Details. Why: The figure is the cell's point. How: This sets it large and extra bold in navy, above its label. */
+
+
+	color       : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+	font-size   : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
+	font-weight : 800;
+	grid-area   : facNumDet;
+	line-height : var( --ver-rhy-bas ); /* Vertical Rhythm Base ~= 1.325 */
+
+
+}
+
+/* #endregion facIteDiv */
+
+/* #endregion facLisDes */
+
+/* #endregion facCarSec */
+
+
+
+/* #region namPanSec */
+
+.namPanSec { /* What: Name Panel Section. Why: The note on the name stands apart as the page's lighter moment. How: This stacks the apple, the heading, and the note a piece's tier apart on a pale blue, rounded panel. */
+
+
+	background    : var( --acc-tin-col );                      /* Accent Tint Color = #eaf0f6 */
+	border-radius : var( --rad-bor-xla );                      /* Radius Border Extra Large ~= 19.304px */
+	display       : grid;
+	justify-items : start;
+	padding       : var( --tie-ver-003 ) var( --tie-hor-003 ); /* Tier Vertical 3 ~= 33.876px, Tier Horizontal 3, about 19.304px - 33.876px */
+	row-gap       : var( --tie-ver-005 );                      /* Tier Vertical 5 = 11px */
+
+
+}
+
+.namAppSvg { /* What: Name Apple SVG. Why: The apple leads the note, tipped as if about to roll. How: This sets it about 59px tall, its width following its shape, turned a little to one side. */
+
+
+	aspect-ratio : 44 / 48;
+	height       : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
+	rotate       : -12deg;                              /* What: Apple Tilt. Why: The apple leans the way the 404 page's does. How: This turns it 12 degrees, a literal angle. */
+
+
+}
+
+/* What: Sidebar Title Heading Pointer. Why: This panel's element carries the class too. How: Its rule sits in the facCarSec region. */
+
+.sidTexPar { /* What: Sidebar Text Paragraph. Why: A panel's text reads quieter than the prose beside it. How: This sets it in slate at the body size. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #4a5668 */
+	font-size : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+
+
+}
+.sidTexPar--inverse { /* What: Sidebar Text Paragraph Inverse. Why: Slate text would sink into the navy card. How: This sets it in the pale blue. */
+
+
+	color : var( --acc-lig-col ); /* Accent Light Color = #9fc3e8 */
+
+
+}
+
+/* #endregion namPanSec */
+
+
+
+/* #region ownCarSec */
+
+.ownCarSec { /* What: Owners Card Section. Why: The owners' way in stands out on the brand's navy. How: This stacks the heading, the text, and the buttons a piece's tier apart on a rounded navy card, and hands its links a lighter focus ring. */
+
+
+	--foc-rin-col : var( --acc-lig-col ); /* Accent Light Color = #9fc3e8 */ /* What: Card Focus Ring Color. Why: The navy focus ring would sink into the card. How: This hands every link inside the card the lighter ring. */
+
+	background    : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
+	border-radius : var( --rad-bor-xla );                      /* Radius Border Extra Large ~= 19.304px */
+	display       : grid;
+	padding       : var( --tie-ver-003 ) var( --tie-hor-003 ); /* Tier Vertical 3 ~= 33.876px, Tier Horizontal 3, about 19.304px - 33.876px */
+	row-gap       : var( --tie-ver-005 );                      /* Tier Vertical 5 = 11px */
+
+
+}
+
+/* What: Sidebar Title Heading Pointer. Why: This panel's element carries the class too. How: Its rule sits in the facCarSec region. */
+
+/* What: Sidebar Text Paragraph Pointer. Why: This panel's element carries the class too. How: Its rule sits in the namPanSec region. */
+
+
+/* #region ownActDiv */
+
+.ownActDiv { /* What: Owners Actions Div. Why: Each button should be easy to hit and as wide as the card. How: This stacks the two buttons a piece's tier apart, a little below the text, their words centered. */
+
+
+	display    : grid;
+	margin-top : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+	row-gap    : var( --tie-ver-005 ); /* Tier Vertical 5 = 11px */
+	text-align : center;
+
+
+}
+
+.butBasAnc { /* What: Button Base Anchor. Why: The card's links read as buttons. How: This sets them bold with rounded corners and padding, easing their hover fill and lift, their press, and their focus ring. */
+
+
+	border        : var( --bor-wid-lar ) solid transparent;    /* Border Width Large ~= 2.035px */
+	border-radius : var( --rad-bor-lar );                      /* Radius Border Large ~= 14.572px */
+	display       : inline-grid;
+	font-size     : var( --fon-siz-p02 );                      /* Font Size Base Plus 2 ~= 19.304px */
+	font-weight   : 800;
+	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-sta-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.butBasAnc:hover { /* What: Hovered Button Base Anchor. Why: A button should respond to the pointer. How: This lifts it 2px, its variant changing its colors. */
+
+
+	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.butBasAnc:active { /* What: Pressed Button Base Anchor. Why: A press should register before the page changes. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+.butBasAnc--coral { /* What: Button Base Anchor Coral. Why: Adding a place is the card's main action, so it takes the brand's bright coral. How: This fills it coral with the dark text, which reaches about 5.1:1 on it. */
+
+
+	background : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
+	color      : var( --tex-mai-col ); /* Text Main Color = #1b2533 */
+
+
+}
+.butBasAnc--coral:hover { /* What: Hovered Button Base Anchor Coral. Why: The coral button should respond to the pointer. How: This lightens its fill to the light coral. */
+
+
+	background : var( --acs-lig-col ); /* Accent-Secondary Light Color = #ffb29e */
+
+
+}
+.butBasAnc--outline { /* What: Button Base Anchor Outline. Why: Updating a listing is the card's other action, so it reads quieter than the coral one. How: This draws a white outline with white text on the navy. */
+
+
+	border-color : var( --tex-inv-col ); /* Text Inverse Color = #ffffff */
+	color        : var( --tex-inv-col ); /* Text Inverse Color = #ffffff */
+
+
+}
+.butBasAnc--outline:hover { /* What: Hovered Button Base Anchor Outline. Why: The outlined button should fill in under the pointer. How: This fills it white with navy text. */
+
+
+	background : var( --tex-inv-col ); /* Text Inverse Color = #ffffff */
+	color      : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Base Anchor. Why: Someone who asked for less motion should see the buttons' looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.butBasAnc { /* What: Motionless Button Base Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion ownActDiv */
+
+/* #endregion ownCarSec */
+
+/* #endregion aboSidAsi */
+
+/* #endregion aboLayDiv */
 
 /* #endregion aboPagDiv */
 

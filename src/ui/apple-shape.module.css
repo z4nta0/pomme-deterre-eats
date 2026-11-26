@@ -1,0 +1,45 @@
+
+
+
+/**
+ * apple-shape.module.css = Apple Shape Module
+ *
+ * @summary
+ * Styles for AppShaCom: the colors of the apple's coral body, its stem, and
+ * its green leaf. The stem reads a color a parent may hand it, since it has
+ * to show against whatever the apple sits on.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+.appBodPat { /* What: Apple Body Path. Why: The apple is the brand's coral. How: This fills it with the secondary accent. */
+
+
+	fill : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
+
+
+}
+
+.appStePat { /* What: Apple Stem Path. Why: The stem should read against whatever the apple sits on. How: This strokes it in the color its parent hands it, the deep navy otherwise, rounded at its ends. */
+
+
+	fill           : none;
+	stroke         : var( --app-ste-col, var( --bac-inv-col ) ); /* Apple Stem Color, set by its parent, Background Inverse Color = #0b2340 */
+	stroke-linecap : round;
+	stroke-width   : 2.5;                                        /* What: Stem Stroke Width. Why: The stem is a fine line in the drawing. How: This sets its width in drawing units. */
+
+
+}
+
+.appLeaPat { /* What: Apple Leaf Path. Why: A green leaf finishes the apple. How: This fills it in the leaf green. */
+
+
+	fill : var( --acc-lea-col ); /* Accent Leaf Color = #6fbf73 */
+
+
+}
+
+

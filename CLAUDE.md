@@ -97,6 +97,12 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   rolled off the map", a tipped apple in a pin), and About's note on the
   name. The wave mark and the hero stay apple-free. Its leaf reads
   `--acc-lea-col`.
+- **About's sidebar** (decided by the user 2026-11-26, to fill the empty
+  space beside the prose): three panels beside the prose above 960px, and
+  below it from there down: the guide's figures (places, towns, and kinds,
+  counted from `src/core/places.ts` so they never drift), the note on the
+  name with the apple (`ui/apple-shape.tsx`, shared with the 404 pin), and
+  the owners' two buttons.
 - **Phone menu** (decided by the user 2026-11-25, following the sibling
   sites' fix for a bare drawer): the links become roomy rows with arrows,
   then the "Add your place" button, then a pale panel with a chip per town,
@@ -133,8 +139,8 @@ src/
   core/                  places.ts, the listings table and its filter lists
   pages/                 home/, places/, about/, contact/, not-found/
   ui/                    the bar, the footer, the mark, the map pin, the
-                         place card, and the page description and scroll
-                         hooks
+                         apple, the place card, and the page description
+                         and scroll hooks
   styles/                fonts.css, styles.css
 ```
 

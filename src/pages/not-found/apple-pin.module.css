@@ -6,8 +6,8 @@
  *
  * @summary
  * Styles for AppPinCom: the drawing's size, about 105px tall with its width
- * following its 60 by 72 shape, and the colors of its navy pin, coral apple,
- * light coral stem, and green leaf.
+ * following its 60 by 72 shape, the navy of its pin, and the light coral it
+ * hands the apple for its stem.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -17,8 +17,10 @@
 
 /* #region appPinSvg */
 
-.appPinSvg { /* What: Apple Pin SVG. Why: The picture leads the page without crowding its heading. How: This sets it about 105px tall, its width following its shape. */
+.appPinSvg { /* What: Apple Pin SVG. Why: The picture leads the page without crowding its heading. How: This sets it about 105px tall, its width following its shape, and hands the apple its stem color. */
 
+
+	--app-ste-col : var( --acs-lig-col ); /* Accent-Secondary Light Color = #ffb29e */ /* What: Apple Stem Color. Why: The apple's navy stem would sink into the pin's navy head. How: This hands the apple the light coral for its stem. */
 
 	aspect-ratio : 60 / 72;
 	height       : calc( var( --ver-rhy-p07 ) * 1rem ); /* Vertical Rhythm Base Plus 7 ~= 104.323px */
@@ -30,33 +32,6 @@
 
 
 	fill : var( --acc-mai-col ); /* Accent Main Color = #12355b */
-
-
-}
-
-.appBodPat { /* What: Apple Body Path. Why: The apple is the brand's coral. How: This fills it with the secondary accent. */
-
-
-	fill : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
-
-
-}
-
-.appStePat { /* What: Apple Stem Path. Why: The stem should read against the pin's navy head. How: This strokes it in the light coral, rounded at its ends. */
-
-
-	fill           : none;
-	stroke         : var( --acs-lig-col ); /* Accent Secondary Light Color = #ffb29e */
-	stroke-linecap : round;
-	stroke-width   : 2.5; /* What: Stem Stroke Width. Why: The stem is a fine line in the drawing. How: This sets its width in drawing units. */
-
-
-}
-
-.appLeaPat { /* What: Apple Leaf Path. Why: A green leaf finishes the apple. How: This fills it in the leaf green. */
-
-
-	fill : var( --acc-lea-col ); /* Accent Leaf Color = #6fbf73 */
 
 
 }

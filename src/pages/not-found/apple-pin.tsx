@@ -5,6 +5,9 @@
 
 import cssModObj from './apple-pin.module.css'; // What: CSS Module Object. Why: The drawing is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
+
+import { AppShaCom } from '../../ui/apple-shape.tsx'; // What: Apple Shape Component. Why: The apple is drawn the same wherever the site shows it. How: This draws it inside the pin's head.
+
 // #endregion Imports
 
 
@@ -76,26 +79,10 @@ function AppPinCom () : React.JSX.Element {
 
 
 
-			<g transform='translate( 30 46 ) rotate( -12 ) scale( 0.7 ) translate( -31 -24 )'>{ /* What: Apple Group Element. Why: The apple sits inside the pin's round head, tipped a little, as if about to roll off. How: This shrinks the apple, its stem, and its leaf together to fit the head, turns them, and centers them on the head's center. */ }
+			<g transform='translate( 30 46 ) rotate( -12 ) scale( 0.7 ) translate( -31 -24 )'>{ /* What: Apple Group Element. Why: The apple sits inside the pin's round head, tipped a little, as if about to roll off. How: This shrinks the apple to fit the head, turns them, and centers them on the head's center. */ }
 
 
-				<path
-					className={ cssModObj.appBodPat }
-
-					d='M30 16c-5-5-18-5-19 8s7 22 14 20c2 0 3-1 5-1s3 1 5 1c7 2 15-7 14-20s-14-13-19-8z'
-				/>{ /* What: Apple Body Path Element. Why: The apple is the page's bright touch. How: This fills the apple shape in coral. */ }
-
-				<path
-					className={ cssModObj.appStePat }
-
-					d='M30 16c0-5 2-8 5-11'
-				/>{ /* What: Apple Stem Path Element. Why: An apple needs its stem. How: This strokes a short curve up from the apple's top in the light coral, which reads on the navy head. */ }
-
-				<path
-					className={ cssModObj.appLeaPat }
-
-					d='M35 7c3-7 11-9 16-7-2 7-9 10-16 7z'
-				/>{ /* What: Apple Leaf Path Element. Why: A leaf finishes the apple. How: This fills a leaf beside the stem in the leaf green. */ }
+				<AppShaCom />{ /* What: Apple Shape Component. Why: The pin's head holds the site's apple. How: This draws the shared apple, stem and leaf and all. */ }
 
 
 			</g>
