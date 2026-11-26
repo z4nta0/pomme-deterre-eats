@@ -19,7 +19,7 @@ import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page D
  * @summary
  * The page that says what the guide is: why it gathers every place to eat
  * around the lake into one guide, where its listings come from and how to
- * keep them current, what's coming for owners, what its name means, and who
+ * keep them current, what owners can do, what its name means, and who
  * builds it. It reads
  * as one column of headed prose under the page's heading.
  *
@@ -115,7 +115,7 @@ function AboPagCom () : React.JSX.Element {
 
 				<h2>For owners</h2>{ /* What: Owners Heading Element. Why: Owners are the guide's other audience. How: This names their section. */ }
 
-				<p>If you run a place to eat near the lake, you can ask to <Link className={ cssModObj.aboBodAnc } to='/contact?reason=add'>add your place</Link> or <Link className={ cssModObj.aboBodAnc } to='/contact?reason=update'>update your listing</Link> at any time. Each place will also get a page of its own, styled like the business, with its menu, its hours, and its story.</p>{ /* What: Owners Paragraph Element. Why: Owners should know how to take part and what's coming. How: This links to the Contact page for adding or updating, and mentions the pages on the way. */ }
+				<p>If you run a place to eat near the lake, you can ask to <Link className={ cssModObj.aboBodAnc } to='/contact?reason=add'>add your place</Link> or <Link className={ cssModObj.aboBodAnc } to='/contact?reason=update'>update your listing</Link> at any time. Each place also has a page of its own, styled like the business, with its menu, its hours, and its story.</p>{ /* What: Owners Paragraph Element. Why: Owners should know how to take part and what a listing includes. How: This links to the Contact page for adding or updating, and mentions each place's own page. */ }
 
 				<h2>About the name</h2>{ /* What: Name Heading Element. Why: Visitors may wonder what Pomme de Terre means. How: This names the section. */ }
 

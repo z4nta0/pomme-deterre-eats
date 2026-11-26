@@ -6,7 +6,7 @@ Missouri, from the lakeside towns to the marinas, live at
 
 The main site explains what the guide is, lists every eating place with a
 search, and invites owners to add or update their entry. Each eating place
-will also get a page of its own, styled like the business itself.
+also has a page of its own, styled like the business itself.
 
 ## Development
 

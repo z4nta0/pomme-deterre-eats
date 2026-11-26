@@ -84,7 +84,7 @@ const STE_REC_ARR = [ // What: Step Record Array. Why: The how it works steps fo
 		numStr : '2',
 		titStr : 'Check the details',
 
-		texStr : 'Every listing shows what a place serves and how to reach it. Pages of their own, with menus, are on the way.'
+		texStr : 'Every listing shows what a place serves and how to reach it, and each place has a page of its own, with its menu.'
 
 
 	},
