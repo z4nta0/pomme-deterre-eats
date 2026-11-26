@@ -72,32 +72,65 @@
 			hidden
 		><!-- What: Contact Form Element. Why: Netlify registers a site's forms by reading the built HTML, and the Contact page's form only exists once React runs. How: This hidden copy carries the form's name and every field the page posts, with the honeypot Netlify should check. -->
 
+
+			<label for='hidNamInp'>Name</label><!-- What: Name Label Element. Why: The name field needs a label, so an accessibility checker reading the hidden form finds none missing. How: This labels hidNamInp. -->
+
 			<input
+				id='hidNamInp'
+
 				name='name'
+
 				type='text'
 			/><!-- What: Name Input Element. Why: Netlify records the fields it finds here. How: This declares the name field. -->
 
+			<label for='hidEmaInp'>Email</label><!-- What: Email Label Element. Why: The email field needs a label, so an accessibility checker reading the hidden form finds none missing. How: This labels hidEmaInp. -->
+
 			<input
+				id='hidEmaInp'
+
 				name='email'
+
 				type='email'
 			/><!-- What: Email Input Element. Why: Netlify records the fields it finds here, and uses a field named email as the reply-to. How: This declares the email field. -->
 
+			<label for='hidReaInp'>Reason</label><!-- What: Reason Label Element. Why: The reason field needs a label, so an accessibility checker reading the hidden form finds none missing. How: This labels hidReaInp. -->
+
 			<input
+				id='hidReaInp'
+
 				name='reason'
+
 				type='text'
 			/><!-- What: Reason Input Element. Why: Netlify records the fields it finds here. How: This declares the reason field, which the page posts as the chosen reason's label. -->
 
+			<label for='hidPlaInp'>Place</label><!-- What: Place Label Element. Why: The place field needs a label, so an accessibility checker reading the hidden form finds none missing. How: This labels hidPlaInp. -->
+
 			<input
+				id='hidPlaInp'
+
 				name='place'
+
 				type='text'
 			/><!-- What: Place Input Element. Why: Netlify records the fields it finds here. How: This declares the place field. -->
 
-			<textarea name='message'></textarea><!-- What: Message Textarea Element. Why: Netlify records the fields it finds here. How: This declares the message field. -->
+			<label for='hidMesTex'>Message</label><!-- What: Message Label Element. Why: The message field needs a label, so an accessibility checker reading the hidden form finds none missing. How: This labels hidMesTex. -->
+
+			<textarea
+				id='hidMesTex'
+
+				name='message'
+			></textarea><!-- What: Message Textarea Element. Why: Netlify records the fields it finds here. How: This declares the message field. -->
+
+			<label for='hidBotInp'>Leave this field blank</label><!-- What: Bot Label Element. Why: The honeypot field needs a label, so an accessibility checker reading the hidden form finds none missing. How: This labels hidBotInp. -->
 
 			<input
+				id='hidBotInp'
+
 				name='bot-field'
+
 				type='text'
 			/><!-- What: Bot Input Element. Why: Netlify drops any submission that fills its honeypot field. How: This declares the bot-field honeypot named in the form's netlify-honeypot attribute. -->
+
 
 		</form>
 
