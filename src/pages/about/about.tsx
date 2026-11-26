@@ -149,7 +149,7 @@ function AboPagCom () : React.JSX.Element {
 
 					<h2>Where the listings come from</h2>{ /* What: Listings Heading Element. Why: Visitors should know how far to trust a listing. How: This names the section. */ }
 
-					<p>Each listing starts from public information, such as a place's own website or Facebook page and local directories. Hours and menus change, especially with the seasons, so it's always worth calling ahead. If you spot something out of date, or a place we missed, <Link className={ cssModObj.aboBodAnc } to='/contact?reason=tip'>let us know</Link>.</p>{ /* What: Listings Paragraph Element. Why: Visitors should know listings can go stale, and how to help. How: This explains where listings come from and links to the Contact page with a tip chosen. */ }
+					<p>Each listing starts from public information, such as a place's own website or Facebook page and local directories. Hours and menus change, especially with the seasons, so it's always worth calling ahead. If you spot something out of date, or a place I missed, <Link className={ cssModObj.aboBodAnc } to='/contact?reason=tip'>let me know</Link>.</p>{ /* What: Listings Paragraph Element. Why: Visitors should know listings can go stale, and how to help. How: This explains where listings come from and links to the Contact page with a tip chosen. */ }
 
 					<h2>For owners</h2>{ /* What: Owners Heading Element. Why: Owners are the guide's other audience. How: This names their section. */ }
 
@@ -157,11 +157,11 @@ function AboPagCom () : React.JSX.Element {
 
 					<h2>Who's behind it</h2>{ /* What: Builder Heading Element. Why: Visitors may want to know who runs the guide. How: This names the section. */ }
 
-					<p>The guide is designed and built by me, Scot from <a className={ cssModObj.aboBodAnc } href={ BUI_URL_STR } rel='noopener noreferrer' target='_blank'>techgeek.dev<span className={ cssModObj.visHidSpa }> (opens in a new tab)</span></a>. I live in the area, which is very rural, with no big cities, and as such there are no big-name chain restaurants. There are just a bunch of small, family-owned places.</p>{ /* What: Builder Paragraph Element. Why: Visitors should know a neighbor builds the guide, and what eating here is like. How: This names the builder, links to techgeek.dev in a new tab, its hidden note telling screen reader users so, and describes the area. */ }
+					<p>The guide is designed and built by me, Scot, from <a className={ cssModObj.aboBodAnc } href={ BUI_URL_STR } rel='noopener noreferrer' target='_blank'>techgeek.dev<span className={ cssModObj.visHidSpa }> (opens in a new tab)</span></a>. I live here. It's a rural area with no big cities, which means no big-name chains, just a lot of small, family-owned places.</p>{ /* What: Builder Paragraph Element. Why: Visitors should know a neighbor builds the guide, and what eating here is like. How: This names the builder, links to techgeek.dev in a new tab, its hidden note telling screen reader users so, and describes the area. */ }
 
-					<p>Almost none of them have websites of their own, and finding information for them, especially menus, is not easy. So I thought it would be a good idea to collate them all in one place and provide the relevant information about them, with easy-to-read menus.</p>{ /* What: Reason Paragraph Element. Why: The builder's own reason for the guide makes it personal. How: This says how hard the places are to look up and what the guide does about it. */ }
+					<p>Almost none of them have a website, and finding out about them, especially their menus, isn't easy. So I decided to gather them all in one place, each with the details you need and a menu that's easy to read.</p>{ /* What: Reason Paragraph Element. Why: The builder's own reason for the guide makes it personal. How: This says how hard the places are to look up and what the guide does about it. */ }
 
-					<p>Hopefully I can even help them find new customers, especially among the weekend and holiday visitors who may not have an intimate understanding of the region.</p>{ /* What: Hope Paragraph Element. Why: The guide is meant to help the places as well as their visitors. How: This says so. */ }
+					<p>I hope it helps them find new customers too, especially the weekend and holiday visitors who don't know the area well yet.</p>{ /* What: Hope Paragraph Element. Why: The guide is meant to help the places as well as their visitors. How: This says so. */ }
 
 					<p>Ready to start? <Link className={ cssModObj.aboBodAnc } to='/places'>Browse every place</Link>.</p>{ /* What: Start Paragraph Element. Why: The prose ends with a way into the guide. How: This links to the listing. */ }
 
@@ -251,7 +251,7 @@ function AboPagCom () : React.JSX.Element {
 							className={ cssModObj.sidTitHea }
 						>About the name</h2>{ /* What: Sidebar Title Heading Element. Why: Visitors may wonder what Pomme de Terre means. How: This shows it as a small heading in navy, naming the panel through its ID. */ }
 
-						<p className={ cssModObj.sidTexPar }>Pomme de terre is French for potato, but word for word it means "apple of the earth." The lake takes its name from the Pomme de Terre River, which feeds it. We like the word-for-word version best, and you'll spot a little apple here and there around the site.</p>{ /* What: Sidebar Text Paragraph Element. Why: The name is half the charm, and its literal meaning gives the site its apple. How: This gives the French, its word-for-word meaning, and where the lake's name comes from. */ }
+						<p className={ cssModObj.sidTexPar }>Pomme de terre is French for potato, but word for word it means "apple of the earth." The lake takes its name from the Pomme de Terre River, which feeds it. I like the word-for-word version best, and you'll spot a little apple here and there around the site.</p>{ /* What: Sidebar Text Paragraph Element. Why: The name is half the charm, and its literal meaning gives the site its apple. How: This gives the French, its word-for-word meaning, and where the lake's name comes from. */ }
 
 
 					</section>
@@ -271,7 +271,7 @@ function AboPagCom () : React.JSX.Element {
 							className={` ${ cssModObj.sidTitHea }   ${ cssModObj.sidTitHeaInverse } `}
 						>Run a place near the lake?</h2>{ /* What: Sidebar Title Heading Inverse Element. Why: The card asks owners directly. How: This shows the question as a small heading in white, naming the card through its ID. */ }
 
-						<p className={` ${ cssModObj.sidTexPar }   ${ cssModObj.sidTexParInverse } `}>Get it into the guide, or send us changes to a listing that's already here.</p>{ /* What: Sidebar Text Paragraph Inverse Element. Why: Owners should know both ways in. How: This names adding a place and updating a listing, in the pale blue. */ }
+						<p className={` ${ cssModObj.sidTexPar }   ${ cssModObj.sidTexParInverse } `}>Get it into the guide, or send me changes to a listing that's already here.</p>{ /* What: Sidebar Text Paragraph Inverse Element. Why: Owners should know both ways in. How: This names adding a place and updating a listing, in the pale blue. */ }
 
 
 

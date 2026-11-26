@@ -291,9 +291,9 @@ function ConPagCom () : React.JSX.Element {
 
 				<p className={ cssModObj.conEyePar }>Get in touch</p>{ /* What: Contact Eyebrow Paragraph Element. Why: A short label names the page. How: This shows it small and uppercase in the coral's text shade. */ }
 
-				<h1 className={ cssModObj.conTitHea }>Add your place, or tell us what's changed</h1>{ /* What: Contact Title Heading Element. Why: The page's one heading says what the form is mostly for. How: This shows it large in navy. */ }
+				<h1 className={ cssModObj.conTitHea }>Add your place, or tell me what's changed</h1>{ /* What: Contact Title Heading Element. Why: The page's one heading says what the form is mostly for. How: This shows it large in navy. */ }
 
-				<p className={ cssModObj.conLeaPar }>Own a place to eat around Lake Pomme de Terre? Send us its details and we'll add it to the guide, or send changes to its listing. Visitors with a tip or a question are welcome too.</p>{ /* What: Contact Lead Paragraph Element. Why: A visitor should know who the form is for. How: This invites owners first, then everyone else. */ }
+				<p className={ cssModObj.conLeaPar }>Own a place to eat around Lake Pomme de Terre? Send me its details and I'll add it to the guide, or send changes to its listing. Visitors with a tip or a question are welcome too.</p>{ /* What: Contact Lead Paragraph Element. Why: A visitor should know who the form is for. How: This invites owners first, then everyone else. */ }
 
 
 			</div>
@@ -320,7 +320,7 @@ function ConPagCom () : React.JSX.Element {
 								tabIndex={ -1 } // What: Programmatic Focus Target. Why: The heading takes focus after sending without becoming a Tab stop. How: A tabIndex of -1 lets script focus it while Tab skips it.
 							>Message sent. Thank you!</h2>{ /* What: Success Title Heading Element. Why: The thank-you's heading says what happened. How: This shows it, taking focus as the thank-you appears. */ }
 
-							<p className={ cssModObj.sucTexPar }>We read every message and will reply by email.</p>{ /* What: Success Text Paragraph Element. Why: A visitor should know what happens next. How: This says a reply comes by email. */ }
+							<p className={ cssModObj.sucTexPar }>I read every message and will reply by email.</p>{ /* What: Success Text Paragraph Element. Why: A visitor should know what happens next. How: This says a reply comes by email. */ }
 
 							<button
 								className={ cssModObj.butOutBut }
@@ -569,7 +569,7 @@ function ConPagCom () : React.JSX.Element {
 
 						<h2 className={ cssModObj.notTitHea }>Rather email?</h2>{ /* What: Note Title Heading Element. Why: Each note names its subject. How: This shows the note's heading. */ }
 
-						<p className={ cssModObj.notTexPar }>Write to <a className={ cssModObj.notEmaAnc } href={ `mailto:${ CON_EMA_STR }` }>{ CON_EMA_STR }</a> and we'll reply from there.</p>{ /* What: Note Text Paragraph Element. Why: Some people would rather use their own email. How: This shows the guide's address as a mail link. */ }
+						<p className={ cssModObj.notTexPar }>Write to <a className={ cssModObj.notEmaAnc } href={ `mailto:${ CON_EMA_STR }` }>{ CON_EMA_STR }</a> and I'll reply from there.</p>{ /* What: Note Text Paragraph Element. Why: Some people would rather use their own email. How: This shows the guide's address as a mail link. */ }
 
 
 					</div>

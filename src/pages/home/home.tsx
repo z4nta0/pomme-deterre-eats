@@ -425,7 +425,7 @@ function HomPagCom () : React.JSX.Element {
 							className={ cssModObj.ownTitHea }
 						>Run a place to eat near the lake?</h2>{ /* What: Owners Title Heading Element. Why: The band asks owners directly. How: This shows the question in white, naming the owners section through its ID. */ }
 
-						<p className={ cssModObj.ownTexPar }>If it isn't listed yet, tell us and we'll add it. If it is, send us your changes, from new hours to a whole new menu, and we'll keep your listing current.</p>{ /* What: Owners Text Paragraph Element. Why: Owners should know both ways in. How: This explains adding a place and updating a listing, in the pale blue. */ }
+						<p className={ cssModObj.ownTexPar }>If it isn't listed yet, tell me and I'll add it. If it is, send me your changes, from new hours to a whole new menu, and I'll keep your listing current.</p>{ /* What: Owners Text Paragraph Element. Why: Owners should know both ways in. How: This explains adding a place and updating a listing, in the pale blue. */ }
 
 
 					</div>

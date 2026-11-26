@@ -152,7 +152,7 @@ function PlaPagCom () : React.JSX.Element {
 
 				<p className={ cssModObj.plaLeaPar }>Diners, marina grills, pizza, barbecue, and sweets, from Hermitage to Pittsburg to Wheatland and the towns around them. Search by name or food, or narrow the list by town or kind.</p>{ /* What: Places Lead Paragraph Element. Why: A sentence says what the listing holds and how to use it. How: This shows it a step larger than body text, in slate. */ }
 
-				<p className={ cssModObj.plaNotPar }>Know a place we missed? <Link className={ cssModObj.plaNotAnc } to='/contact?reason=add'>Tell us about it</Link>.</p>{ /* What: Places Note Paragraph Element. Why: Visitors and owners alike can help the guide grow. How: This links to the Contact page with adding a place chosen. */ }
+				<p className={ cssModObj.plaNotPar }>Know a place I missed? <Link className={ cssModObj.plaNotAnc } to='/contact?reason=add'>Tell me about it</Link>.</p>{ /* What: Places Note Paragraph Element. Why: Visitors and owners alike can help the guide grow. How: This links to the Contact page with adding a place chosen. */ }
 
 
 			</div>
