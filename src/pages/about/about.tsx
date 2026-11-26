@@ -157,7 +157,13 @@ function AboPagCom () : React.JSX.Element {
 
 					<h2>Who's behind it</h2>{ /* What: Builder Heading Element. Why: Visitors may want to know who runs the guide. How: This names the section. */ }
 
-					<p>The guide is designed and built by <a className={ cssModObj.aboBodAnc } href={ BUI_URL_STR } rel='noopener noreferrer' target='_blank'>techgeek.dev<span className={ cssModObj.visHidSpa }> (opens in a new tab)</span></a>. Ready to start? <Link className={ cssModObj.aboBodAnc } to='/places'>Browse every place</Link>.</p>{ /* What: Builder Paragraph Element. Why: The page credits its builder and ends with a way into the guide. How: This links to techgeek.dev in a new tab, its hidden note telling screen reader users so, and to the listing. */ }
+					<p>The guide is designed and built by me, Scot from <a className={ cssModObj.aboBodAnc } href={ BUI_URL_STR } rel='noopener noreferrer' target='_blank'>techgeek.dev<span className={ cssModObj.visHidSpa }> (opens in a new tab)</span></a>. I live in the area, which is very rural, with no big cities, and as such there are no big-name chain restaurants. There are just a bunch of small, family-owned places.</p>{ /* What: Builder Paragraph Element. Why: Visitors should know a neighbor builds the guide, and what eating here is like. How: This names the builder, links to techgeek.dev in a new tab, its hidden note telling screen reader users so, and describes the area. */ }
+
+					<p>Almost none of them have websites of their own, and finding information for them, especially menus, is not easy. So I thought it would be a good idea to collate them all in one place and provide the relevant information about them, with easy-to-read menus.</p>{ /* What: Reason Paragraph Element. Why: The builder's own reason for the guide makes it personal. How: This says how hard the places are to look up and what the guide does about it. */ }
+
+					<p>Hopefully I can even help them find new customers, especially among the weekend and holiday visitors who may not have an intimate understanding of the region.</p>{ /* What: Hope Paragraph Element. Why: The guide is meant to help the places as well as their visitors. How: This says so. */ }
+
+					<p>Ready to start? <Link className={ cssModObj.aboBodAnc } to='/places'>Browse every place</Link>.</p>{ /* What: Start Paragraph Element. Why: The prose ends with a way into the guide. How: This links to the listing. */ }
 
 
 				</div>
