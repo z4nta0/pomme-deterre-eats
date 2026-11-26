@@ -94,7 +94,7 @@ canvas: mostly "Harbor", with parts of "Trail Map".
 - **"Apple of the earth"** (decided by the user 2026-11-25): the site leans
   on the literal meaning of pomme de terre rather than "potato", but only in
   the footer, the phone menu's closing line, the 404 page ("This apple
-  rolled off the map", an apple tipping off a pin), and About's note on the
+  rolled off the map", a tipped apple in a pin), and About's note on the
   name. The wave mark and the hero stay apple-free. Its leaf reads
   `--acc-lea-col`.
 - **Phone menu** (decided by the user 2026-11-25, following the sibling

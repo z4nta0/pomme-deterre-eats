@@ -6,8 +6,8 @@
  *
  * @summary
  * Styles for AppPinCom: the drawing's size, about 105px tall with its width
- * following its 60 by 92 shape, and the colors of its navy pin, coral apple,
- * navy stem, and green leaf.
+ * following its 60 by 72 shape, and the colors of its navy pin, coral apple,
+ * light coral stem, and green leaf.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -20,7 +20,7 @@
 .appPinSvg { /* What: Apple Pin SVG. Why: The picture leads the page without crowding its heading. How: This sets it about 105px tall, its width following its shape. */
 
 
-	aspect-ratio : 60 / 92;
+	aspect-ratio : 60 / 72;
 	height       : calc( var( --ver-rhy-p07 ) * 1rem ); /* Vertical Rhythm Base Plus 7 ~= 104.323px */
 
 
@@ -42,11 +42,11 @@
 
 }
 
-.appStePat { /* What: Apple Stem Path. Why: The stem should read against the page. How: This strokes it in the deep navy, rounded at its ends. */
+.appStePat { /* What: Apple Stem Path. Why: The stem should read against the pin's navy head. How: This strokes it in the light coral, rounded at its ends. */
 
 
 	fill           : none;
-	stroke         : var( --bac-inv-col ); /* Background Inverse Color = #0b2340 */
+	stroke         : var( --acs-lig-col ); /* Accent Secondary Light Color = #ffb29e */
 	stroke-linecap : round;
 	stroke-width   : 2.5; /* What: Stem Stroke Width. Why: The stem is a fine line in the drawing. How: This sets its width in drawing units. */
 

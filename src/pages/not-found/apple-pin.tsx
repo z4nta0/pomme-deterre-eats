@@ -13,8 +13,8 @@ import cssModObj from './apple-pin.module.css'; // What: CSS Module Object. Why:
  * apple-pin.tsx = Apple Pin
  *
  * @summary
- * The 404 page's picture: a navy map pin with a coral apple sitting on its
- * head, stem and leaf and all, for the name's "apple of the earth" and the
+ * The 404 page's picture: a navy map pin with a coral apple inside its
+ * round head, stem and leaf and all, for the name's "apple of the earth" and the
  * page's "rolled off the map". It's decoration beside a heading that says
  * what happened, so it's hidden from screen readers.
  *
@@ -36,7 +36,7 @@ import cssModObj from './apple-pin.module.css'; // What: CSS Module Object. Why:
  * AppPinCom = Apple Pin Component
  *
  * @summary
- * Draws the pin and its apple as one inline SVG on a 60 by 92 unit box, at
+ * Draws the pin and its apple as one inline SVG on a 60 by 72 unit box, at
  * the size its stylesheet gives it, the apple tipped a little to one side as
  * if it's about to roll.
  *
@@ -62,7 +62,7 @@ function AppPinCom () : React.JSX.Element {
 		<svg
 			className={ cssModObj.appPinSvg }
 
-			viewBox='0 0 60 92'
+			viewBox='0 20 60 72'
 
 			aria-hidden='true'
 		>{ /* What: Apple Pin SVG Element. Why: The page's picture stays sharp at any size. How: This draws the pin and its apple, hidden from screen readers as decoration. */ }
@@ -76,7 +76,7 @@ function AppPinCom () : React.JSX.Element {
 
 
 
-			<g transform='rotate( -12 30 26 )'>{ /* What: Apple Group Element. Why: The apple tips a little, as if about to roll off. How: This turns the apple, its stem, and its leaf together around its center. */ }
+			<g transform='translate( 30 46 ) rotate( -12 ) scale( 0.7 ) translate( -31 -24 )'>{ /* What: Apple Group Element. Why: The apple sits inside the pin's round head, tipped a little, as if about to roll off. How: This shrinks the apple, its stem, and its leaf together to fit the head, turns them, and centers them on the head's center. */ }
 
 
 				<path
@@ -89,7 +89,7 @@ function AppPinCom () : React.JSX.Element {
 					className={ cssModObj.appStePat }
 
 					d='M30 16c0-5 2-8 5-11'
-				/>{ /* What: Apple Stem Path Element. Why: An apple needs its stem. How: This strokes a short curve up from the apple's top. */ }
+				/>{ /* What: Apple Stem Path Element. Why: An apple needs its stem. How: This strokes a short curve up from the apple's top in the light coral, which reads on the navy head. */ }
 
 				<path
 					className={ cssModObj.appLeaPat }
