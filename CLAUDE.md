@@ -58,6 +58,20 @@ by Claude. Nothing is invented: a detail no source confirms is left out.
 - **Descriptions are written for the guide**, never copied from a review or
   a place's own site.
 
+## Voice
+Decided by the user 2026-11-26: the site's copy speaks as one person, the
+builder, in the first person singular: "I", "me", and "my", never "we",
+"us", or "our". The guide is one neighbor's project (About's "Who's behind
+it" says so), so "Tell me about it", "I'll add it", "a place I missed".
+- **Applies to** every piece of copy a visitor reads or hears: page text,
+  headings, buttons, form messages, labels, descriptions, and the social
+  preview.
+- **A listed place's own page** speaks about the business, not as the
+  guide, so this covers only the guide's own words there (its footer).
+- **Check**: a search of `src/` and `index.html` for "we", "us", and "our"
+  as whole words should find none in copy (a place's name, such as Our
+  Kitchen Table, is fine).
+
 ## Contact
 Decided by the user 2026-11-25: Netlify Forms, as on the TechGeek sites, a
 hidden copy of the form in `index.html` registering its fields and a
