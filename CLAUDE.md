@@ -90,8 +90,12 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   page gray, white cards, the wave mark (`ui/brand-mark.tsx`, and
   `public/favicon.svg`), and Plus Jakarta Sans as the one font,
   self-hosted, headings extra bold.
-- **From Trail Map**: the hero (a map backdrop of the lake, contour lines,
-  a dotted coral trail, and pins, `pages/home/hero-map.tsx`), map pins
+- **From Trail Map**: the hero (a trail map backdrop of contour lines, a
+  lake, a dotted coral trail, and pins, `pages/home/hero-map.tsx`; decided
+  by the user 2026-11-27: the lake stays an invented shape, a sketch of the
+  real lake having been tried and dropped, the trail follows its east shore
+  from the map's top edge to its bottom edge without crossing the water,
+  and the three pins are spaced along it), map pins
   instead of circles for how it works (`ui/map-pin.tsx`, also beside each
   card's town), and the "Worth the drive" heading for the picks.
 - **Footer**: bigger and roomy, modeled on the TechGeek footer's layout:
@@ -117,13 +121,6 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   counted from `src/core/places.ts` so they never drift), the note on the
   name with the apple (`ui/apple-shape.tsx`, shared with the 404 pin), and
   the owners' two buttons.
-- **The hero's lake is the real one** (decided by the user 2026-11-27): a
-  simplified sketch of Lake Pomme de Terre's general shape, turned a little
-  clockwise so it stands upright, with the trail following Highway 64 from
-  the map's top edge to its bottom edge and the three pins along it, on
-  land. Above 960px the map sits behind the hero's words, held to the
-  right; from 960px down it's a band of its own under them, so nothing
-  tangles with the text.
 - **Phone menu** (decided by the user 2026-11-25, following the sibling
   sites' fix for a bare drawer): the links become roomy rows with arrows,
   then the "Add your place" button, then a pale panel with a chip per town,

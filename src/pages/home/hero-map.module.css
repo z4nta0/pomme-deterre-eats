@@ -5,12 +5,11 @@
  * hero-map.module.css = Hero Map Module
  *
  * @summary
- * Styles for HerMapCom: the map covers the hero behind its words above
- * 960px wide, and sits in a band under them from there down, taking no
+ * Styles for HerMapCom: the map covers the hero behind its words, taking no
  * pointer events, with a pale blue lake, contour lines in the strong border
  * gray, a dotted coral trail, and navy pins with coral dots that drop into
- * place as the page opens, every color read from the color tokens but the
- * black and white of the contours' masks.
+ * place as the page opens, every color read from the color tokens. The
+ * trail and the pins show above 960px wide.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -20,7 +19,7 @@
 
 /* #region herMapSvg */
 
-.herMapSvg { /* What: Hero Map SVG. Why: The map is a backdrop, filling the hero behind its words without catching clicks. How: This covers the hero, which positions it, and lets the pointer pass through, naming its place in the hero's grid for the narrow layout. */
+.herMapSvg { /* What: Hero Map SVG. Why: The map is a backdrop, filling the hero behind its words without catching clicks. How: This covers the hero, which positions it, and lets the pointer pass through. */
 
 
 	height         : 100%;
@@ -31,61 +30,21 @@
 
 
 }
-@media ( max-width : 960px ) { /* What: Narrow Hero Map SVG. Why: Below this width the hero's words span the screen, and a map behind them would tangle with them. How: This applies at 960px wide and below. */
+
+.mapLakPat { /* What: Map Lake Path. Why: The lake should read as water without competing with the words. How: This fills it with the light accent at a third of its strength. */
 
 
-	.herMapSvg { /* What: Strip Hero Map SVG. Why: The map reads best as a band of its own under the words. How: This takes it out of the backdrop into the hero's lower row, as tall as the screen is wide times a rhythm step, kept between about 243px and 426px. */
-
-
-		grid-area : herMapSvg;
-		height    : clamp( calc( var( --ver-rhy-p10 ) * 1rem ), var( --hor-rhy-024 ), calc( var( --ver-rhy-p12 ) * 1rem ) ); /* Vertical Rhythm Base Plus 10 ~= 242.517px, Horizontal Rhythm 24 ~= 825.907px @ 1,920px width, Vertical Rhythm Base Plus 12 ~= 425.601px */
-		position  : static;
-
-
-	}
+	fill : oklch( from var( --acc-lig-col ) l c h / var( --cdn-pow-004-rec ) ); /* Accent Light Color = #9fc3e8, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
 
 
 }
 
-.mapLakGro { /* What: Map Lake Group. Why: The lake's thick lines should merge into one soft shape. How: This leaves them unfilled, with round ends and joins, for each use to stroke. */
+.mapConGro { /* What: Map Contours Group. Why: The contour lines should sit quietly behind the words. How: This strokes them thin in the strong border gray, with no fill. */
 
 
-	fill            : none;
-	stroke-linecap  : round;
-	stroke-linejoin : round;
-
-
-}
-
-.conMasRec { /* What: Contour Mask Rect. Why: A mask shows what it paints white. How: This fills the rect white, a mask value rather than a color. */
-
-
-	fill : white;
-
-
-}
-
-.conMasUse { /* What: Contour Mask Use. Why: A mask hides what it paints black. How: This strokes the lake's shape black, a mask value rather than a color. */
-
-
-	stroke : black;
-
-
-}
-
-.mapConUse { /* What: Map Contour Use. Why: The contour lines should sit quietly behind the words. How: This strokes the shape in the strong border gray, which its mask trims to a thin line. */
-
-
-	stroke : var( --bor-str-col ); /* Border Strong Color = #c9d3de */
-
-
-}
-
-.mapLakUse { /* What: Map Lake Use. Why: The lake should read as water without competing with the words. How: This strokes the shape with the light accent and fades the whole of it at once, so its overlapping lines don't darken where they cross. */
-
-
-	opacity : var( --cdn-pow-003-rec ); /* Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
-	stroke  : var( --acc-lig-col );     /* Accent Light Color = #9fc3e8 */
+	fill         : none;
+	stroke       : var( --bor-str-col ); /* Border Strong Color = #c9d3de */
+	stroke-width : 1.5;                  /* What: Contour Stroke Width. Why: The line's width is in the SVG's own drawing space, which scales with the map. How: This sets it in drawing units, a thin line at any size. */
 
 
 }
@@ -98,6 +57,19 @@
 	stroke-dasharray : 2 12;                 /* What: Trail Dash Pattern. Why: The trail reads as a dotted line. How: This sets short dashes, rounded into dots by the line cap, in the SVG's own drawing units. */
 	stroke-linecap   : round;
 	stroke-width     : 4;                    /* What: Trail Stroke Width. Why: The dots should be bolder than the contours. How: This sets the line's width in drawing units. */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Map Trail Path. Why: Below this width the hero's words reach across the map, and the trail would run behind them. How: This applies at 960px wide and below. */
+
+
+	.mapTraPat { /* What: Hidden Map Trail Path. Why: A bright dotted line behind the words would tangle with them. How: This leaves the trail out, so the lake and its contours stay as a quiet backdrop. */
+
+
+		display : none;
+
+
+	}
 
 
 }
@@ -119,6 +91,19 @@
 
 
 		animation : none;
+
+
+	}
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Map Pin Group. Why: Below this width the hero's words reach across the map, and the pins would sit behind them. How: This applies at 960px wide and below. */
+
+
+	.mapPinGro { /* What: Hidden Map Pin Group. Why: A pin behind the words would tangle with them. How: This leaves the pins out with the trail they mark. */
+
+
+		display : none;
 
 
 	}
