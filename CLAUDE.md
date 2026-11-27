@@ -90,7 +90,7 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   page gray, white cards, the apple mark (`ui/brand-mark.tsx`, and
   `public/favicon.svg`; decided by the user 2026-11-27, replacing the wave
   mark: a navy disc holding the tilted, bitten apple over a pale blue lake,
-  ringed in the same pale blue, the ring left off the favicon, where it
+  ringed in the same pale blue, the ring 1.5 units wide and drawn as a pale circle under a smaller navy disc so it stays even at the bar's size, and left off the favicon, where it
   would blur at 16 and 32px, and kept on larger icons), and Plus Jakarta Sans as the one font,
   self-hosted, headings extra bold.
 - **From Trail Map**: the hero (a map backdrop of the lake, contour lines,

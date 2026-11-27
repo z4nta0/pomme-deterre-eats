@@ -69,16 +69,24 @@ function BraMarCom () : React.JSX.Element {
 			viewBox='0 0 34 34'
 
 			aria-hidden='true'
-		>{ /* What: Brand Mark SVG Element. Why: The mark stays sharp at any size. How: This draws the disc, the lake, the apple, and the ring on a 34 unit square, hidden from screen readers as decoration. */ }
+		>{ /* What: Brand Mark SVG Element. Why: The mark stays sharp at any size. How: This draws the ring, the disc, the lake, and the apple on a 34 unit square, hidden from screen readers as decoration. */ }
 
+
+			<circle
+				className={ cssModObj.marRinCir }
+
+				cx='17'
+				cy='17'
+				r='16'
+			/>{ /* What: Mark Ring Circle Element. Why: A pale ring gives the disc an edge on a dark surface. How: This fills a pale blue circle the size of the square, which shows as a ring around the smaller navy disc drawn over it, so the mark's outer edge is one clean shape. */ }
 
 			<circle
 				className={ cssModObj.marDisCir }
 
 				cx='17'
 				cy='17'
-				r='16'
-			/>{ /* What: Mark Disc Circle Element. Why: The mark sits on a navy disc. How: This fills a circle the size of the square. */ }
+				r='14.5'
+			/>{ /* What: Mark Disc Circle Element. Why: The mark sits on a navy disc. How: This fills a circle 1.5 units inside the ring's edge. */ }
 
 			<path
 				className={ cssModObj.marWatPat }
@@ -96,15 +104,6 @@ function BraMarCom () : React.JSX.Element {
 
 			</g>
 
-
-
-			<circle
-				className={ cssModObj.marRinCir }
-
-				cx='17'
-				cy='17'
-				r='15.5'
-			/>{ /* What: Mark Ring Circle Element. Why: A pale ring gives the disc an edge on a dark surface. How: This strokes a 1 unit ring just inside the disc's edge, with no fill. */ }
 
 
 		</svg>

@@ -29,6 +29,14 @@
 
 }
 
+.marRinCir { /* What: Mark Ring Circle. Why: The ring matches the lake, so the two read as one shape. How: This fills the circle under the disc with the light accent. */
+
+
+	fill : var( --acc-lig-col ); /* Accent Light Color = #9fc3e8 */
+
+
+}
+
 .marDisCir { /* What: Mark Disc Circle. Why: The mark sits on the brand's navy. How: This fills the disc with the accent color. */
 
 
@@ -41,16 +49,6 @@
 
 
 	fill : var( --acc-lig-col ); /* Accent Light Color = #9fc3e8 */
-
-
-}
-
-.marRinCir { /* What: Mark Ring Circle. Why: The ring matches the lake, so the two read as one shape. How: This strokes it in the light accent, 1 unit wide, with no fill. */
-
-
-	fill         : none;
-	stroke       : var( --acc-lig-col ); /* Accent Light Color = #9fc3e8 */
-	stroke-width : 1;                    /* What: Ring Stroke Width. Why: The ring is a fine line in the mark's own drawing space, which scales with the mark. How: This sets it in drawing units. */
 
 
 }
