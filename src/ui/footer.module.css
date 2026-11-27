@@ -375,33 +375,6 @@
 
 }
 
-.pinAppPat { /* What: Pin Apple Path. Why: The apple is the footer's one bright touch. How: This fills it with the coral. */
-
-
-	fill : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
-
-
-}
-
-.pinStePat { /* What: Pin Stem Path. Why: The stem should read against the pale pin. How: This strokes it in the deep navy, rounded at its ends. */
-
-
-	fill           : none;
-	stroke         : var( --bac-inv-col ); /* Background Inverse Color = #0b2340 */
-	stroke-linecap : round;
-	stroke-width   : 1.5;                  /* What: Stem Stroke Width. Why: The stem is a fine line in the drawing. How: This sets its width in drawing units. */
-
-
-}
-
-.pinLeaPat { /* What: Pin Leaf Path. Why: A green leaf finishes the apple. How: This fills it in the leaf green. */
-
-
-	fill : var( --acc-lea-col ); /* Accent Leaf Color = #6fbf73 */
-
-
-}
-
 /* #endregion fooMapSvg */
 
 /* #endregion fooTopDiv */

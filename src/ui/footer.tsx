@@ -6,6 +6,7 @@
 import cssModObj from './footer.module.css'; // What: CSS Module Object. Why: The footer is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
 
+import { AppShaCom   } from './apple-shape.tsx';  // What: Apple Shape Component. Why: The footer map's pin carries the site's apple. How: This draws it inside the pin's own group, which places and sizes it.
 import { BraMarCom   } from './brand-mark.tsx';   // What: Brand Mark Component. Why: The footer's brand opens with the site's mark. How: This draws it beside the name.
 import { Link        } from 'react-router';       // What: Link. Why: The footer's links move between routes without a full page load. How: This renders each one as a router link.
 import { TOW_NAM_ARR } from '../core/places.ts'; // What: Town Name Array. Why: The footer links to the listing for each town with places in the guide. How: This lists the towns.
@@ -164,8 +165,8 @@ function FooWavCom () : React.JSX.Element {
  *
  * @summary
  * Draws the small trail map beside the footer's link columns: a few contour
- * lines and a dotted coral trail ending at a pin whose head is a little
- * apple with a leaf, for the name's "apple of the earth". Its drawing space
+ * lines and a dotted coral trail ending at a pin whose head is the site's
+ * bitten apple, for the name's "apple of the earth". Its drawing space
  * is a 440 by 360 unit window on the map, the pin drawn at two and a half
  * times the trail's scale so the apple reads. It's decoration, so it's
  * hidden from screen readers.
@@ -220,7 +221,7 @@ function FooMapCom () : React.JSX.Element {
 
 
 
-			<g transform='translate( 960 170 ) scale( 2.5 ) translate( -960 -170 )'>{ /* What: Map Pin Group Element. Why: The trail ends at a pin, and the pin's head is a little apple, for "apple of the earth". How: This groups the pin, the apple, its stem, and its leaf, enlarged two and a half times around the pin's tip so the apple reads at the map's small size. */ }
+			<g transform='translate( 960 170 ) scale( 2.5 ) translate( -960 -170 )'>{ /* What: Map Pin Group Element. Why: The trail ends at a pin, and the pin's head is a little apple, for "apple of the earth". How: This groups the pin and the apple, enlarged two and a half times around the pin's tip so the apple reads at the map's small size. */ }
 
 
 				<path
@@ -229,23 +230,15 @@ function FooMapCom () : React.JSX.Element {
 					d='M960 170c0 0-15-17-15-29a15 15 0 0 1 30 0c0 12-15 29-15 29z'
 				/>{ /* What: Pin Body Path Element. Why: The marker stands where the trail ends. How: This fills the teardrop in the pale blue gray. */ }
 
-				<path
-					className={ cssModObj.pinAppPat }
 
-					d='M960 135c-3-3-10-3-11 4s4 12 8 11c1 0 2-1 3-1s2 1 3 1c4 1 9-4 8-11s-8-7-11-4z'
-				/>{ /* What: Pin Apple Path Element. Why: The pin's head is an apple, the name's "apple of the earth". How: This fills a small apple shape in coral at the head's center. */ }
 
-				<path
-					className={ cssModObj.pinStePat }
+				<g transform='translate( 942.6 125.7 ) scale( 0.58 )'>{ /* What: Pin Apple Group Element. Why: The pin's head is the site's apple, the name's "apple of the earth". How: This shrinks the shared apple's drawing to the head's size and sets it at the head's center. */ }
 
-					d='M960 135c0-3 1-5 3-7'
-				/>{ /* What: Pin Stem Path Element. Why: An apple needs its stem. How: This strokes a short curve up from the apple's top. */ }
 
-				<path
-					className={ cssModObj.pinLeaPat }
+					<AppShaCom />{ /* What: Apple Shape Component. Why: The pin's apple is the site's shared apple. How: This draws its bitten body, stem, and leaf. */ }
 
-					d='M963 129c2-5 7-6 10-5-1 4-5 7-10 5z'
-				/>{ /* What: Pin Leaf Path Element. Why: A leaf finishes the apple. How: This fills a small leaf beside the stem in the leaf green. */ }
+
+				</g>
 
 
 			</g>
