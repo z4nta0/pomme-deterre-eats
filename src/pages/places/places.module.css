@@ -142,7 +142,7 @@
 	align-items           : end;
 	background            : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border                : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
-	border-radius         : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.304px */
+	border-radius         : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
 	display               : grid;
 	gap                   : var( --tie-ver-004 ) var( --tie-hor-004 );       /* Tier Vertical 4 ~= 19.304px, Tier Horizontal 4, about 11px - 19.304px */
 	grid-template-columns : 2fr 1fr 1fr auto;
@@ -218,7 +218,7 @@
 
 	background-color : var( --bac-pag-col );                            /* Background Page Color = #f6f8fa */
 	border           : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #c9d3de */
-	border-radius    : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.572px */
+	border-radius    : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.304px */
 	min-width        : 0;
 	padding          : var( --spa-ver-m01 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
 	transition       : border-color var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
@@ -276,7 +276,7 @@
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-bas ) solid var( --acc-mai-col ); /* Border Width Base ~= 1.160px, Accent Main Color = #12355b */
-	border-radius : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.572px */
+	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.304px */
 	color         : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
 	font-weight   : 700;
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-p01 );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 1 ~= 19.304px */
@@ -399,7 +399,7 @@
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #e3e8ee */
-	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.304px */
+	border-radius : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
 	display       : grid;
 	justify-items : center;
 	padding       : var( --tie-ver-002 ) var( --tie-hor-003 );       /* Tier Vertical 2 ~= 59.447px, Tier Horizontal 3, about 19.304px - 33.876px */
@@ -424,7 +424,7 @@
 
 	background    : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
 	border        : none;
-	border-radius : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
+	border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.304px */
 	color         : var( --tex-acc-col );                      /* Text Accent Color = #ffffff */
 	font-weight   : 700;
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */

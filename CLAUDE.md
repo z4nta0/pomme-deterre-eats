@@ -111,7 +111,8 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   card's town), and the "Worth the drive" heading for the picks.
 - **Footer**: bigger and roomy, modeled on the TechGeek footer's layout:
   brand and tagline beside two link columns, then the copyright and "A
-  project by techgeek.dev". It reads only color tokens, so a place's own
+  project by techgeek.dev". The techgeek.dev link wears that site's own orange
+  (`--bui-bra-col`, decided by the user 2026-11-27), white on hover. It reads only color tokens, so a place's own
   page can restyle it.
 - **Flourishes** (decided by the user 2026-11-25, each motif kept to one
   place so none turns into wallpaper): the hero's pins drop in once on load;
@@ -137,8 +138,8 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   the mark), and
   the owners' two buttons.
 - **Corners and the bar's links** (decided by the user 2026-11-27): corners
-  are rounded just enough to notice, panels and cards at `--rad-bor-sma`
-  and buttons, fields, and chips at `--rad-bor-xsm`, except a place card's
+  are rounded just enough to notice, panels and cards at `--rad-bor-med`
+  and buttons, fields, and chips at `--rad-bor-sma`, except a place card's
   buttons and its seasonal tag, which stay fully rounded. The bar's links
   are plain navy words with no pill, the current page's in the dark coral
   over a navy underline, a hovered link in the dark coral; in the phone

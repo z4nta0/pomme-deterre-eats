@@ -28,7 +28,7 @@
 
 
 	background      : var( --acc-mai-col );                               /* Accent Main Color = #12355b */
-	border-radius   : var( --rad-bor-xsm );                               /* Radius Border Extra Small ~= 3.572px */
+	border-radius   : var( --rad-bor-sma );                               /* Radius Border Small ~= 8.304px */
 	box-shadow      : var( --ele-med-sha );                               /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 	color           : var( --tex-acc-col );                               /* Text Accent Color = #ffffff */
 	font-size       : var( --fon-siz-p01 );                               /* Font Size Base Plus 1 ~= 14.572px */
@@ -508,7 +508,7 @@
 .navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page in plain navy words. How: This sets it bold in navy with padding for a comfortable target and slight rounding for its focus ring and its row in the menu, easing its hover color, press dim, focus ring, and the tint its row takes in the menu, and positions the underline drawn under its words. */
 
 
-	border-radius : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
+	border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.304px */
 	color         : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
 	font-size     : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight   : 700;
@@ -660,7 +660,7 @@
 
 
 	background    : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
-	border-radius : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
+	border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.304px */
 	color         : var( --tex-acc-col );                      /* Text Accent Color = #ffffff */
 	font-size     : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight   : 700;
@@ -730,7 +730,7 @@
 
 
 		background    : var( --acc-tin-col );                      /* Accent Tint Color = #eaf0f6 */
-		border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.304px */
+		border-radius : var( --rad-bor-med );                      /* Radius Border Medium = 11px */
 		display       : grid;
 		margin-top    : var( --spa-ver-m02 );                      /* Spacing Vertical Base Minus 2 ~= 8.304px */
 		padding       : var( --tie-ver-004 ) var( --tie-hor-004 ); /* Tier Vertical 4 ~= 19.304px, Tier Horizontal 4, about 11px - 19.304px */
@@ -773,7 +773,7 @@
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #c9d3de */
-	border-radius : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.572px */
+	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.304px */
 	color         : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
 	display       : inline-grid;
 	font-size     : var( --fon-siz-bas );                            /* Font Size Base = 1rem */

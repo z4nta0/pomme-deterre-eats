@@ -452,10 +452,10 @@
 
 /* #region fooBuiAnc */
 
-.fooBuiAnc { /* What: Footer Builder Anchor. Why: The builder's link should read as a link within its line. How: This sets it bold in white with an underline, easing its hover color, press dim, and focus ring. */
+.fooBuiAnc { /* What: Footer Builder Anchor. Why: The builder's link should read as a link within its line. How: This sets it bold in its builder's orange with an underline, easing its hover color, press dim, and focus ring. */
 
 
-	color                 : var( --tex-inv-col );                   /* Text Inverse Color = #ffffff */
+	color                 : var( --bui-bra-col );                   /* Builder Brand Color = #f26419 */
 	font-weight           : 700;
 	text-decoration       : underline;
 	text-underline-offset : calc( var( --cdn-pow-005-rec ) * 1em ); /* Core-Design-Number to the Power of 5 Reciprocal ~= 0.245em */
@@ -463,10 +463,10 @@
 
 
 }
-.fooBuiAnc:hover { /* What: Hovered Footer Builder Anchor. Why: A link should respond to the pointer. How: This shifts it to the light coral. */
+.fooBuiAnc:hover { /* What: Hovered Footer Builder Anchor. Why: A link should respond to the pointer. How: This shifts it to white. */
 
 
-	color : var( --acs-lig-col ); /* Accent-Secondary Light Color = #ffb29e */
+	color : var( --tex-inv-col ); /* Text Inverse Color = #ffffff */
 
 
 }

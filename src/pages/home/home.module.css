@@ -98,7 +98,7 @@
 	-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m07 ) * 1rem ) );                         /* Vertical Rhythm Base Minus 7 ~= 2.035px */
 	backdrop-filter         : blur( calc( var( --ver-rhy-m07 ) * 1rem ) );                         /* Vertical Rhythm Base Minus 7 ~= 2.035px */
 	background              : rgb( from var( --acc-tin-col ) r g b / var( --cdn-pow-001-rec ) );   /* Accent Tint Color = #eaf0f6, Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */ /* What: Panel Fill. Why: Read through oklch, this pale tint came out pink in Chromium, as measured. How: This reads the tint through rgb, which came out the tint's own color. */
-	border-radius           : var( --rad-bor-sma );                                                /* Radius Border Small ~= 8.304px */
+	border-radius           : var( --rad-bor-med );                                                /* Radius Border Medium = 11px */
 	box-shadow              : var( --ele-med-sha );                                                /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 	content                 : '';
 	inset                   : calc( var( --tie-ver-004 ) * -1 ) calc( var( --gut-sid-pad ) / -2 ); /* Tier Vertical 4 ~= -19.304px, Gutter Side Padding, about -9.652px - -22.438px at its half */
@@ -196,7 +196,7 @@
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #c9d3de */
-	border-radius : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.572px */
+	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.304px */
 	font-size     : var( --fon-siz-p02 );                            /* Font Size Base Plus 2 ~= 19.304px */
 	min-width     : 0;
 	padding       : var( --spa-ver-bas ) var( --spa-hor-p01 );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 1 ~= 19.304px */
@@ -238,7 +238,7 @@
 
 	background    : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
 	border        : none;
-	border-radius : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
+	border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.304px */
 	color         : var( --tex-acc-col );                      /* Text Accent Color = #ffffff */
 	font-size     : var( --fon-siz-p02 );                      /* Font Size Base Plus 2 ~= 19.304px */
 	font-weight   : 700;
@@ -639,7 +639,7 @@
 
 	align-items           : center;
 	background            : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
-	border-radius         : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.304px */
+	border-radius         : var( --rad-bor-med );                      /* Radius Border Medium = 11px */
 	column-gap            : var( --tie-hor-002 );                      /* Tier Horizontal 2, about 33.876px - 59.447px */
 	display               : grid;
 	grid-template-columns : 1fr auto;
@@ -725,7 +725,7 @@
 
 
 	border        : var( --bor-wid-lar ) solid transparent;    /* Border Width Large ~= 2.035px */
-	border-radius : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
+	border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.304px */
 	display       : inline-grid;
 	font-size     : var( --fon-siz-p02 );                      /* Font Size Base Plus 2 ~= 19.304px */
 	font-weight   : 800;

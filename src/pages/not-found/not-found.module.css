@@ -81,7 +81,7 @@
 
 
 	border        : var( --bor-wid-lar ) solid var( --acc-mai-col ); /* Border Width Large ~= 2.035px, Accent Main Color = #12355b */
-	border-radius : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.572px */
+	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.304px */
 	display       : inline-grid;
 	font-size     : var( --fon-siz-p02 );                            /* Font Size Base Plus 2 ~= 19.304px */
 	font-weight   : 800;

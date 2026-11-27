@@ -158,6 +158,7 @@
 	--bac-sur-col : #ffffff;              /* What: Background Surface Color. Why: Cards, panels, and the bar sit on white. How: This is plain white. */
 	--bor-mai-col : #e3e8ee;              /* What: Border Main Color. Why: Cards, the bar, and dividers take a soft gray line. How: This is a cool light gray. */
 	--bor-str-col : #c9d3de;              /* What: Border Strong Color. Why: Form fields and the hero's map lines need a line that holds up as structure. How: This is the main border gray a step darker. */
+	--bui-bra-col : #f26419;              /* What: Builder Brand Color. Why: The footer's credit link wears its builder's own orange, techgeek.dev's main accent, which isn't one of this site's colors. How: This is that orange, about 5:1 on the footer's deep navy. */
 	--err-dar-col : #a12a1c;              /* What: Error Dark Color. Why: An error message's text has to read at 4.5:1. How: This is a deep brick red, about 6.2:1 on its tint. */
 	--err-mai-col : #c8432f;              /* What: Error Main Color. Why: A field that failed needs an outline that reads as a problem. How: This is a brick red, kept apart from the coral by its depth. */
 	--err-tin-col : #fbe9e6;              /* What: Error Tint Color. Why: An error message sits on a pale wash. How: This is the brick red lightened nearly to white. */
