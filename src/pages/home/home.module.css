@@ -6,7 +6,8 @@
  *
  * @summary
  * Styles for HomPagCom: the hero on the pale navy tint over its map of the lake,
- * with a large navy heading and a search box beside its button; the white
+ * with a large navy heading and a search box beside its button, on a frosted
+ * panel at 960px wide and below; the white
  * how it works band with its numbered pins; the "Worth the drive" picks in
  * a grid of place cards; and the rounded navy owners' band with its coral
  * and outlined buttons. Each section's width and side padding are the
@@ -72,6 +73,28 @@
 	position  : relative;
 	row-gap   : var( --tie-ver-004 );   /* Tier Vertical 4 ~= 19.304px */
 	width     : 100%;
+	z-index   : 0;                      /* What: Words Stacking Context. Why: The frosted panel sits behind the words but above the map. How: This makes the column its own stacking context, so the panel's place below the words stays inside it. A literal, the lowest value that starts a context. */
+
+
+}
+@media ( max-width : 960px ) { /* What: Narrow Hero Inner Div Panel. Why: Below this width the hero's words reach across the map's lake, trail, and pins. How: This applies at 960px wide and below. */
+
+
+	.herInnDiv::before { /* What: Hero Inner Div Panel. Why: The words should read clearly while the map stays whole around and behind them. How: This draws a frosted panel behind the words, the hero's tint at three quarters strength over a slight blur of the map, reaching half a gutter past the words at each side and a part's tier above and below, with rounded corners and a soft shadow. */
+
+
+		-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m05 ) * 1rem ) );                                  /* Vertical Rhythm Base Minus 5 ~= 3.572px */
+		backdrop-filter         : blur( calc( var( --ver-rhy-m05 ) * 1rem ) );                                  /* Vertical Rhythm Base Minus 5 ~= 3.572px */
+		background              : rgb( from var( --acc-tin-col ) r g b / var( --cdn-pow-001-rec ) );            /* Accent Tint Color = #eaf0f6, Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */ /* What: Panel Fill. Why: Read through oklch, this pale tint came out pink in Chromium, as measured. How: This reads the tint through rgb, which came out the tint's own color. */
+		border-radius           : var( --rad-bor-xla );                                                         /* Radius Border Extra Large ~= 19.304px */
+		box-shadow              : var( --ele-med-sha );                                                         /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
+		content                 : '';
+		inset                   : calc( var( --tie-ver-004 ) * -1 ) calc( var( --gut-sid-pad ) / 2 );           /* Tier Vertical 4 ~= -19.304px, Gutter Side Padding, about 9.652px - 22.438px at its half */
+		position                : absolute;
+		z-index                 : -1;                                                                           /* What: Panel Layer. Why: The panel sits under the words it backs. How: This is one below the words, inside the column's own stacking context. */
+
+
+	}
 
 
 }

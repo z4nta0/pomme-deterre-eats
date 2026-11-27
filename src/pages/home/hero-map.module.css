@@ -8,8 +8,8 @@
  * Styles for HerMapCom: the map covers the hero behind its words, taking no
  * pointer events, with a pale blue lake, contour lines in the strong border
  * gray, a dotted coral trail, and navy pins with coral dots that drop into
- * place as the page opens, every color read from the color tokens. The
- * trail and the pins show above 960px wide.
+ * place as the page opens, every color read from the color tokens. At 640px
+ * wide and below, the map centers its lake in the hero.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -27,6 +27,23 @@
 	pointer-events : none;
 	position       : absolute;
 	width          : 100%;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Hero Map SVG. Why: Held to the hero's right edge, the lake slides off a narrow screen's left side. How: This applies at 640px wide and below. */
+
+
+	.herMapSvg { /* What: Centered Hero Map SVG. Why: On a narrow screen the lake should sit in the middle of the hero. How: This sizes the map from the hero's height at the drawing's own shape, starts it at the hero's center line, and pulls it back by the lake's place across the drawing, letting the contour lines past the drawing's edges show, which the hero clips. */
+
+
+		aspect-ratio : 1280 / 520;           /* What: Map Shape. Why: The map's width has to follow its height for the pull back below to land on the lake. How: This is the drawing space's own width over its height. */
+		inset        : 0 auto 0 50%;
+		overflow     : visible;
+		transform    : translateX( -78.3% ); /* What: Lake Centering Shift. Why: The lake's middle sits 1,002 units across the drawing's 1,280. How: This pulls the map back by that share of its own width, so the lake's middle lands on the hero's center line. */
+		width        : auto;
+
+
+	}
 
 
 }
@@ -60,19 +77,6 @@
 
 
 }
-@media ( max-width : 960px ) { /* What: Narrow Map Trail Path. Why: Below this width the hero's words reach across the map, and the trail would run behind them. How: This applies at 960px wide and below. */
-
-
-	.mapTraPat { /* What: Hidden Map Trail Path. Why: A bright dotted line behind the words would tangle with them. How: This leaves the trail out, so the lake and its contours stay as a quiet backdrop. */
-
-
-		display : none;
-
-
-	}
-
-
-}
 
 /* #region mapPinGro */
 
@@ -91,19 +95,6 @@
 
 
 		animation : none;
-
-
-	}
-
-
-}
-@media ( max-width : 960px ) { /* What: Narrow Map Pin Group. Why: Below this width the hero's words reach across the map, and the pins would sit behind them. How: This applies at 960px wide and below. */
-
-
-	.mapPinGro { /* What: Hidden Map Pin Group. Why: A pin behind the words would tangle with them. How: This leaves the pins out with the trail they mark. */
-
-
-		display : none;
 
 
 	}

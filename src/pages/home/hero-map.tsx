@@ -176,10 +176,10 @@ const PIN_REC_ARR = [ // What: Pin Record Array. Why: The pins sit along the tra
  *
  * @summary
  * Draws the map. Its drawing space is 1,280 by 520 units, sliced to cover
- * the hero at any shape and held to the hero's right edge, so on a narrow
- * screen the map's right side shows and its left is cut away. The lake, the
- * trail, and the pins sit toward its right side, clear of the hero's text
- * on a wide screen.
+ * the hero at any shape and held to the hero's right edge above 640px wide,
+ * where the lake, the trail, and the pins sit clear of the hero's text on a
+ * wide screen. At 640px wide and below, its stylesheet centers the lake in
+ * the hero instead.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -207,7 +207,7 @@ function HerMapCom () : React.JSX.Element {
 			viewBox='0 0 1280 520'
 
 			aria-hidden='true'
-		>{ /* What: Hero Map SVG Element. Why: The hero sits on a map of the lake. How: This covers the hero with the drawing, sliced to fill it from its right edge, hidden from screen readers as decoration. */ }
+		>{ /* What: Hero Map SVG Element. Why: The hero sits on a map of the lake. How: This covers the hero with the drawing, sliced to fill it from its right edge above 640px wide and centered on the lake at 640px and below, hidden from screen readers as decoration. */ }
 
 
 			<g className={ cssModObj.mapConGro }>{ /* What: Map Contours Group Element. Why: Contour lines read as a map at a glance. How: This strokes every line in the group in the strong border gray, with no fill. */ }
