@@ -7,8 +7,8 @@
  * @summary
  * Styles for NavBarCom: the white bar across the top of the page, with the
  * brand (the mark and the name, its last word in coral) on the left and the
- * page links as pills on the right, the current page's tinted, ending in the
- * navy "Add your place" button. At 960px wide and below the links become
+ * page links as navy words on the right, the current page's in coral over a
+ * navy underline, ending in the navy "Add your place" button. At 960px wide and below the links become
  * roomy rows with arrows and, with the button and a pale panel of town
  * chips, the guide's email, and the name's note, move into a panel below
  * the bar, which fades in over a scrim that
@@ -24,11 +24,11 @@
 
 
 
-.navSkiAnc { /* What: Navigation Skip Anchor. Why: A keyboard user should be able to jump past the bar, and the link shouldn't show until it's needed. How: This sets it as a navy pill with white text and a soft shadow, like the site's filled buttons, fixed just above the screen's top edge at the page's side gutter, and eases its slide into view and back out, leaving on the accelerating curve, along with its hover fill and lift, its press, and its focus ring. */
+.navSkiAnc { /* What: Navigation Skip Anchor. Why: A keyboard user should be able to jump past the bar, and the link shouldn't show until it's needed. How: This sets it as a navy button with white text and a soft shadow, like the site's filled buttons, fixed just above the screen's top edge at the page's side gutter, and eases its slide into view and back out, leaving on the accelerating curve, along with its hover fill and lift, its press, and its focus ring. */
 
 
 	background      : var( --acc-mai-col );                               /* Accent Main Color = #12355b */
-	border-radius   : 999px;
+	border-radius   : var( --rad-bor-xsm );                               /* Radius Border Extra Small ~= 3.572px */
 	box-shadow      : var( --ele-med-sha );                               /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 	color           : var( --tex-acc-col );                               /* Text Accent Color = #ffffff */
 	font-size       : var( --fon-siz-p01 );                               /* Font Size Base Plus 1 ~= 14.572px */
@@ -52,7 +52,7 @@
 
 
 }
-.navSkiAnc:focus:hover { /* What: Hovered Navigation Skip Anchor. Why: The button should respond to the pointer while it's in view. How: This deepens the navy and lifts the pill 2px, like the filled buttons, only while it's focused, so a hover can't pull it down from above the screen. */
+.navSkiAnc:focus:hover { /* What: Hovered Navigation Skip Anchor. Why: The button should respond to the pointer while it's in view. How: This deepens the navy and lifts the button 2px, like the filled buttons, only while it's focused, so a hover can't pull it down from above the screen. */
 
 
 	background : var( --acc-hov-col );                            /* Accent Hover Color = #0b2340 */
@@ -505,34 +505,54 @@
 
 /* #region navLinAnc */
 
-.navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page as a soft pill. How: This sets it bold in slate gray with pill padding and rounding, easing its hover, press, and focus, and the tint and border it takes as the current page's link, the border leaving on the accelerating curve. */
+.navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page in plain navy words. How: This sets it bold in navy with padding for a comfortable target and slight rounding for its focus ring and its row in the menu, easing its hover color, press dim, focus ring, and the tint its row takes in the menu, and positions the underline drawn under its words. */
 
 
-	border        : var( --bor-wid-bas ) solid transparent;    /* Border Width Base ~= 1.160px */ /* What: Resting Clear Border. Why: The current page's link draws a soft border, which would otherwise appear at once and grow the pill. How: Every link keeps a border of the same width, clear at rest, so becoming current only changes its color, which the transition eases. */
-	border-radius : 999px;
-	color         : var( --tex-sec-col );                      /* Text Secondary Color = #4a5668 */
+	border-radius : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
+	color         : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
 	font-size     : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight   : 700;
 	padding       : var( --spa-ver-m02 ) var( --spa-hor-bas ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base ~= 14.572px */
-	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-acc-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	position      : relative;
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
-.navLinAnc:hover { /* What: Hovered Navigation Link Anchor. Why: A link should respond to the pointer. How: This tints the pill pale navy with navy text. */
+.navLinAnc::after { /* What: Navigation Link Anchor Underline. Why: The current page's link is marked by a navy line under its words. How: This draws the line under the words, inside the link's side padding, shrunk to nothing from its left end until the link is the current page's, leaving on the accelerating curve. */
 
 
-	background : var( --acc-tin-col ); /* Accent Tint Color = #eaf0f6 */
-	color      : var( --acc-mai-col ); /* Accent Main Color = #12355b */
+	background       : var( --acc-mai-col );                                /* Accent Main Color = #12355b */
+	bottom           : var( --spa-ver-m05 );                                /* Spacing Vertical Base Minus 5 ~= 3.572px */
+	content          : '';
+	height           : var( --bor-wid-lar );                                /* Border Width Large ~= 2.035px */
+	left             : var( --spa-hor-bas );                                /* Spacing Horizontal Base ~= 14.572px */
+	position         : absolute;
+	right            : var( --spa-hor-bas );                                /* Spacing Horizontal Base ~= 14.572px */
+	transform        : scaleX( 0 );
+	transform-origin : left;
+	transition       : transform var( --dur-tra-p01 ) var( --mot-acc-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
 
 
 }
-.navLinAnc[aria-current='page'] { /* What: Current Navigation Link Anchor. Why: The link for the page being shown should stand out. How: This tints the pill pale navy with navy text and a soft border, the border arriving on the decelerating curve. */
+.navLinAnc:hover { /* What: Hovered Navigation Link Anchor. Why: A link should respond to the pointer. How: This turns its words the dark coral. */
 
 
-	background   : var( --acc-tin-col ); /* Accent Tint Color = #eaf0f6 */
-	border-color : var( --bor-str-col ); /* Border Strong Color = #c9d3de */
-	color        : var( --acc-mai-col ); /* Accent Main Color = #12355b */
-	transition   : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-dec-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color = #b13d22 */
+
+
+}
+.navLinAnc[aria-current='page'] { /* What: Current Navigation Link Anchor. Why: The link for the page being shown should stand out. How: This sets its words in the dark coral, over the navy underline its pseudo-element draws. */
+
+
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color = #b13d22 */
+
+
+}
+.navLinAnc[aria-current='page']::after { /* What: Current Navigation Link Anchor Underline. Why: The underline marks the current page's link. How: This grows the line to its full width, arriving on the decelerating curve. */
+
+
+	transform  : none;
+	transition : transform var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -557,6 +577,21 @@
 
 
 	}
+	.navLinAnc::after { /* What: Hidden Navigation Link Anchor Underline. Why: A line under a whole row would read as a divider, so the menu marks its rows by tint. How: This leaves the underline out. */
+
+
+		display : none;
+
+
+	}
+	.navLinAnc:hover,
+	.navLinAnc[aria-current='page'] { /* What: Tinted Row Navigation Link Anchor. Why: A hovered row and the current page's row should stand out as rows. How: This tints the row pale navy, under its dark coral words. */
+
+
+		background : var( --acc-tin-col ); /* Accent Tint Color = #eaf0f6 */
+
+
+	}
 
 
 }
@@ -564,7 +599,8 @@
 
 
 	.navLinAnc,
-	.navLinAnc[aria-current='page'] { /* What: Motionless Navigation Link Anchor. Why: The hover and current looks should simply switch. How: This turns the transition off. */
+	.navLinAnc::after,
+	.navLinAnc[aria-current='page']::after { /* What: Motionless Navigation Link Anchor. Why: The hover and current looks should simply switch. How: This turns the transitions off. */
 
 
 		transition : none;
@@ -575,7 +611,7 @@
 
 }
 
-.linArrSpa { /* What: Link Arrow Span. Why: The bar's pills need no arrow, which belongs to the menu's rows. How: This hides it on a wide screen, and sets it as a block that can move once the menu shows it, easing its nudge on the decelerating curve. */
+.linArrSpa { /* What: Link Arrow Span. Why: The bar's links need no arrow, which belongs to the menu's rows. How: This hides it on a wide screen, and sets it as a block that can move once the menu shows it, easing its nudge on the decelerating curve. */
 
 
 	color      : var( --acs-dar-col );                                /* Accent-Secondary Dark Color = #b13d22 */
@@ -620,11 +656,11 @@
 
 /* #endregion navLinAnc */
 
-.navAddAnc { /* What: Navigation Add Anchor. Why: The owners' way in is the bar's one filled button, so it stands apart from the page links. How: This sets it as a navy pill with white text, a little apart from the last link, easing its hover fill and lift, its press, and its focus ring. */
+.navAddAnc { /* What: Navigation Add Anchor. Why: The owners' way in is the bar's one filled button, so it stands apart from the page links. How: This sets it as a navy button with white text and slightly rounded corners, a little apart from the last link, easing its hover fill and lift, its press, and its focus ring. */
 
 
 	background    : var( --acc-mai-col );                      /* Accent Main Color = #12355b */
-	border-radius : 999px;
+	border-radius : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color         : var( --tex-acc-col );                      /* Text Accent Color = #ffffff */
 	font-size     : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight   : 700;
@@ -635,7 +671,7 @@
 
 
 }
-.navAddAnc:hover { /* What: Hovered Navigation Add Anchor. Why: The button should respond to the pointer. How: This deepens the navy and lifts the pill 2px. */
+.navAddAnc:hover { /* What: Hovered Navigation Add Anchor. Why: The button should respond to the pointer. How: This deepens the navy and lifts the button 2px. */
 
 
 	background : var( --acc-hov-col );                            /* Accent Hover Color = #0b2340 */
@@ -694,7 +730,7 @@
 
 
 		background    : var( --acc-tin-col );                      /* Accent Tint Color = #eaf0f6 */
-		border-radius : var( --rad-bor-xla );                      /* Radius Border Extra Large ~= 19.304px */
+		border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.304px */
 		display       : grid;
 		margin-top    : var( --spa-ver-m02 );                      /* Spacing Vertical Base Minus 2 ~= 8.304px */
 		padding       : var( --tie-ver-004 ) var( --tie-hor-004 ); /* Tier Vertical 4 ~= 19.304px, Tier Horizontal 4, about 11px - 19.304px */
@@ -732,12 +768,12 @@
 
 }
 
-.menTowAnc { /* What: Menu Town Anchor. Why: Each town reads as a small white chip, a button of its own. How: This sets it bold in navy on white with a soft border and full rounding, easing its hover fill and lift, its press, and its focus ring. */
+.menTowAnc { /* What: Menu Town Anchor. Why: Each town reads as a small white chip, a button of its own. How: This sets it bold in navy on white with a soft border and slightly rounded corners, easing its hover fill and lift, its press, and its focus ring. */
 
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #c9d3de */
-	border-radius : 999px;
+	border-radius : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.572px */
 	color         : var( --acc-mai-col );                            /* Accent Main Color = #12355b */
 	display       : inline-grid;
 	font-size     : var( --fon-siz-bas );                            /* Font Size Base = 1rem */

@@ -136,6 +136,14 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   name with the apple (`ui/apple-shape.tsx`, shared with the 404 pin and
   the mark), and
   the owners' two buttons.
+- **Corners and the bar's links** (decided by the user 2026-11-27): corners
+  are rounded just enough to notice, panels and cards at `--rad-bor-sma`
+  and buttons, fields, and chips at `--rad-bor-xsm`, except a place card's
+  buttons and its seasonal tag, which stay fully rounded. The bar's links
+  are plain navy words with no pill, the current page's in the dark coral
+  over a navy underline, a hovered link in the dark coral; in the phone
+  menu the current and hovered rows take the pale tint instead of the
+  underline.
 - **Phone menu** (decided by the user 2026-11-25, following the sibling
   sites' fix for a bare drawer): the links become roomy rows with arrows,
   then the "Add your place" button, then a pale panel with a chip per town,
