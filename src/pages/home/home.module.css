@@ -204,10 +204,11 @@
 
 
 }
-.herSeaInp::placeholder { /* What: Hero Search Input Placeholder. Why: The hint should read clearly but stay quieter than typed words. How: This sets it in the muted gray. */
+.herSeaInp::placeholder { /* What: Hero Search Input Placeholder. Why: The hint should read clearly but stay quieter than typed words, and fit the box on the narrowest phones. How: This sets it in the muted gray, at the box's own size down to about 400px wide and shrinking with the screen below that, never under the base size. */
 
 
-	color : var( --tex-mut-col ); /* Text Muted Color = #5b6778 */
+	color     : var( --tex-mut-col );                                                                                   /* Text Muted Color = #5b6778 */
+	font-size : clamp( var( --fon-siz-bas ), calc( 6.9vw - var( --ver-rhy-m02 ) * 1rem ), var( --fon-siz-p02 ) ); /* Font Size Base = 11px, Vertical Rhythm Base Minus 2 ~= 8.304px, Font Size Base Plus 2 ~= 19.304px */ /* What: Hint Size Slope. Why: The hint is about 14 times its font size wide, and the box's room for it is the screen's width less about 118px of gutters, padding, and borders, as measured. How: This follows that room as the screen narrows, a little under it. */
 
 
 }
