@@ -7,7 +7,7 @@
  * @summary
  * Styles for HomPagCom: the hero on the pale navy tint over its map of the lake,
  * with a large navy heading and a search box beside its button, on a frosted
- * panel at 960px wide and below; the white
+ * panel; the white
  * how it works band with its numbered pins; the "Worth the drive" picks in
  * a grid of place cards; and the rounded navy owners' band with its coral
  * and outlined buttons. Each section's width and side padding are the
@@ -63,7 +63,7 @@
 
 /* #region herInnDiv */
 
-.herInnDiv { /* What: Hero Inner Div. Why: The hero's words sit in the page's centered column, above the map. How: This stacks them a part's tier apart within the capped column and its side padding, layered over the map. */
+.herInnDiv { /* What: Hero Inner Div. Why: The hero's words sit in the page's centered column, above the map. How: This holds their panel within the capped column and its side padding, layered over the map. */
 
 
 	display   : grid;
@@ -71,27 +71,49 @@
 	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
 	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position  : relative;
-	row-gap   : var( --tie-ver-004 );   /* Tier Vertical 4 ~= 19.304px */
 	width     : 100%;
-	z-index   : 0;                      /* What: Words Stacking Context. Why: The frosted panel sits behind the words but above the map. How: This makes the column its own stacking context, so the panel's place below the words stays inside it. A literal, the lowest value that starts a context. */
 
 
 }
-@media ( max-width : 960px ) { /* What: Narrow Hero Inner Div Panel. Why: Below this width the hero's words reach across the map's lake, trail, and pins. How: This applies at 960px wide and below. */
 
 
-	.herInnDiv::before { /* What: Hero Inner Div Panel. Why: The words should read clearly while the map stays whole around and behind them. How: This draws a frosted panel behind the words, the hero's tint at three quarters strength over a slight blur of the map, reaching half a gutter past the words at each side and a part's tier above and below, with rounded corners and a soft shadow. */
+/* #region herPanDiv */
+
+.herPanDiv { /* What: Hero Panel Div. Why: The words sit together on a frosted panel that is only as wide as they need. How: This stacks them a part's tier apart at the column's start, as wide as the widest of them, and starts a stacking context for the panel drawn behind them. */
 
 
-		-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m07 ) * 1rem ) );                                  /* Vertical Rhythm Base Minus 7 ~= 2.035px */
-		backdrop-filter         : blur( calc( var( --ver-rhy-m07 ) * 1rem ) );                                  /* Vertical Rhythm Base Minus 7 ~= 2.035px */
-		background              : rgb( from var( --acc-tin-col ) r g b / var( --cdn-pow-001-rec ) );            /* Accent Tint Color = #eaf0f6, Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */ /* What: Panel Fill. Why: Read through oklch, this pale tint came out pink in Chromium, as measured. How: This reads the tint through rgb, which came out the tint's own color. */
-		border-radius           : var( --rad-bor-xla );                                                         /* Radius Border Extra Large ~= 19.304px */
-		box-shadow              : var( --ele-med-sha );                                                         /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
-		content                 : '';
-		inset                   : calc( var( --tie-ver-004 ) * -1 ) calc( var( --gut-sid-pad ) / 2 );           /* Tier Vertical 4 ~= -19.304px, Gutter Side Padding, about 9.652px - 22.438px at its half */
-		position                : absolute;
-		z-index                 : -1;                                                                           /* What: Panel Layer. Why: The panel sits under the words it backs. How: This is one below the words, inside the column's own stacking context. */
+	display      : grid;
+	justify-self : start;
+	max-width    : 100%;
+	position     : relative;
+	row-gap      : var( --tie-ver-004 ); /* Tier Vertical 4 ~= 19.304px */
+	width        : fit-content;
+	z-index      : 0;                    /* What: Words Stacking Context. Why: The frosted panel sits behind the words but above the map. How: This makes the panel's div its own stacking context, so the panel's place below the words stays inside it. A literal, the lowest value that starts a context. */
+
+
+}
+.herPanDiv::before { /* What: Hero Panel Div Panel. Why: The words should read clearly while the map stays whole around and behind them. How: This draws a frosted panel behind the words, the hero's tint at three quarters strength over a slight blur of the map, reaching half a gutter past the words at each side and a part's tier above and below, with rounded corners and a soft shadow. */
+
+
+	-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m07 ) * 1rem ) );                         /* Vertical Rhythm Base Minus 7 ~= 2.035px */
+	backdrop-filter         : blur( calc( var( --ver-rhy-m07 ) * 1rem ) );                         /* Vertical Rhythm Base Minus 7 ~= 2.035px */
+	background              : rgb( from var( --acc-tin-col ) r g b / var( --cdn-pow-001-rec ) );   /* Accent Tint Color = #eaf0f6, Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */ /* What: Panel Fill. Why: Read through oklch, this pale tint came out pink in Chromium, as measured. How: This reads the tint through rgb, which came out the tint's own color. */
+	border-radius           : var( --rad-bor-xla );                                                /* Radius Border Extra Large ~= 19.304px */
+	box-shadow              : var( --ele-med-sha );                                                /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
+	content                 : '';
+	inset                   : calc( var( --tie-ver-004 ) * -1 ) calc( var( --gut-sid-pad ) / -2 ); /* Tier Vertical 4 ~= -19.304px, Gutter Side Padding, about -9.652px - -22.438px at its half */
+	position                : absolute;
+	z-index                 : -1;                                                                  /* What: Panel Layer. Why: The panel sits under the words it backs. How: This is one below the words, inside the div's own stacking context. */
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Hero Panel Div. Why: On a narrow screen a panel hugging its words would stop short of the column's end at an uneven place. How: This applies at 640px wide and below. */
+
+
+	.herPanDiv { /* What: Wide Hero Panel Div. Why: The panel should span the column on a narrow screen. How: This stretches it across the column's width. */
+
+
+		width : 100%;
 
 
 	}
@@ -254,6 +276,8 @@
 }
 
 /* #endregion herSeaFor */
+
+/* #endregion herPanDiv */
 
 /* #endregion herInnDiv */
 

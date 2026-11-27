@@ -100,9 +100,10 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   the east arm at the bridge, from the map's top edge to its bottom edge,
   and three pins along it on land; the map is held to the hero's right above
   640px and centers the lake at 640px and below; decided by the user
-  2026-11-27: the trail and pins stay at every width, and at 960px and
-  below, where the words cross the map, the words sit on a frosted panel,
-  the hero's tint at about three quarters strength over a slight blur), map pins
+  2026-11-27: the trail and pins stay at every width, and the words sit on a
+  frosted panel, the hero's tint at about three quarters strength over a
+  slight blur, as wide as the words need above 640px and across the column
+  at 640px and below), map pins
   instead of circles for how it works (`ui/map-pin.tsx`, also beside each
   card's town), and the "Worth the drive" heading for the picks.
 - **Footer**: bigger and roomy, modeled on the TechGeek footer's layout:

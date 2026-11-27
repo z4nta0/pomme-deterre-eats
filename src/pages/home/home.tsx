@@ -215,70 +215,76 @@ function HomPagCom () : React.JSX.Element {
 
 
 
-				<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column, above the map. How: This stacks the eyebrow, the heading, the lead, and the search. */ }
+				<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column, above the map. How: This holds the panel of words at the column's start. */ }
 
 
-					<p className={ cssModObj.herEyePar }>Your guide to eating around the lake</p>{ /* What: Hero Eyebrow Paragraph Element. Why: A short label sets up the heading. How: This shows it small and bold in navy. */ }
-
-					<h1
-						id='homHerHea'
-
-						className={ cssModObj.herTitHea }
-					>Find your next meal at Lake Pomme de Terre.</h1>{ /* What: Hero Title Heading Element. Why: The page's one heading says what the guide is for. How: This shows it large, naming the hero section through its ID. */ }
-
-					<p className={ cssModObj.herLeaPar }>From Hermitage to Pittsburg to Wheatland, every diner, marina grill, and pizza counter around the lake, gathered in one place.</p>{ /* What: Hero Lead Paragraph Element. Why: A sentence says what the guide holds. How: This shows it a step larger than body text, in slate. */ }
+					<div className={ cssModObj.herPanDiv }>{ /* What: Hero Panel Div Element. Why: The words read clearly on a frosted panel while the map shows around and through it. How: This stacks the eyebrow, the heading, the lead, and the search, as wide as they need above 640px wide and across the column at 640px and below. */ }
 
 
+						<p className={ cssModObj.herEyePar }>Your guide to eating around the lake</p>{ /* What: Hero Eyebrow Paragraph Element. Why: A short label sets up the heading. How: This shows it small and bold in navy. */ }
 
-					<form
-						className={ cssModObj.herSeaFor }
+						<h1
+							id='homHerHea'
 
-						action='/places'
-						method='get'
-						role='search'
+							className={ cssModObj.herTitHea }
+						>Find your next meal at Lake Pomme de Terre.</h1>{ /* What: Hero Title Heading Element. Why: The page's one heading says what the guide is for. How: This shows it large, naming the hero section through its ID. */ }
 
-						onSubmit={ ( subEveObj ) => { // What: Search Submit Handler. Why: The listing should open searched without a full page load. How: This cancels the browser's own submit and routes to the listing with the trimmed words as its query, or with no query when the box is empty.
-
-
-							subEveObj.preventDefault(); // What: Default Prevent Call. Why: The browser's own submit would reload the whole site. How: This cancels it.
-
-
-							const queTexStr = new FormData( subEveObj.currentTarget ).get( 'q' )?.toString().trim() ?? ''; // What: Query Text String. Why: The listing searches for what the visitor typed. How: This reads the box's words, trimmed, or nothing.
+						<p className={ cssModObj.herLeaPar }>From Hermitage to Pittsburg to Wheatland, every diner, marina grill, and pizza counter around the lake, gathered in one place.</p>{ /* What: Hero Lead Paragraph Element. Why: A sentence says what the guide holds. How: This shows it a step larger than body text, in slate. */ }
 
 
 
-							navRouFun( queTexStr ? `/places?q=${ encodeURIComponent( queTexStr ) }` : '/places' ); // What: Listing Route Call. Why: The words have to reach the listing. How: This routes to it with the words as its query, or bare when there are none.
+						<form
+							className={ cssModObj.herSeaFor }
+
+							action='/places'
+							method='get'
+							role='search'
+
+							onSubmit={ ( subEveObj ) => { // What: Search Submit Handler. Why: The listing should open searched without a full page load. How: This cancels the browser's own submit and routes to the listing with the trimmed words as its query, or with no query when the box is empty.
 
 
-						} }
-					>{ /* What: Hero Search Form Element. Why: Searching is the quickest way into the guide. How: This sets the box beside the button, marked as a search landmark, wrapping below about 480px wide. */ }
+								subEveObj.preventDefault(); // What: Default Prevent Call. Why: The browser's own submit would reload the whole site. How: This cancels it.
 
 
-						<label
-							className={ cssModObj.visHidSpa }
-
-							htmlFor='herSeaInp'
-						>Search places</label>{ /* What: Hero Search Label Element. Why: The box needs a name for screen readers, though its placeholder shows its purpose. How: This labels it, hidden from view. */ }
-
-						<input
-							id='herSeaInp'
-
-							className={ cssModObj.herSeaInp }
-
-							name='q'
-
-							placeholder='Search places, towns, or food'
-							type='search'
-						/>{ /* What: Hero Search Input Element. Why: The visitor types what they're looking for. How: This is the search box, named q, which the listing reads as its query. */ }
-
-						<button
-							className={ cssModObj.herSeaBut }
-
-							type='submit'
-						>Search</button>{ /* What: Hero Search Button Element. Why: The search needs a clear way to go. How: This submits the form, set as a filled navy button. */ }
+								const queTexStr = new FormData( subEveObj.currentTarget ).get( 'q' )?.toString().trim() ?? ''; // What: Query Text String. Why: The listing searches for what the visitor typed. How: This reads the box's words, trimmed, or nothing.
 
 
-					</form>
+
+								navRouFun( queTexStr ? `/places?q=${ encodeURIComponent( queTexStr ) }` : '/places' ); // What: Listing Route Call. Why: The words have to reach the listing. How: This routes to it with the words as its query, or bare when there are none.
+
+
+							} }
+						>{ /* What: Hero Search Form Element. Why: Searching is the quickest way into the guide. How: This sets the box beside the button, marked as a search landmark, wrapping below about 480px wide. */ }
+
+
+							<label
+								className={ cssModObj.visHidSpa }
+
+								htmlFor='herSeaInp'
+							>Search places</label>{ /* What: Hero Search Label Element. Why: The box needs a name for screen readers, though its placeholder shows its purpose. How: This labels it, hidden from view. */ }
+
+							<input
+								id='herSeaInp'
+
+								className={ cssModObj.herSeaInp }
+
+								name='q'
+
+								placeholder='Search places, towns, or food'
+								type='search'
+							/>{ /* What: Hero Search Input Element. Why: The visitor types what they're looking for. How: This is the search box, named q, which the listing reads as its query. */ }
+
+							<button
+								className={ cssModObj.herSeaBut }
+
+								type='submit'
+							>Search</button>{ /* What: Hero Search Button Element. Why: The search needs a clear way to go. How: This submits the form, set as a filled navy button. */ }
+
+
+						</form>
+
+
+					</div>
 
 
 				</div>
