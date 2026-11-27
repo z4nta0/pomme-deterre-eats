@@ -87,8 +87,11 @@ Decided by the user 2026-11-25, from three directions shown on a design
 canvas: mostly "Harbor", with parts of "Trail Map".
 - **Harbor**: the lake navy (`#12355b`) with a sunset coral accent
   (`#f26a4b`, never text on white; its text shade is `#b13d22`), the cool
-  page gray, white cards, the wave mark (`ui/brand-mark.tsx`, and
-  `public/favicon.svg`), and Plus Jakarta Sans as the one font,
+  page gray, white cards, the apple mark (`ui/brand-mark.tsx`, and
+  `public/favicon.svg`; decided by the user 2026-11-27, replacing the wave
+  mark: a navy disc holding the tilted, bitten apple over a pale blue lake,
+  ringed in the same pale blue, the ring left off the favicon, where it
+  would blur at 16 and 32px, and kept on larger icons), and Plus Jakarta Sans as the one font,
   self-hosted, headings extra bold.
 - **From Trail Map**: the hero (a map backdrop of the lake, contour lines,
   a dotted coral trail, and pins, `pages/home/hero-map.tsx`; decided by the
@@ -121,13 +124,17 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   on the literal meaning of pomme de terre rather than "potato", but only in
   the footer, the phone menu's closing line, the 404 page ("This apple
   rolled off the map", a tipped apple in a pin), and About's note on the
-  name. The wave mark and the hero stay apple-free. Its leaf reads
+  name. Decided by the user
+  2026-11-27: the apple carries a bite, for "eats", wherever the shared
+  apple is drawn (`ui/apple-shape.tsx`), with a pale coral stem on navy, and
+  it's the mark too. The hero stays apple-free. Its leaf reads
   `--acc-lea-col`.
 - **About's sidebar** (decided by the user 2026-11-26, to fill the empty
   space beside the prose): three panels beside the prose above 960px, and
   below it from there down: the guide's figures (places, towns, and kinds,
   counted from `src/core/places.ts` so they never drift), the note on the
-  name with the apple (`ui/apple-shape.tsx`, shared with the 404 pin), and
+  name with the apple (`ui/apple-shape.tsx`, shared with the 404 pin and
+  the mark), and
   the owners' two buttons.
 - **Phone menu** (decided by the user 2026-11-25, following the sibling
   sites' fix for a bare drawer): the links become roomy rows with arrows,

@@ -6,8 +6,8 @@
  *
  * @summary
  * Styles for BraMarCom: the mark's size, an em square that follows the font
- * size of the text beside it, and the colors of its navy disc, white upper
- * wave, and coral lower wave, read from the color tokens.
+ * size of the text beside it, and the colors of its navy disc, pale blue
+ * lake and ring, and the apple's stem, read from the color tokens.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -17,11 +17,14 @@
 
 /* #region braMarSvg */
 
-.braMarSvg { /* What: Brand Mark SVG. Why: The mark should match the size of the name beside it. How: This sizes it to a square a little larger than the text's own em, keeping it from shrinking in a tight row. */
+.braMarSvg { /* What: Brand Mark SVG. Why: The mark should match the size of the name beside it, and its apple's stem should show on the navy at the mark's small size. How: This sizes it to a square a little larger than the text's own em, and hands the apple a pale coral, thicker stem. */
 
 
-	height      : calc( var( --cdn-pow-002 ) * 1em ); /* Core-Design-Number to the Power of 2 ~= 1.755em */
-	width       : calc( var( --cdn-pow-002 ) * 1em ); /* Core-Design-Number to the Power of 2 ~= 1.755em */
+	--app-ste-col : var( --acs-lig-col ); /* Accent Secondary Light Color = #ffb29e */
+	--app-ste-wid : 3.4;                  /* What: Apple Stem Width. Why: The apple is drawn at under half its size here, where its usual stem would thin away. How: This widens the stem, in the apple's own drawing units. */
+
+	height : calc( var( --cdn-pow-002 ) * 1em ); /* Core-Design-Number to the Power of 2 ~= 1.755em */
+	width  : calc( var( --cdn-pow-002 ) * 1em ); /* Core-Design-Number to the Power of 2 ~= 1.755em */
 
 
 }
@@ -34,18 +37,20 @@
 
 }
 
-.marUppPat { /* What: Mark Upper Path. Why: The upper wave is the lake's surface. How: This strokes it white. */
+.marWatPat { /* What: Mark Water Path. Why: The lake is the mark's pale blue. How: This fills it with the light accent. */
 
 
-	stroke : var( --bac-sur-col ); /* Background Surface Color = #ffffff */
+	fill : var( --acc-lig-col ); /* Accent Light Color = #9fc3e8 */
 
 
 }
 
-.marLowPat { /* What: Mark Lower Path. Why: The lower wave is the sunset on the water. How: This strokes it in the coral accent. */
+.marRinCir { /* What: Mark Ring Circle. Why: The ring matches the lake, so the two read as one shape. How: This strokes it in the light accent, 1 unit wide, with no fill. */
 
 
-	stroke : var( --acc-sec-col ); /* Accent Secondary Color = #f26a4b */
+	fill         : none;
+	stroke       : var( --acc-lig-col ); /* Accent Light Color = #9fc3e8 */
+	stroke-width : 1;                    /* What: Ring Stroke Width. Why: The ring is a fine line in the mark's own drawing space, which scales with the mark. How: This sets it in drawing units. */
 
 
 }

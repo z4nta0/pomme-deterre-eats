@@ -6,8 +6,9 @@
  *
  * @summary
  * Styles for AppShaCom: the colors of the apple's coral body, its stem, and
- * its green leaf. The stem reads a color a parent may hand it, since it has
- * to show against whatever the apple sits on.
+ * its green leaf. The stem reads a color and a width a parent may hand it,
+ * since it has to show against whatever the apple sits on, at whatever
+ * size the apple is drawn.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -23,13 +24,13 @@
 
 }
 
-.appStePat { /* What: Apple Stem Path. Why: The stem should read against whatever the apple sits on. How: This strokes it in the color its parent hands it, the deep navy otherwise, rounded at its ends. */
+.appStePat { /* What: Apple Stem Path. Why: The stem should read against whatever the apple sits on. How: This strokes it in the color and at the width its parent hands it, the deep navy and 2.5 units otherwise, rounded at its ends. */
 
 
 	fill           : none;
 	stroke         : var( --app-ste-col, var( --bac-inv-col ) ); /* Apple Stem Color, set by its parent, Background Inverse Color = #0b2340 */
 	stroke-linecap : round;
-	stroke-width   : 2.5;                                        /* What: Stem Stroke Width. Why: The stem is a fine line in the drawing. How: This sets its width in drawing units. */
+	stroke-width   : var( --app-ste-wid, 2.5 );                  /* Apple Stem Width, set by its parent */ /* What: Stem Stroke Width. Why: The stem is a fine line in the drawing, which a drawing that shows the apple small may thicken. How: This sets its width in drawing units, 2.5 unless a parent hands it another. */
 
 
 }
