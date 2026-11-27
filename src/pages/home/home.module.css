@@ -5,7 +5,7 @@
  * home.module.css = Home Page Module
  *
  * @summary
- * Styles for HomPagCom: the hero on the pale navy tint over its trail map,
+ * Styles for HomPagCom: the hero on the pale navy tint with its map of the lake,
  * with a large navy heading and a search box beside its button; the white
  * how it works band with its numbered pins; the "Worth the drive" picks in
  * a grid of place cards; and the rounded navy owners' band with its coral
@@ -58,6 +58,22 @@
 
 
 }
+@media ( max-width : 960px ) { /* What: Narrow Home Hero Section. Why: Below this width the words span the screen, so the map moves under them. How: This applies at 960px wide and below. */
+
+
+	.homHerSec { /* What: Stacked Home Hero Section. Why: The map reads best as a band of its own under the words. How: This stacks the words above the map a section's tier apart, and drops the padding below, so the map runs to the hero's bottom edge. */
+
+
+		display             : grid;
+		grid-template-areas : 'herInnDiv' 'herMapSvg';
+		padding-bottom      : 0;
+		row-gap             : var( --tie-ver-002 );    /* Tier Vertical 2 ~= 59.447px */
+
+
+	}
+
+
+}
 
 
 /* #region herInnDiv */
@@ -66,6 +82,7 @@
 
 
 	display   : grid;
+	grid-area : herInnDiv;
 	margin    : 0 auto;
 	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
 	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
