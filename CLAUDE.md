@@ -93,7 +93,9 @@ canvas: mostly "Harbor", with parts of "Trail Map".
 - **From Trail Map**: the hero (a map backdrop of the lake, contour lines,
   a dotted coral trail, and pins, `pages/home/hero-map.tsx`; decided by the
   user 2026-11-27: the lake is the real Lake Pomme de Terre, from the
-  user's own tracing, with contour lines ringing its shore, the trail
+  user's own tracing, with contour lines ringing its shore (one close to
+  it, the rest spreading wider and smoother until they cross the whole
+  hero, each worked out ahead of time as a plain path), the trail
   following the user's tracing of the highway down its east side, across
   the east arm at the bridge, from the map's top edge to its bottom edge,
   and three pins along it on land; the map is held to the hero's right, and
