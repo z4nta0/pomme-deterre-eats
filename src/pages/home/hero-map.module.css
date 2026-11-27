@@ -8,8 +8,9 @@
  * Styles for HerMapCom: the map covers the hero behind its words, taking no
  * pointer events, with a pale blue lake, contour lines in the strong border
  * gray, a dotted coral trail, and navy pins with coral dots that drop into
- * place as the page opens, every color read from the color tokens. The
- * trail and the pins show above 960px wide.
+ * place as the page opens, every color read from the color tokens but the
+ * black and white of the contours' masks. The trail and the pins show
+ * above 960px wide.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -31,20 +32,38 @@
 
 }
 
-.mapLakPat { /* What: Map Lake Path. Why: The lake should read as water without competing with the words. How: This fills it with the light accent at a third of its strength. */
+.conMasRec { /* What: Contour Mask Rect. Why: A mask shows what it paints white. How: This fills the rect white, a mask value rather than a color. */
 
 
-	fill : oklch( from var( --acc-lig-col ) l c h / var( --cdn-pow-004-rec ) ); /* Accent Light Color = #9fc3e8, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
+	fill : white;
 
 
 }
 
-.mapConGro { /* What: Map Contours Group. Why: The contour lines should sit quietly behind the words. How: This strokes them thin in the strong border gray, with no fill. */
+.conMasUse { /* What: Contour Mask Use. Why: A mask hides what it paints black. How: This fills and strokes the lake's shape black, a mask value rather than a color, with round joins so the cut follows the shore smoothly. */
 
 
-	fill         : none;
-	stroke       : var( --bor-str-col ); /* Border Strong Color = #c9d3de */
-	stroke-width : 1.5;                  /* What: Contour Stroke Width. Why: The line's width is in the SVG's own drawing space, which scales with the map. How: This sets it in drawing units, a thin line at any size. */
+	fill            : black;
+	stroke          : black;
+	stroke-linejoin : round;
+
+
+}
+
+.mapConUse { /* What: Map Contour Use. Why: The contour lines should sit quietly behind the words. How: This strokes the lake's outline in the strong border gray, unfilled, with round joins, which its mask trims to a thin line. */
+
+
+	fill            : none;
+	stroke          : var( --bor-str-col ); /* Border Strong Color = #c9d3de */
+	stroke-linejoin : round;
+
+
+}
+
+.mapLakUse { /* What: Map Lake Use. Why: The lake should read as water without competing with the words. How: This fills it with the light accent at a little under half its strength. */
+
+
+	fill : oklch( from var( --acc-lig-col ) l c h / var( --cdn-pow-003-rec ) ); /* Accent Light Color = #9fc3e8, Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
 
 
 }

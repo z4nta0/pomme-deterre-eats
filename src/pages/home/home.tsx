@@ -6,7 +6,7 @@
 import cssModObj from './home.module.css'; // What: CSS Module Object. Why: The home page is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
 
-import { HerMapCom   } from './hero-map.tsx';          // What: Hero Map Component. Why: The hero's backdrop is a trail map of the lake country. How: This draws it behind the hero's text.
+import { HerMapCom   } from './hero-map.tsx';          // What: Hero Map Component. Why: The hero's backdrop is a map of the lake. How: This draws it behind the hero's text.
 import { Link        } from 'react-router';            // What: Link. Why: The page's buttons move to other pages without a full page load. How: This renders each one as a router link.
 import { MapPinCom   } from '../../ui/map-pin.tsx';    // What: Map Pin Component. Why: Each how it works step is marked with a numbered pin. How: This draws the large pin with its step's number.
 import { PLA_REC_ARR } from '../../core/places.ts';    // What: Place Record Array. Why: The picks are drawn from the guide's places. How: This is the table they're chosen from.
@@ -22,7 +22,7 @@ import { useState    } from 'react';                   // What: Use State. Why: 
  * home.tsx = Home Page
  *
  * @summary
- * The site's landing page: a hero over a trail map of the lake country that
+ * The site's landing page: a hero over a map of the lake that
  * says what the guide is and searches it, three steps on how to use it, three
  * places chosen at random from the better confirmed ones under "Worth the
  * drive", and a navy band inviting owners to add their place or update its
@@ -211,7 +211,7 @@ function HomPagCom () : React.JSX.Element {
 			>{ /* What: Home Hero Section Element. Why: The page opens by saying what the guide is and offering its search. How: This sets the trail map behind the hero's text on the pale navy tint, named by its heading. */ }
 
 
-				<HerMapCom />{ /* What: Hero Map Component. Why: The hero's backdrop is a trail map of the lake country. How: This draws the contour lines, the dotted trail, and its pins behind the text. */ }
+				<HerMapCom />{ /* What: Hero Map Component. Why: The hero's backdrop is a map of the lake. How: This draws the lake, its contour lines, the dotted trail, and its pins behind the text. */ }
 
 
 

@@ -90,12 +90,15 @@ canvas: mostly "Harbor", with parts of "Trail Map".
   page gray, white cards, the wave mark (`ui/brand-mark.tsx`, and
   `public/favicon.svg`), and Plus Jakarta Sans as the one font,
   self-hosted, headings extra bold.
-- **From Trail Map**: the hero (a trail map backdrop of contour lines, a
-  lake, a dotted coral trail, and pins, `pages/home/hero-map.tsx`; decided
-  by the user 2026-11-27: the lake stays an invented shape, a sketch of the
-  real lake having been tried and dropped, the trail follows its east shore
-  from the map's top edge to its bottom edge without crossing the water,
-  and the three pins are spaced along it), map pins
+- **From Trail Map**: the hero (a map backdrop of the lake, contour lines,
+  a dotted coral trail, and pins, `pages/home/hero-map.tsx`; decided by the
+  user 2026-11-27: the lake is the real Lake Pomme de Terre, from the
+  user's own tracing, with contour lines ringing its shore, the trail
+  following the user's tracing of the highway down its east side, across
+  the east arm at the bridge, from the map's top edge to its bottom edge,
+  and three pins along it on land; the map is held to the hero's right, and
+  the trail and pins are left out at 960px and below, where the words
+  cross the map), map pins
   instead of circles for how it works (`ui/map-pin.tsx`, also beside each
   card's town), and the "Worth the drive" heading for the picks.
 - **Footer**: bigger and roomy, modeled on the TechGeek footer's layout:
