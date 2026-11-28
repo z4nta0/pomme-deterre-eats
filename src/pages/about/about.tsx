@@ -235,7 +235,7 @@ function AboPagCom () : React.JSX.Element {
 							viewBox='9 -2 44 48'
 
 							aria-hidden='true'
-						>{ /* What: Name Apple SVG Element. Why: The apple of the earth deserves its apple. How: This draws the site's apple above the note, tipped a little, hidden from screen readers as decoration. */ }
+						>{ /* What: Name Apple SVG Element. Why: The apple of the earth deserves its apple. How: This draws the site's apple centered above the note, tipped a little, hidden from screen readers as decoration. */ }
 
 
 							<AppShaCom />{ /* What: Apple Shape Component. Why: The apple is drawn the same wherever the site shows it. How: This draws the shared apple, filling the drawing. */ }
