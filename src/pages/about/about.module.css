@@ -335,13 +335,14 @@
 
 }
 
-.namAppSvg { /* What: Name Apple SVG. Why: The apple leads the note as a small illustration, tipped as if about to roll. How: This sets it about 59px tall, its width following its shape, centered across the panel above the left-aligned words, turned a little to one side. */
+.namAppSvg { /* What: Name Apple SVG. Why: The apple leads the note as a small illustration, tipped as if about to roll. How: This sets it about 59px tall, its width following its shape, centered across the panel with an item's tier of room above the left-aligned words, on top of the panel's own gap, turned a little to one side. */
 
 
-	aspect-ratio : 44 / 48;
-	height       : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
-	justify-self : center;
-	rotate       : -12deg;                              /* What: Apple Tilt. Why: The apple leans the way the 404 page's does. How: This turns it 12 degrees, a literal angle. */
+	aspect-ratio  : 44 / 48;
+	height        : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
+	justify-self  : center;
+	margin-bottom : var( --tie-ver-003 );                /* Tier Vertical 3 ~= 33.876px */
+	rotate        : -12deg;                              /* What: Apple Tilt. Why: The apple leans the way the 404 page's does. How: This turns it 12 degrees, a literal angle. */
 
 
 }
